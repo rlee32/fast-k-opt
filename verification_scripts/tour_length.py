@@ -19,7 +19,7 @@ def compute_length(point_set, distance_function, tour):
     return length
 
 if len(sys.argv) < 2:
-    print("Need file path of .tsp file")
+    print("Usage: point_set_file_path optional_tour_file_path")
     sys.exit()
 
 point_set = file_reader.read_point_set(sys.argv[1])
