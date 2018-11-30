@@ -1,5 +1,7 @@
 #include "MortonKey.h"
 
+namespace quadtree {
+
 static const MortonKeyType MORTON_ALL_ZEROS = static_cast<MortonKeyType>(0);
 static const MortonKeyType MORTON_ALL_ONES = ~MORTON_ALL_ZEROS;
 static const MortonKeyType MORTON_ONE = static_cast<MortonKeyType>(1);
@@ -46,3 +48,5 @@ std::vector<MortonKeyType> ExtractLeadingQuadrants(MortonKeyType node_morton_key
 
     return quadrant_keys;
 }
+
+} // namespace quadtree

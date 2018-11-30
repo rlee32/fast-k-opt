@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 
+namespace quadtree {
+
 using BinaryType = unsigned int; // coordinate binary represenation.
 using MortonKeyType = unsigned long; // consists of interleaved BinaryType. (TODO: ?)
 constexpr int MAX_LEVEL = 21; //maximum quadtree depth / level. Leave at least one bit for flags.
@@ -30,3 +32,4 @@ private:
 
 std::vector<MortonKeyType> ExtractLeadingQuadrants(MortonKeyType node_morton_key, int tree_level);
 
+} // namespace quadtree
