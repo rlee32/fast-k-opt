@@ -5,7 +5,7 @@ CXX_FLAGS += -O3 -ffast-math # optimization.
 CXX_FLAGS += -g # debugging.
 
 SRCS = k-opt.cpp PointSet.cpp Tour.cpp \
-    quadtree/MortonKey.cpp quadtree/QuadtreeNode.cpp
+    quadtree/morton_keys/morton_keys.cpp quadtree/QuadtreeNode.cpp
 
 %.o: %.cpp; $(CXX) $(CXX_FLAGS) -o $@ -c $<
 

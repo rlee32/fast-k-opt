@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MortonKey.h"
+#include "morton_keys/morton_keys.h"
 #include "Segment.h"
 
 #include <algorithm>
@@ -20,6 +20,7 @@ class QuadtreeNode
 using SegmentType = Segment<QuadtreeNode>;
 using SegmentContainer = std::vector<SegmentType*>;
 public:
+    QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent, int quadrant);
     ~QuadtreeNode()
     {
@@ -35,7 +36,7 @@ public:
     int tree_level() const { return m_tree_level; }
     int quadrant() const { return m_quadrant; }
     QuadtreeNode* children(int index) const { return m_children[index]; }
-    void print(int max_level = MAX_LEVEL);
+    void print(int max_level = morton_keys::MAX_LEVEL);
 
     int total_segment_count() { return m_total_segment_count; }
     SegmentContainer* immediate_segments() { return &m_segments; }
