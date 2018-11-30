@@ -6,4 +6,6 @@ To reduce the complexity of the c++ implementation, I offload as much as possibl
 The c++ implementation is meant to read and output point sets and tours.
 The python verification_scripts are meant to post-process the c++ output.
 
+Preparation:
+1. Make sure the Makefile's c++ compiler is correct.
 
