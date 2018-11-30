@@ -1,5 +1,5 @@
-#include "PointSet.h"
-#include "Tour.h"
+#include "fileio/PointSet.h"
+#include "fileio/Tour.h"
 
 #include <iostream>
 #include <string>

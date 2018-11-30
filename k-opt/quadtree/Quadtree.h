@@ -7,7 +7,7 @@
 #include <utility>
 #include <bitset>
 
-#include "Tour.h"
+#include "../fileio/Tour.h" // TODO: remove dependency on Tour class.
 #include "MortonKey.h"
 #include "QuadtreeNode.h"
 #include "Segment.h"

@@ -4,7 +4,8 @@ CXX_FLAGS += -Wall -Wextra -Werror -pedantic -Wfatal-errors # source code qualit
 CXX_FLAGS += -O3 -ffast-math # optimization.
 CXX_FLAGS += -g # debugging.
 
-SRCS = k-opt.cpp PointSet.cpp Tour.cpp \
+SRCS = k-opt.cpp \
+    fileio/PointSet.cpp fileio/Tour.cpp \
     quadtree/morton_keys/morton_keys.cpp quadtree/QuadtreeNode.cpp
 
 %.o: %.cpp; $(CXX) $(CXX_FLAGS) -o $@ -c $<
