@@ -1,3 +1,5 @@
 *.pyc
 *.tsp
 data/*
+*.o
+k-opt.out
