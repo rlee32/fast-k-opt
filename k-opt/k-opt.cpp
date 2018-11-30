@@ -1,4 +1,5 @@
 #include "PointSet.h"
+#include "Tour.h"
 
 #include <iostream>
 #include <string>
@@ -11,7 +12,11 @@ int main(int argc, char** argv)
         std::cout << "Usage: point_set_file_path optional_tour_file_path" << std::endl;
         return 0;
     }
-    std::string point_set_file_path(argv[1]);
-    PointSet point_set(point_set_file_path);
+    PointSet point_set(argv[1]);
+    Tour initial_tour;
+    if (argc > 2)
+    {
+        initial_tour = Tour(argv[2]);
+    }
     return 0;
 }

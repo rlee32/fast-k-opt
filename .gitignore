@@ -3,3 +3,4 @@
 data/*
 *.o
 k-opt.out
+*.dSYM

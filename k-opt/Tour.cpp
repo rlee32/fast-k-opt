@@ -1,8 +1,8 @@
-#include "PointSet.h"
+#include "Tour.h"
 
-PointSet::PointSet(const char* file_path)
+Tour::Tour(const char* file_path)
 {
-    std::cout << "\nReading point set file: " << file_path << std::endl;
+    std::cout << "\nReading tour file: " << file_path << std::endl;
     std::ifstream file_stream(file_path);
     if (not file_stream.is_open())
     {
@@ -28,36 +28,30 @@ PointSet::PointSet(const char* file_path)
     }
     if (point_count == 0)
     {
-        std::cout << "ERROR: could not read any points from the point set file." << std::endl;
+        std::cout << "ERROR: could not read any points from the tour file." << std::endl;
         return;
     }
-    // coordinates.
+    // point ids.
     while (not file_stream.eof())
     {
-        if (m_x.size() >= point_count)
+        if (m_point_ids.size() >= point_count)
         {
             break;
         }
         std::getline(file_stream, line);
-        std::stringstream line_stream(line);
-        size_t point_id{0};
-        line_stream >> point_id;
-        if (point_id == m_x.size() + 1)
+        size_t point_id = std::stoi(line);
+        if (point_id == m_point_ids.size() + 1)
         {
-            double value{0};
-            line_stream >> value;
-            m_x.push_back(value);
-            line_stream >> value;
-            m_y.push_back(value);
+            m_point_ids.push_back(point_id);
         }
         else
         {
             std::cout << "ERROR: point id ("
                 << point_id
                 << ")does not match number of currently read points ("
-                << m_x.size()
+                << m_point_ids.size()
                 << ")." << std::endl;
         }
     }
-    std::cout << "Finished reading point set file.\n" << std::endl;
+    std::cout << "Finished reading tour file.\n" << std::endl;
 }
