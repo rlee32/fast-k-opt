@@ -1,6 +1,6 @@
 #pragma once
 
-#include "morton_keys/morton_keys.h"
+#include "morton_keys.h"
 #include "Segment.h"
 
 #include <algorithm>

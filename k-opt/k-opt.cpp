@@ -13,10 +13,11 @@ int main(int argc, char** argv)
         return 0;
     }
     PointSet point_set(argv[1]);
-    Tour initial_tour;
     if (argc > 2)
     {
-        initial_tour = Tour(argv[2]);
+        Tour initial_tour(argv[2]);
+        const auto length = point_set.cycle_length(initial_tour.point_ids());
+        std::cout << "Initial tour length: " << length << std::endl;
     }
     return 0;
 }

@@ -3,10 +3,12 @@
 // This represents a path segment between two adjacent cities.
 // A tour is made of a number of segments equal to the number of cities.
 
+#include <cstdint>
+
 template <typename Container>
 struct Segment
 {
-    using cost_t = long int;
+    using cost_t = uint64_t;
 
     int start_city{-1}; // index of the starting city of this segment.
     int end_city{-1}; // index of the ending city of this segment.

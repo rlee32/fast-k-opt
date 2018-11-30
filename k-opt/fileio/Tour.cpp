@@ -15,7 +15,7 @@ Tour::Tour(const char* file_path)
     while (not file_stream.eof())
     {
         std::getline(file_stream, line);
-        if (line.find("NODE_COORD_SECTION") != std::string::npos) // header end.
+        if (line.find("TOUR_SECTION") != std::string::npos) // header end.
         {
             break;
         }
@@ -40,18 +40,7 @@ Tour::Tour(const char* file_path)
         }
         std::getline(file_stream, line);
         size_t point_id = std::stoi(line);
-        if (point_id == m_point_ids.size() + 1)
-        {
-            m_point_ids.push_back(point_id);
-        }
-        else
-        {
-            std::cout << "ERROR: point id ("
-                << point_id
-                << ")does not match number of currently read points ("
-                << m_point_ids.size()
-                << ")." << std::endl;
-        }
+        m_point_ids.push_back(point_id - 1); // subtract one to make it consistent with PointSet.
     }
     std::cout << "Finished reading tour file.\n" << std::endl;
 }

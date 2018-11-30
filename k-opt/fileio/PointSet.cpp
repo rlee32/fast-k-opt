@@ -61,3 +61,18 @@ PointSet::PointSet(const char* file_path)
     }
     std::cout << "Finished reading point set file.\n" << std::endl;
 }
+
+distance_functions::distance_t PointSet::cycle_length(const std::vector<int>& path) const
+{
+    distance_functions::distance_t length{0};
+    int previous_id = path.back();
+    for (auto id : path)
+    {
+        length += distance_functions::euc2d(m_x, m_y, previous_id, id);
+        previous_id = id;
+    }
+    return length;
+}
+
+
+
