@@ -15,14 +15,19 @@ int main(int argc, char** argv)
         return 0;
     }
     fileio::PointSet point_set(argv[1]);
-    fileio::Tour initial_tour;
+    quadtree::Quadtree quadtree;
+    const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
     if (argc > 2)
     {
-        initial_tour = fileio::Tour(argv[2]);
+        fileio::Tour initial_tour(argv[2]);
         const auto length = point_set.cycle_length(initial_tour.point_ids());
         std::cout << "Initial tour length: " << length << std::endl;
     }
-    quadtree::Quadtree quadtree;
-    const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
+    else
+    {
+        for (int i{0}; i < point_set.count(); ++i)
+        {
+        }
+    }
     return 0;
 }

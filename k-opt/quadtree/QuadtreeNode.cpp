@@ -59,16 +59,15 @@ void QuadtreeNode::modify_total_segment_count(int amount)
     }
 }
 
-void QuadtreeNode::add(const SegmentType* s)
+void QuadtreeNode::insert(Segment s)
 {
-    m_segments.push_back(s);
+    m_segments.insert(s);
     modify_total_segment_count(1);
 }
 
-void QuadtreeNode::remove(const SegmentType* s)
+void QuadtreeNode::erase(Segment s)
 {
-    auto it = std::find(m_segments.begin(), m_segments.end(), s);
-    m_segments.erase(it);
+    m_segments.erase(s);
     modify_total_segment_count(-1);
 }
 

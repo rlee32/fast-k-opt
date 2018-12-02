@@ -2,9 +2,9 @@
 
 namespace quadtree {
 
-void Quadtree::insert(const Segment<QuadtreeNode>* segment, const std::vector<int>& insertion_path)
+void Quadtree::insert(Segment s, const std::vector<int>& insertion_path)
 {
-    QuadtreeNode* segment_destination{m_root};
+    QuadtreeNode* segment_destination{&m_root};
     for (auto quadrant : insertion_path)
     {
         auto child = segment_destination->child(insertion_path[quadrant]);
@@ -15,12 +15,7 @@ void Quadtree::insert(const Segment<QuadtreeNode>* segment, const std::vector<in
         }
         segment_destination = child;
     }
-    segment_destination->add(segment);
-}
-
-void Quadtree::InsertTourSegments(fileio::Tour&)
-{
-    // for(int i = 0; i < point_count; ++i) InsertSegment(tour.segment(i));
+    segment_destination->insert(s);
 }
 
 } // namespace quadtree

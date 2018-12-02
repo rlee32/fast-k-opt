@@ -5,18 +5,26 @@
 
 #include <cstdint>
 
-template <typename Container>
 struct Segment
 {
-    using cost_t = uint64_t;
+    uint32_t a{0}; // lower point id.
+    uint32_t b{0}; // higher point id.
+    uint64_t length{0};
 
-    int start_city{-1}; // index of the starting city of this segment.
-    int end_city{-1}; // index of the ending city of this segment.
-    int order{-1}; // The order of this segment in the global tour.
-    cost_t length{0}; // length (or cost) of this segment.
-    // The coordinates of the bisecting point. TODO: may not be needed.
-    double center_x{0};
-    double center_y{0};
-    // The current owner of this segment.
-    const Container* node{nullptr};
+    // For use in unordered_set.
+    struct Hash
+    {
+        uint64_t operator()(const Segment& s) const
+        {
+            static_assert(sizeof(s.a) * 8 == 32);
+            return (static_cast<uint64_t>(s.a) << 32) + static_cast<uint64_t>(s.b);
+        }
+    };
 };
+
+// For use in unordered_set.
+inline bool operator==(const Segment& lhs, const Segment& rhs)
+{
+    return lhs.a == rhs.a and lhs.b == rhs.b;
+}
+

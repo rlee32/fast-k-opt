@@ -12,15 +12,12 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <unordered_set>
 
 namespace quadtree {
 
-using IdContainer = std::vector<int>; // can contain segment or point identifiers.
-
 class QuadtreeNode
 {
-using SegmentType = Segment<QuadtreeNode>;
-using SegmentContainer = std::vector<const SegmentType*>;
 public:
     QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent, int quadrant);
@@ -41,11 +38,9 @@ public:
     void print(int max_level = morton_keys::MAX_LEVEL);
 
     int total_segment_count() { return m_total_segment_count; }
-    SegmentContainer* immediate_segments() { return &m_segments; }
-    int immediate_segment_count() { return m_segments.size(); }
 
-    void add(const SegmentType* segment);
-    void remove(const SegmentType* segment);
+    void insert(Segment);
+    void erase(Segment);
 
     void create_child(int quadrant);
 
@@ -60,11 +55,10 @@ private:
     bool m_is_leaf{true};
 
     // Segment information.
-    SegmentContainer m_segments; // segments under this node only (not children).
+    std::unordered_set<Segment, Segment::Hash> m_segments; // segments under this node only (not children).
     int m_total_segment_count{0}; // total segments under this node and all child nodes.
 
     void modify_total_segment_count(int amount);
-    void remove(SegmentContainer::iterator it);
 };
 
 } // namespace quadtree

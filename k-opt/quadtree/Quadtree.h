@@ -18,23 +18,12 @@ namespace quadtree {
 class Quadtree
 {
 public:
-    Quadtree()
-    {
-        m_root = new QuadtreeNode();
-    }
-    ~Quadtree()
-    {
-        delete m_root;
-    }
-    QuadtreeNode* root() { return m_root; }
-    void print(int max_level) { m_root->print(max_level); }
-    void insert(const Segment<QuadtreeNode>*, const std::vector<int>& insertion_path);
-private:
-    QuadtreeNode* m_root{nullptr};
-    double minimum(double* x, int length);
-    double maximum(double* x, int length);
+    QuadtreeNode& root() { return m_root; }
+    void print(int max_level) { m_root.print(max_level); }
+    void insert(Segment, const std::vector<int>& insertion_path);
 
-    void InsertTourSegments(fileio::Tour&);
+private:
+    QuadtreeNode m_root;
 };
 
 } // namespace quadtree
