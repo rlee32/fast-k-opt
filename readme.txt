@@ -9,3 +9,6 @@ The python verification_scripts are meant to post-process the c++ output.
 Preparation:
 1. Make sure the Makefile's c++ compiler is correct.
 
+Style notes (I would love to hear critiques):
+1. Namespaces always follow directory names, unless the entire namespace is in a single header file.
+    Then, the namespace will follow the directory names and the header file name.
