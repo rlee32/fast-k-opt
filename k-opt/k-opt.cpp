@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 
 int main(int argc, char** argv)
@@ -22,6 +23,16 @@ int main(int argc, char** argv)
         fileio::Tour initial_tour(argv[2]);
         const auto length = point_set.cycle_length(initial_tour.point_ids());
         std::cout << "Initial tour length: " << length << std::endl;
+        auto prev = initial_tour.point_ids().back();
+        for (auto i : initial_tour.point_ids())
+        {
+            Segment s{std::min(prev, i)
+                , std::max(prev, i)
+                , distance_functions::euc2d(point_set.x(), point_set.y(), prev, i)};
+            const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[prev], keys[i]);
+            quadtree.insert(s, insertion_path);
+            prev = i;
+        }
     }
     else
     {

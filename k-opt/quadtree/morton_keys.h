@@ -113,10 +113,10 @@ inline std::vector<MortonKey> ExtractLeadingQuadrants(MortonKey node_morton_key,
     return quadrant_keys;
 }
 
-inline std::vector<int> segment_traversal_path(MortonKey key1, MortonKey key2)
+inline std::vector<int> segment_insertion_path(MortonKey key1, MortonKey key2)
 {
     constexpr MortonKey MORTON_THREE = static_cast<MortonKey>(3); // quadrant mask.
-    std::vector<int> traversal;
+    std::vector<int> path;
     // We skip i = 0 because that would simply lead to root comparison.
     for(int i = 1; i < MAX_LEVEL; ++i)
     {
@@ -125,10 +125,10 @@ inline std::vector<int> segment_traversal_path(MortonKey key1, MortonKey key2)
         if (level1 == level2)
         {
             int quadrant = static_cast<int>(level1 & MORTON_THREE);
-            traversal.push_back(quadrant);
+            path.push_back(quadrant);
         }
     }
-    return traversal;
+    return path;
 }
 
 } // namespace morton_keys

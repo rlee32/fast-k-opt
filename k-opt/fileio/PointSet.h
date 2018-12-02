@@ -21,7 +21,7 @@ public:
     const std::vector<double>& y() const { return m_y; }
 
     // Only computes Euclidean distances.
-    distance_functions::distance_t cycle_length(const std::vector<int>& path) const;
+    distance_functions::distance_t cycle_length(const std::vector<uint32_t>& path) const;
 
 private:
     std::vector<double> m_x;
