@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+namespace fileio {
+
 class Tour
 {
 public:
@@ -18,3 +20,5 @@ public:
 private:
     std::vector<int> m_point_ids;
 };
+
+} // namespace fileio

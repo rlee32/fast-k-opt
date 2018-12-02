@@ -1,5 +1,7 @@
 #include "PointSet.h"
 
+namespace fileio {
+
 PointSet::PointSet(const char* file_path)
 {
     std::cout << "\nReading point set file: " << file_path << std::endl;
@@ -74,5 +76,5 @@ distance_functions::distance_t PointSet::cycle_length(const std::vector<int>& pa
     return length;
 }
 
-
+} // namespace fileio
 

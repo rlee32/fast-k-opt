@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+namespace fileio {
+
 class PointSet
 {
 public:
@@ -25,3 +27,5 @@ private:
     std::vector<double> m_x;
     std::vector<double> m_y;
 };
+
+} // namespace fileio

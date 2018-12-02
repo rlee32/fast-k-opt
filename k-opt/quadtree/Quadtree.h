@@ -7,8 +7,9 @@
 #include <utility>
 #include <bitset>
 
-#include "../fileio/Tour.h" // TODO: remove dependency on Tour class.
-#include "MortonKey.h"
+#include <fileio/Tour.h> // TODO: remove dependency on Tour class.
+
+#include "morton_keys.h"
 #include "QuadtreeNode.h"
 #include "Segment.h"
 
@@ -17,25 +18,23 @@ namespace quadtree {
 class Quadtree
 {
 public:
-    Quadtree(Tour& tour);
+    Quadtree();
     ~Quadtree()
     {
-        delete[] point_morton_keys_;
         delete m_root;
     }
     QuadtreeNode* root() { return m_root; }
-    void print(int max_level) { m_root->Print(max_level); }
-    void InsertSegment(Segment* segment);
+    void print(int max_level) { m_root->print(max_level); }
+    void InsertSegment(Segment<Quadtree>* segment);
 private:
-    MortonKeyType* point_morton_keys_; // point morton keys accessible by point identifier.
     QuadtreeNode* m_root{nullptr};
     double minimum(double* x, int length);
     double maximum(double* x, int length);
 
     // void InsertTourSegments(Tour& tour);
-    std::vector<int> MergePointMortonKeys(MortonKeyType key1, MortonKeyType key2);
-    void InsertTourSegments(Tour&);
-    void MakeMortonTour(std::vector<std::pair<MortonKeyType, int>>& morton_key_pairs, Tour&);
+    std::vector<int> MergePointMortonKeys(morton_keys::MortonKey key1, morton_keys::MortonKey key2);
+    void InsertTourSegments(fileio::Tour&);
+    void MakeMortonTour(std::vector<std::pair<morton_keys::MortonKey, int>>& morton_key_pairs, fileio::Tour&);
 };
 
 } // namespace quadtree

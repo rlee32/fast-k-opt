@@ -1,5 +1,7 @@
 #include "Tour.h"
 
+namespace fileio {
+
 Tour::Tour(const char* file_path)
 {
     std::cout << "\nReading tour file: " << file_path << std::endl;
@@ -44,3 +46,5 @@ Tour::Tour(const char* file_path)
     }
     std::cout << "Finished reading tour file.\n" << std::endl;
 }
+
+} // namespace fileio
