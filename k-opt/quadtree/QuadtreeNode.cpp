@@ -2,7 +2,7 @@
 
 namespace quadtree {
 
-QuadtreeNode::QuadtreeNode(QuadtreeNode* parent, int quadrant)
+QuadtreeNode::QuadtreeNode(QuadtreeNode* parent, primitives::quadrant_t quadrant)
     : m_parent(parent)
     , m_quadrant(quadrant)
 {
@@ -24,7 +24,7 @@ struct pair_search_comparator
     }
 };
 
-void QuadtreeNode::print(int max_level)
+void QuadtreeNode::print(primitives::depth_t max_level)
 {
     if (m_tree_level <= max_level)
     {
@@ -71,7 +71,7 @@ void QuadtreeNode::erase(Segment s)
     modify_total_segment_count(-1);
 }
 
-void QuadtreeNode::create_child(int quadrant)
+void QuadtreeNode::create_child(primitives::quadrant_t quadrant)
 {
     if (m_children[quadrant])
     {
