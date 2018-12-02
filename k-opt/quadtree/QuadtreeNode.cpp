@@ -14,11 +14,11 @@ QuadtreeNode::QuadtreeNode(QuadtreeNode* parent, int quadrant)
 
 struct pair_search_comparator
 {
-    bool operator()(std::pair<morton_keys::MortonKey, int> pair, size_t size) const
+    bool operator()(std::pair<primitives::morton_key_t, int> pair, size_t size) const
     {
       return pair.first < size;
     }
-    bool operator()(size_t size, std::pair<morton_keys::MortonKey, int> pair) const
+    bool operator()(size_t size, std::pair<primitives::morton_key_t, int> pair) const
     {
       return size < pair.first;
     }

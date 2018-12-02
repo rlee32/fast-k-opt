@@ -21,7 +21,12 @@ void Quadtree::insert(Segment s, const std::vector<primitives::quadrant_t>& inse
 std::vector<Segment> Quadtree::suboptimal_segments()
 {
     // TODO: remove segment lengths from m_segment_lengths.
-    return std::vector<Segment>();
+    std::vector<Segment> replaceable;
+    for (const auto& s : replaceable)
+    {
+        m_segment_lengths.erase(s.length);
+    }
+    return replaceable;
 }
 
 } // namespace quadtree
