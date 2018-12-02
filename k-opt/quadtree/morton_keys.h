@@ -113,12 +113,9 @@ inline std::vector<MortonKey> ExtractLeadingQuadrants(MortonKey node_morton_key,
     return quadrant_keys;
 }
 
-inline std::vector<int> MergePointMortonKeys(MortonKey key1, MortonKey key2)
+inline std::vector<int> segment_traversal_path(MortonKey key1, MortonKey key2)
 {
-    constexpr MortonKey MORTON_THREE = static_cast<MortonKey>(3);
-    // cout << "Merging: " << endl;
-    // cout << bitset<64>(key1).to_string().substr(22) << endl;
-    // cout << bitset<64>(key2).to_string().substr(22) << endl;
+    constexpr MortonKey MORTON_THREE = static_cast<MortonKey>(3); // quadrant mask.
     std::vector<int> traversal;
     // We skip i = 0 because that would simply lead to root comparison.
     for(int i = 1; i < MAX_LEVEL; ++i)
@@ -129,7 +126,6 @@ inline std::vector<int> MergePointMortonKeys(MortonKey key1, MortonKey key2)
         {
             int quadrant = static_cast<int>(level1 & MORTON_THREE);
             traversal.push_back(quadrant);
-            // cout << quadrant << endl;
         }
     }
     return traversal;

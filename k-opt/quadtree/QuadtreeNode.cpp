@@ -59,17 +59,26 @@ void QuadtreeNode::modify_total_segment_count(int amount)
     }
 }
 
-void QuadtreeNode::add_segment(SegmentType* s)
+void QuadtreeNode::add(const SegmentType* s)
 {
     m_segments.push_back(s);
     modify_total_segment_count(1);
 }
 
-void QuadtreeNode::delete_segment(SegmentType* s)
+void QuadtreeNode::remove(const SegmentType* s)
 {
     auto it = std::find(m_segments.begin(), m_segments.end(), s);
     m_segments.erase(it);
     modify_total_segment_count(-1);
+}
+
+void QuadtreeNode::create_child(int quadrant)
+{
+    if (m_children[quadrant])
+    {
+        return;
+    }
+    m_children[quadrant] = new QuadtreeNode(this, quadrant);
 }
 
 } // namespace quadtree

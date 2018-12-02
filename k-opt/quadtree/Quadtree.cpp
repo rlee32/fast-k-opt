@@ -2,27 +2,20 @@
 
 namespace quadtree {
 
-void Quadtree::InsertSegment(Segment<Quadtree>*)
+void Quadtree::insert(const Segment<QuadtreeNode>* segment, const std::vector<int>& insertion_path)
 {
-    /*
-    MortonKey key1 = point_morton_keys_[segment->start_city];
-    MortonKey key2 = point_morton_keys_[segment->end_city];
-
-    std::vector<int> traversal = MergePointMortonKeys(key1, key2);
-    QuadtreeNode* current = m_root;
-    for (std::vector<int>::iterator it=traversal.begin(); it!=traversal.end(); ++it)
+    QuadtreeNode* segment_destination{m_root};
+    for (auto quadrant : insertion_path)
     {
-    if(current->children(*it) == nullptr) break;
-    current = current->children(*it);
+        auto child = segment_destination->child(insertion_path[quadrant]);
+        if (not child)
+        {
+            segment_destination->create_child(quadrant);
+            child = segment_destination->child(quadrant);
+        }
+        segment_destination = child;
     }
-    current->AddImmediateSegment(segment);
-    segment->node = current;
-    //Update max_segment_size_
-    if(segment->length > current->max_segment_length())
-    {
-    current->set_max_segment_length(segment->length);
-    }
-    */
+    segment_destination->add(segment);
 }
 
 void Quadtree::InsertTourSegments(fileio::Tour&)

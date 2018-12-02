@@ -1,5 +1,7 @@
 #pragma once
 
+// Children are indexed by Morton key quadrant.
+
 #include "morton_keys.h"
 #include "Segment.h"
 
@@ -18,7 +20,7 @@ using IdContainer = std::vector<int>; // can contain segment or point identifier
 class QuadtreeNode
 {
 using SegmentType = Segment<QuadtreeNode>;
-using SegmentContainer = std::vector<SegmentType*>;
+using SegmentContainer = std::vector<const SegmentType*>;
 public:
     QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent, int quadrant);
@@ -35,15 +37,17 @@ public:
 
     int tree_level() const { return m_tree_level; }
     int quadrant() const { return m_quadrant; }
-    QuadtreeNode* children(int index) const { return m_children[index]; }
+    QuadtreeNode* child(int index) const { return m_children[index]; }
     void print(int max_level = morton_keys::MAX_LEVEL);
 
     int total_segment_count() { return m_total_segment_count; }
     SegmentContainer* immediate_segments() { return &m_segments; }
     int immediate_segment_count() { return m_segments.size(); }
 
-    void add_segment(SegmentType* segment);
-    void delete_segment(SegmentType* segment);
+    void add(const SegmentType* segment);
+    void remove(const SegmentType* segment);
+
+    void create_child(int quadrant);
 
 private:
     // Tree location information.
@@ -60,7 +64,7 @@ private:
     int m_total_segment_count{0}; // total segments under this node and all child nodes.
 
     void modify_total_segment_count(int amount);
-    void delete_segment(SegmentContainer::iterator it);
+    void remove(SegmentContainer::iterator it);
 };
 
 } // namespace quadtree

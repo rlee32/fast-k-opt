@@ -28,14 +28,12 @@ public:
     }
     QuadtreeNode* root() { return m_root; }
     void print(int max_level) { m_root->print(max_level); }
-    void InsertSegment(Segment<Quadtree>* segment);
+    void insert(const Segment<QuadtreeNode>*, const std::vector<int>& insertion_path);
 private:
     QuadtreeNode* m_root{nullptr};
     double minimum(double* x, int length);
     double maximum(double* x, int length);
 
-    // void InsertTourSegments(Tour& tour);
-    std::vector<int> MergePointMortonKeys(morton_keys::MortonKey key1, morton_keys::MortonKey key2);
     void InsertTourSegments(fileio::Tour&);
 };
 
