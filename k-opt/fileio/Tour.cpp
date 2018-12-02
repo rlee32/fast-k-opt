@@ -41,7 +41,7 @@ Tour::Tour(const char* file_path)
             break;
         }
         std::getline(file_stream, line);
-        uint32_t point_id = std::stoi(line);
+        primitives::point_id_t point_id = std::stoi(line);
         m_point_ids.push_back(point_id - 1); // subtract one to make it consistent with PointSet.
     }
     std::cout << "Finished reading tour file.\n" << std::endl;

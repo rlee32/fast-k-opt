@@ -42,11 +42,11 @@ PointSet::PointSet(const char* file_path)
         }
         std::getline(file_stream, line);
         std::stringstream line_stream(line);
-        size_t point_id{0};
+        primitives::point_id_t point_id{0};
         line_stream >> point_id;
         if (point_id == m_x.size() + 1)
         {
-            double value{0};
+            primitives::space_t value{0};
             line_stream >> value;
             m_x.push_back(value);
             line_stream >> value;
@@ -64,10 +64,10 @@ PointSet::PointSet(const char* file_path)
     std::cout << "Finished reading point set file.\n" << std::endl;
 }
 
-distance_functions::distance_t PointSet::cycle_length(const std::vector<uint32_t>& path) const
+primitives::length_t PointSet::cycle_length(const std::vector<primitives::point_id_t>& path) const
 {
-    distance_functions::distance_t length{0};
-    uint32_t previous_id = path.back();
+    primitives::length_t length{0};
+    primitives::point_id_t previous_id = path.back();
     for (auto id : path)
     {
         length += distance_functions::euc2d(m_x, m_y, previous_id, id);

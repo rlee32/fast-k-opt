@@ -2,6 +2,8 @@
 
 // This represents a specific TSP solution.
 
+#include <primitives.h>
+
 #include <cstdint>
 #include <fstream>
 #include <iostream>
@@ -16,10 +18,10 @@ public:
     Tour() = default;
     Tour(const char* file_path);
     size_t count() const { return m_point_ids.size(); }
-    const std::vector<uint32_t>& point_ids() const { return m_point_ids; }
+    const std::vector<primitives::point_id_t>& point_ids() const { return m_point_ids; }
 
 private:
-    std::vector<uint32_t> m_point_ids;
+    std::vector<primitives::point_id_t> m_point_ids;
 };
 
 } // namespace fileio

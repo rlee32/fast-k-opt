@@ -2,16 +2,15 @@
 
 // This handles the generation and sorting of Morton keys, and quadtree construction.
 
-#include <vector>
-#include <algorithm>
-#include <utility>
-#include <bitset>
-
-#include <fileio/Tour.h> // TODO: remove dependency on Tour class.
-
-#include "morton_keys.h"
 #include "QuadtreeNode.h"
 #include "Segment.h"
+#include "morton_keys.h"
+
+#include <algorithm>
+#include <bitset>
+#include <set>
+#include <utility>
+#include <vector>
 
 namespace quadtree {
 
@@ -25,6 +24,7 @@ public:
 
 private:
     QuadtreeNode m_root;
+    std::multiset<uint64_t> m_segment_lengths;
 };
 
 } // namespace quadtree

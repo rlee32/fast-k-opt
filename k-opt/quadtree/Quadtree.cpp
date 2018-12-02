@@ -16,9 +16,11 @@ void Quadtree::insert(Segment s, const std::vector<int>& insertion_path)
         segment_destination = child;
     }
     segment_destination->insert(s);
+    m_segment_lengths.insert(s.length);
 }
 std::vector<Segment> Quadtree::suboptimal_segments()
 {
+    // TODO: remove segment lengths from m_segment_lengths.
     return std::vector<Segment>();
 }
 
