@@ -17,5 +17,9 @@ void Quadtree::insert(Segment s, const std::vector<int>& insertion_path)
     }
     segment_destination->insert(s);
 }
+std::vector<Segment> Quadtree::suboptimal_segments()
+{
+    return std::vector<Segment>();
+}
 
 } // namespace quadtree

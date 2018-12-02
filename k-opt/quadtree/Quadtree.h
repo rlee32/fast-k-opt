@@ -21,6 +21,7 @@ public:
     QuadtreeNode& root() { return m_root; }
     void print(int max_level) { m_root.print(max_level); }
     void insert(Segment, const std::vector<int>& insertion_path);
+    std::vector<Segment> suboptimal_segments();
 
 private:
     QuadtreeNode m_root;

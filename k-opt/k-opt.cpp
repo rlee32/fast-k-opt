@@ -3,10 +3,10 @@
 #include "quadtree/Quadtree.h"
 #include "quadtree/morton_keys.h"
 
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
-
+#include <vector>
 
 int main(int argc, char** argv)
 {
@@ -18,33 +18,38 @@ int main(int argc, char** argv)
     fileio::PointSet point_set(argv[1]);
     quadtree::Quadtree quadtree;
     const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
+    // Initialize tour.
+    std::vector<uint32_t> tour;
     if (argc > 2)
     {
         fileio::Tour initial_tour(argv[2]);
-        const auto length = point_set.cycle_length(initial_tour.point_ids());
-        std::cout << "Initial tour length: " << length << std::endl;
-        auto prev = initial_tour.point_ids().back();
-        for (auto i : initial_tour.point_ids())
-        {
-            Segment s{std::min(prev, i)
-                , std::max(prev, i)
-                , distance_functions::euc2d(point_set.x(), point_set.y(), prev, i)};
-            const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[prev], keys[i]);
-            quadtree.insert(s, insertion_path);
-            prev = i;
-        }
+        tour = initial_tour.point_ids();
     }
     else
     {
         for (uint32_t i{0}; i < point_set.count(); ++i)
         {
-            uint32_t next = (i + 1) % point_set.count();
-            Segment s{std::min(next, i)
-                , std::max(next, i)
-                , distance_functions::euc2d(point_set.x(), point_set.y(), next, i)};
-            const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[next], keys[i]);
-            quadtree.insert(s, insertion_path);
+            tour.push_back(i);
         }
+    }
+    const auto length = point_set.cycle_length(tour);
+    std::cout << "Initial tour length: " << length << std::endl;
+    // Initialize quadtree with segments.
+    auto prev = tour.back();
+    for (auto id : tour)
+    {
+        Segment s{std::min(prev, id)
+            , std::max(prev, id)
+            , distance_functions::euc2d(point_set.x(), point_set.y(), prev, id)};
+        const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[prev], keys[id]);
+        quadtree.insert(s, insertion_path);
+        prev = id;
+    }
+    bool local_optimum{false};
+    while (not local_optimum)
+    {
+        const auto segments = quadtree.suboptimal_segments();
+        local_optimum = segments.empty();
     }
     return 0;
 }
