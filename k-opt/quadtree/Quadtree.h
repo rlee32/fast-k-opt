@@ -18,7 +18,10 @@ namespace quadtree {
 class Quadtree
 {
 public:
-    Quadtree();
+    Quadtree()
+    {
+        m_root = new QuadtreeNode();
+    }
     ~Quadtree()
     {
         delete m_root;

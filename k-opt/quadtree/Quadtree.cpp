@@ -2,11 +2,6 @@
 
 namespace quadtree {
 
-Quadtree::Quadtree()
-{
-    m_root = new QuadtreeNode();
-}
-
 void Quadtree::InsertSegment(Segment<Quadtree>*)
 {
     /*

@@ -1,6 +1,7 @@
 #include "fileio/PointSet.h"
 #include "fileio/Tour.h"
 #include "quadtree/Quadtree.h"
+#include "quadtree/morton_keys.h"
 
 #include <iostream>
 #include <string>
@@ -22,5 +23,6 @@ int main(int argc, char** argv)
         std::cout << "Initial tour length: " << length << std::endl;
     }
     quadtree::Quadtree quadtree;
+    const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
     return 0;
 }
