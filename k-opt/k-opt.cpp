@@ -41,8 +41,7 @@ int main(int argc, char** argv)
         Segment s{std::min(prev, id)
             , std::max(prev, id)
             , distance_functions::euc2d(point_set.x(), point_set.y(), prev, id)};
-        const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[prev], keys[id]);
-        quadtree.insert(s, insertion_path);
+        quadtree.insert(s, keys);
         prev = id;
     }
     bool local_optimum{false};

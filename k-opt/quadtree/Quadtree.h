@@ -20,7 +20,8 @@ class Quadtree
 public:
     QuadtreeNode& root() { return m_root; }
     void print(primitives::depth_t max_depth) { m_root.print(max_depth); }
-    void insert(Segment, const std::vector<primitives::quadrant_t>& insertion_path);
+    void insert(Segment, const std::vector<primitives::morton_key_t>& keys);
+    void erase(Segment, const std::vector<primitives::morton_key_t>& keys);
     std::vector<Segment> suboptimal_segments();
 
 private:
