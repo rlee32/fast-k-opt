@@ -3,21 +3,26 @@
 // This represents a path segment between two adjacent cities.
 // A tour is made of a number of segments equal to the number of cities.
 
+#include <primitives.h>
+
 #include <cstdint>
 
 struct Segment
 {
-    uint32_t a{0}; // lower point id.
-    uint32_t b{0}; // higher point id.
-    uint64_t length{0};
+    primitives::point_id_t a{0}; // lower point id.
+    primitives::point_id_t b{0}; // higher point id.
+    primitives::length_t length{0};
 
     // For use in unordered_set.
     struct Hash
     {
-        uint64_t operator()(const Segment& s) const
+        using hash_t = uint64_t;
+        hash_t operator()(const Segment& s) const
         {
-            static_assert(sizeof(s.a) * 8 == 32);
-            return (static_cast<uint64_t>(s.a) << 32) + static_cast<uint64_t>(s.b);
+            static_assert(sizeof(hash_t) == sizeof(s.a) + sizeof(s.b));
+            constexpr auto ShiftBits = 4 * sizeof(hash_t);
+            static_assert(ShiftBits / 8 == sizeof(s.b));
+            return (static_cast<hash_t>(s.a) << ShiftBits) + static_cast<hash_t>(s.b);
         }
     };
 };
