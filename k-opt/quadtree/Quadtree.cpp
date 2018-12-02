@@ -35,26 +35,4 @@ void Quadtree::InsertTourSegments(fileio::Tour&)
     // for(int i = 0; i < point_count; ++i) InsertSegment(tour.segment(i));
 }
 
-void Quadtree::MakeMortonTour(std::vector<std::pair<morton_keys::MortonKey, int>>&, fileio::Tour&)
-{
-    /*
-  double* x = tour.x();
-  double* y = tour.y();
-  double* x_buffer = new double[point_count];
-  double* y_buffer = new double[point_count];
-  std::copy( x, x+point_count, x_buffer );
-  std::copy( y, y+point_count, y_buffer );
-  for( int i = 0; i < point_count; ++i )
-  {
-    int city = morton_key_pairs[i].second;
-    x[i] = x_buffer[city];
-    y[i] = y_buffer[city];
-  }
-  tour.InitializeSegments();
-
-  delete[] x_buffer;
-  delete[] y_buffer;
-  */
-}
-
 } // namespace quadtree

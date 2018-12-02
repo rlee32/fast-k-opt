@@ -34,7 +34,6 @@ private:
     // void InsertTourSegments(Tour& tour);
     std::vector<int> MergePointMortonKeys(morton_keys::MortonKey key1, morton_keys::MortonKey key2);
     void InsertTourSegments(fileio::Tour&);
-    void MakeMortonTour(std::vector<std::pair<morton_keys::MortonKey, int>>& morton_key_pairs, fileio::Tour&);
 };
 
 } // namespace quadtree
