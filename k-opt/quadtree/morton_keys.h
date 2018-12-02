@@ -7,7 +7,6 @@
 #include <algorithm>
 #include <cstdint>
 #include <iostream>
-#include <utility> // pair
 #include <vector>
 
 namespace quadtree {
@@ -77,9 +76,6 @@ inline std::vector<primitives::morton_key_t> compute_point_morton_keys(const std
             std::cout << "ERROR: out-of-bounds normalized y coordinate: " << y_normalized << std::endl;
         }
         primitives::morton_key_t morton_key = interleave_coordinates(x_normalized, y_normalized);
-        // bitset<8*sizeof(morton_key.value())> morton_bits(morton_key.value());
-        // cout << morton_bits.to_string().substr(22) << endl;
-        std::pair<primitives::morton_key_t, int> morton_key_pair(morton_key, i);
         point_morton_keys.push_back(morton_key);
     }
     return point_morton_keys;

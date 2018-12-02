@@ -1,5 +1,7 @@
 #pragma once
 
+// Aliases for primitive types.
+
 #include <cstdint>
 
 namespace primitives {

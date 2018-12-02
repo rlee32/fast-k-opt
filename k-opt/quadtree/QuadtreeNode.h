@@ -8,7 +8,6 @@
 
 #include <algorithm>
 #include <array>
-#include <bitset>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -21,21 +20,20 @@ namespace quadtree {
 class QuadtreeNode
 {
 public:
-    QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent, primitives::quadrant_t quadrant);
 
     primitives::depth_t depth() const { return m_depth; }
     primitives::quadrant_t quadrant() const { return m_quadrant; }
-    QuadtreeNode* child(primitives::quadrant_t quadrant) { return m_children[quadrant].get(); }
+    QuadtreeNode* child(primitives::quadrant_t q) { return m_children[q].get(); }
     void print(primitives::depth_t max_level = morton_keys::MAX_LEVEL);
 
     size_t total_segment_count() { return m_total_segment_count; }
 
     void insert(Segment);
     size_t erase(Segment);
-    void reset(primitives::quadrant_t quadrant);
+    void reset(primitives::quadrant_t);
 
-    void create_child(primitives::quadrant_t quadrant);
+    void create_child(primitives::quadrant_t);
 
 private:
     QuadtreeNode* m_parent{nullptr};

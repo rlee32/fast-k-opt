@@ -8,9 +8,7 @@
 #include <primitives.h>
 
 #include <algorithm>
-#include <bitset>
 #include <set>
-#include <utility>
 #include <vector>
 
 namespace quadtree {
@@ -25,7 +23,7 @@ public:
     std::vector<Segment> suboptimal_segments();
 
 private:
-    QuadtreeNode m_root;
+    QuadtreeNode m_root{nullptr, 4}; // parent, quadrant.
     std::multiset<primitives::length_t> m_segment_lengths;
 };
 
