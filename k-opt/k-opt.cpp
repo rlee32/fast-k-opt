@@ -36,8 +36,14 @@ int main(int argc, char** argv)
     }
     else
     {
-        for (int i{0}; i < point_set.count(); ++i)
+        for (uint32_t i{0}; i < point_set.count(); ++i)
         {
+            uint32_t next = (i + 1) % point_set.count();
+            Segment s{std::min(next, i)
+                , std::max(next, i)
+                , distance_functions::euc2d(point_set.x(), point_set.y(), next, i)};
+            const auto insertion_path = quadtree::morton_keys::segment_insertion_path(keys[next], keys[i]);
+            quadtree.insert(s, insertion_path);
         }
     }
     return 0;

@@ -16,7 +16,7 @@ class PointSet
 {
 public:
     PointSet(const char* file_path);
-    int count() const { return m_x.size(); }
+    size_t count() const { return m_x.size(); }
     const std::vector<double>& x() const { return m_x; }
     const std::vector<double>& y() const { return m_y; }
 

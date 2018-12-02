@@ -80,7 +80,7 @@ inline std::vector<MortonKey> compute_point_morton_keys(const std::vector<double
         // bitset<8*sizeof(morton_key.value())> morton_bits(morton_key.value());
         // cout << morton_bits.to_string().substr(22) << endl;
         std::pair<MortonKey, int> morton_key_pair(morton_key, i);
-        point_morton_keys[i] = morton_key;
+        point_morton_keys.push_back(morton_key);
     }
     return point_morton_keys;
 }
