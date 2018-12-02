@@ -2,7 +2,7 @@
 
 namespace quadtree {
 
-void Quadtree::insert(Segment s, const std::vector<int>& insertion_path)
+void Quadtree::insert(Segment s, const std::vector<primitives::quadrant_t>& insertion_path)
 {
     QuadtreeNode* segment_destination{&m_root};
     for (auto quadrant : insertion_path)

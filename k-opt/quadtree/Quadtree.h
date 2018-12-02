@@ -5,6 +5,7 @@
 #include "QuadtreeNode.h"
 #include "Segment.h"
 #include "morton_keys.h"
+#include <primitives.h>
 
 #include <algorithm>
 #include <bitset>
@@ -18,13 +19,13 @@ class Quadtree
 {
 public:
     QuadtreeNode& root() { return m_root; }
-    void print(int max_level) { m_root.print(max_level); }
-    void insert(Segment, const std::vector<int>& insertion_path);
+    void print(primitives::depth_t max_depth) { m_root.print(max_depth); }
+    void insert(Segment, const std::vector<primitives::quadrant_t>& insertion_path);
     std::vector<Segment> suboptimal_segments();
 
 private:
     QuadtreeNode m_root;
-    std::multiset<uint64_t> m_segment_lengths;
+    std::multiset<primitives::length_t> m_segment_lengths;
 };
 
 } // namespace quadtree

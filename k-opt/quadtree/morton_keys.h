@@ -2,6 +2,8 @@
 
 // Morton keys are interleaved coordinates, which are integer reprentations of x, y coordinates normalized to [0,1].
 
+#include <primitives.h>
+
 #include <algorithm>
 #include <cstdint>
 #include <iostream>
@@ -113,10 +115,10 @@ inline std::vector<MortonKey> ExtractLeadingQuadrants(MortonKey node_morton_key,
     return quadrant_keys;
 }
 
-inline std::vector<int> segment_insertion_path(MortonKey key1, MortonKey key2)
+inline std::vector<primitives::quadrant_t> segment_insertion_path(MortonKey key1, MortonKey key2)
 {
     constexpr MortonKey MORTON_THREE = static_cast<MortonKey>(3); // quadrant mask.
-    std::vector<int> path;
+    std::vector<primitives::quadrant_t> path;
     // We skip i = 0 because that would simply lead to root comparison.
     for(int i = 1; i < MAX_LEVEL; ++i)
     {
@@ -124,7 +126,7 @@ inline std::vector<int> segment_insertion_path(MortonKey key1, MortonKey key2)
         MortonKey level2 = key2 >> 2 * (MAX_LEVEL - i - 1);
         if (level1 == level2)
         {
-            int quadrant = static_cast<int>(level1 & MORTON_THREE);
+            primitives::quadrant_t quadrant = static_cast<primitives::quadrant_t>(level1 & MORTON_THREE);
             path.push_back(quadrant);
         }
     }

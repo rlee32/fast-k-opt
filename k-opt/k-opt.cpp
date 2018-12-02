@@ -1,5 +1,6 @@
 #include "fileio/PointSet.h"
 #include "fileio/Tour.h"
+#include "primitives.h"
 #include "quadtree/Quadtree.h"
 #include "quadtree/morton_keys.h"
 
@@ -18,7 +19,7 @@ int main(int argc, char** argv)
     quadtree::Quadtree quadtree;
     const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
     // Initialize tour.
-    std::vector<uint32_t> tour;
+    std::vector<primitives::point_id_t> tour;
     if (argc > 2)
     {
         fileio::Tour initial_tour(argv[2]);
@@ -26,7 +27,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        for (uint32_t i{0}; i < point_set.count(); ++i)
+        for (primitives::point_id_t i{0}; i < point_set.count(); ++i)
         {
             tour.push_back(i);
         }
