@@ -1,9 +1,9 @@
 #pragma once
 
-// This represents a path segment between two adjacent cities.
+// This represents a straight line path between two adjacent cities.
 // A tour is made of a number of segments equal to the number of cities.
 
-#include <primitives.h>
+#include "primitives.h"
 
 #include <algorithm>
 #include <cstdint>

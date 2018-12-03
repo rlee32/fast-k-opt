@@ -1,7 +1,7 @@
 #pragma once
 
 #include <primitives.h>
-#include <quadtree/Segment.h>
+#include <Segment.h>
 
 #include <algorithm>
 #include <array>

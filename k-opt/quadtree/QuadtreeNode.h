@@ -19,15 +19,17 @@ namespace quadtree {
 
 class QuadtreeNode
 {
-    using SegmentContainer = std::unordered_set<Segment, Segment::Hash>;
 public:
     QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent);
 
+    // Need fast insertion and removal.
+    using SegmentContainer = std::unordered_set<Segment, Segment::Hash>;
+
     QuadtreeNode* child(primitives::quadrant_t q) { return m_children[q].get(); }
 
     size_t total_segment_count() { return m_total_segment_count; }
-    const SegmentContainer& segments() { return m_segments; }
+    const SegmentContainer& segments() const { return m_segments; }
 
     void insert(Segment);
     size_t erase(Segment);

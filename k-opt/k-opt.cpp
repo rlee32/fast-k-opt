@@ -41,11 +41,8 @@ int main(int argc, char** argv)
         quadtree.insert(s, keys);
         prev = id;
     }
-    bool local_optimum{false};
-    while (not local_optimum)
+    while (not quadtree.optimal())
     {
-        const auto segments = quadtree.suboptimal_segments();
-        local_optimum = segments.empty();
     }
     quadtree.iterate();
     return 0;

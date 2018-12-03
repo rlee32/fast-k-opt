@@ -3,9 +3,8 @@
 namespace quadtree {
 namespace depth_map {
 
-const QuadtreeNode* DepthMap::get_node(int depth, transform::grid_coord_t x, transform::grid_coord_t y) const
+const QuadtreeNode* DepthMap::get_node(int depth, transform::hash_t hash) const
 {
-    auto hash = transform::hash_grid_coord(x, y);
     const auto it = m_nodes[depth].find(hash);
     if (it == m_nodes[depth].end())
     {
