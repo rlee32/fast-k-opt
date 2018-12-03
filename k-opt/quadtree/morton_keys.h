@@ -16,6 +16,7 @@ constexpr int MaxTreeDepth = 21; // maximum quadtree depth / level. Leave at lea
 
 inline primitives::morton_key_t interleave_coordinates(double normalized_coordinate1, double normalized_coordinate2)
 {
+    // if c1 and c2 are x and y respectively, then the curve looks like an "N" in "typical" coordinate space (+y is up, +x is right).
     using IntegerCoordinate = uint32_t;
     constexpr IntegerCoordinate IntegerCoordinateMax = static_cast<IntegerCoordinate>(1) << (MaxTreeDepth - 1); // to be multiplied by the normalized (0,1) coordinate.
     IntegerCoordinate c1 = static_cast<IntegerCoordinate>(IntegerCoordinateMax * normalized_coordinate1);
