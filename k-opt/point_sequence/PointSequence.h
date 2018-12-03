@@ -1,6 +1,5 @@
 #pragma once
 
-#include <log.h>
 #include <primitives.h>
 #include <quadtree/Segment.h>
 

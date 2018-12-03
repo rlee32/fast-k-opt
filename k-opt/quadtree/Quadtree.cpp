@@ -6,13 +6,17 @@ void Quadtree::insert(Segment s, const std::vector<primitives::morton_key_t>& ke
 {
     const auto insertion_path = morton_keys::segment_insertion_path(keys[s.a], keys[s.b]);
     QuadtreeNode* segment_destination{&m_root};
+    uint32_t x{0}, y{0};
+    int depth{0};
     for (auto quadrant : insertion_path)
     {
+        ++depth;
         auto child = segment_destination->child(quadrant);
         if (not child)
         {
             segment_destination->create_child(quadrant);
             child = segment_destination->child(quadrant);
+            m_depth_map.add_node(depth, x, y, child);
         }
         segment_destination = child;
     }
@@ -52,6 +56,19 @@ std::vector<Segment> Quadtree::suboptimal_segments()
 
 void Quadtree::iterate()
 {
+    int segments{0};
+    uint64_t length{0};
+    for (int i{1}; i < morton_keys::MaxTreeDepth; ++i)
+    {
+        const auto& map = m_depth_map.get_nodes(i);
+        for (const auto& pair : map)
+        {
+            const auto node = pair.second;
+            segments += node->segments().size();
+        }
+    }
+    std::cout << segments << std::endl;
+    std::cout << length << std::endl;
 }
 
 } // namespace quadtree

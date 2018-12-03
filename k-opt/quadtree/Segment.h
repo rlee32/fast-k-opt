@@ -5,10 +5,13 @@
 
 #include <primitives.h>
 
+#include <algorithm>
 #include <cstdint>
 
 struct Segment
 {
+    Segment(primitives::point_id_t a, primitives::point_id_t b, primitives::length_t length)
+        : a(std::min(a, b)), b(std::max(a, b)), length(length) {}
     primitives::point_id_t a{0}; // lower point id.
     primitives::point_id_t b{0}; // higher point id.
     primitives::length_t length{0};

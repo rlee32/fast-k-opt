@@ -4,7 +4,6 @@
 #include "quadtree/Quadtree.h"
 #include "quadtree/morton_keys.h"
 
-#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -38,9 +37,7 @@ int main(int argc, char** argv)
     auto prev = tour.back();
     for (auto id : tour)
     {
-        Segment s{std::min(prev, id)
-            , std::max(prev, id)
-            , distance_functions::euc2d(point_set.x(), point_set.y(), prev, id)};
+        Segment s(prev, id, distance_functions::euc2d(point_set.x(), point_set.y(), prev, id));
         quadtree.insert(s, keys);
         prev = id;
     }
@@ -50,5 +47,6 @@ int main(int argc, char** argv)
         const auto segments = quadtree.suboptimal_segments();
         local_optimum = segments.empty();
     }
+    quadtree.iterate();
     return 0;
 }

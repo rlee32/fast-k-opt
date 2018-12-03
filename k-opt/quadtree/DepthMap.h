@@ -17,8 +17,8 @@ public:
     const QuadtreeNode* get_node(int depth, grid_coord_t x, grid_coord_t y) const
     {
         auto hash = hash_grid_coord(x, y);
-        const auto it = m_nodes[depth].find(hash);
-        if (it == m_nodes[depth].end())
+        const auto it = m_nodes[depth - 1].find(hash);
+        if (it == m_nodes[depth - 1].end())
         {
             return nullptr;
         }
@@ -29,11 +29,16 @@ public:
     }
     const std::map<hash_t, QuadtreeNode*>& get_nodes(int depth) const
     {
-        return m_nodes[depth];
+        return m_nodes[depth - 1];
+    }
+    void add_node(int depth, grid_coord_t x, grid_coord_t y, QuadtreeNode* node)
+    {
+        auto hash = hash_grid_coord(x, y);
+        m_nodes[depth - 1][hash] = node;
     }
 
 private:
-    std::array<std::map<hash_t, QuadtreeNode*>, morton_keys::MaxTreeDepth> m_nodes;
+    std::array<std::map<hash_t, QuadtreeNode*>, morton_keys::MaxTreeDepth - 1> m_nodes; // exclude root node level.
 
     static constexpr hash_t hash_grid_coord(grid_coord_t x, grid_coord_t y)
     {

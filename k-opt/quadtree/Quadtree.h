@@ -9,6 +9,7 @@
 #include <primitives.h>
 
 #include <algorithm>
+#include <cstdint>
 #include <set>
 #include <vector>
 
