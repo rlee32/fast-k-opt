@@ -1,15 +1,13 @@
 #pragma once
 
-#include <primitives.h>
-#include <Segment.h>
+#include "primitives.h"
+#include "Segment.h"
 
 #include <algorithm>
 #include <array>
 #include <iostream>
 #include <limits>
 #include <vector>
-
-namespace point_sequence {
 
 class PointSequence
 {
@@ -31,5 +29,3 @@ private:
     void break_adjacency(primitives::point_id_t point1, primitives::point_id_t point2);
     void vacate_adjacent_slot(primitives::point_id_t point, primitives::point_id_t adjacent, int slot);
 };
-
-} // namespace point_sequence

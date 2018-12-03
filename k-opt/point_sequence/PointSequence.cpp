@@ -1,7 +1,5 @@
 #include "PointSequence.h"
 
-namespace point_sequence {
-
 PointSequence::PointSequence(const std::vector<primitives::point_id_t>& sequence)
 {
     m_adjacents.resize(sequence.size());
@@ -83,7 +81,4 @@ void PointSequence::vacate_adjacent_slot(primitives::point_id_t point, primitive
         m_adjacents[point][slot] = m_invalid_point;
     }
 }
-
-
-} // namespace point_sequence
 

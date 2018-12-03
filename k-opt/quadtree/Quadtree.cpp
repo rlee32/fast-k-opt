@@ -130,7 +130,6 @@ void Quadtree::find_best(const QuadtreeNode* node, QuadtreeNode::SegmentContaine
         m_current.push_back(*it);
         if (m_current.size() == m_k)
         {
-            // TODO: compare m_current to m_best.
             compare_best();
             ++it;
         }
@@ -179,7 +178,10 @@ std::vector<QuadtreeNode*> Quadtree::gather_searchable_nodes(int depth, depth_ma
 
 void Quadtree::compare_best()
 {
-    // TODO: implement checking all swaps available for m_k, updating best length.
+    // TODO: implement checking all swaps available for m_k > 2.
+    // currently only for m_k == 2.
+
+    // Need to enforce direction in Segment.
 }
 
 } // namespace quadtree
