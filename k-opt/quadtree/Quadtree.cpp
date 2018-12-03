@@ -77,6 +77,7 @@ void Quadtree::iterate()
     for (int i{0}; i < morton_keys::MaxTreeDepth; ++i)
     {
         const auto& map = m_depth_map.get_nodes(i);
+        std::cout << "depth " << i << " nodes: " << map.size() << std::endl;
         for (const auto& pair : map)
         {
             const auto node = pair.second;
