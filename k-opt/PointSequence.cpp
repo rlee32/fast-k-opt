@@ -9,20 +9,20 @@ PointSequence::PointSequence(const std::vector<primitives::point_id_t>& sequence
         create_adjacency(p, prev);
         prev = p;
     }
+    m_next.resize(sequence.size());
+    update_next();
 }
 
-std::vector<primitives::point_id_t> PointSequence::sequence() const
+void PointSequence::update_next()
 {
-    std::vector<primitives::point_id_t> s;
     primitives::point_id_t current{0};
-    primitives::point_id_t next{m_adjacents[current].front()};
+    m_next[current] = m_adjacents[current].front();
     do
     {
-        s.push_back(current);
-        current = next;
-        next = get_other(next, s.back());
+        auto prev = current;
+        current = m_next[current];
+        m_next[current] = get_other(current, prev);
     } while (current != 0); // cycle condition.
-    return s;
 }
 
 void PointSequence::reorder(const std::vector<Segment>& old_segments, const std::vector<Segment>& new_segments)
