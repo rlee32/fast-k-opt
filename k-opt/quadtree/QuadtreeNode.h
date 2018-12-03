@@ -19,19 +19,23 @@ namespace quadtree {
 
 class QuadtreeNode
 {
+    using SegmentContainer = std::unordered_set<Segment, Segment::Hash>;
 public:
+    QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent, primitives::quadrant_t quadrant);
 
     primitives::depth_t depth() const { return m_depth; }
     primitives::quadrant_t quadrant() const { return m_quadrant; }
     QuadtreeNode* child(primitives::quadrant_t q) { return m_children[q].get(); }
-    void print(primitives::depth_t max_level = morton_keys::MAX_LEVEL);
+    void print(primitives::depth_t max_level = morton_keys::MaxTreeDepth);
 
     size_t total_segment_count() { return m_total_segment_count; }
+    const SegmentContainer& segments() { return m_segments; }
 
     void insert(Segment);
     size_t erase(Segment);
     void reset(primitives::quadrant_t);
+    QuadtreeNode* parent() { return m_parent; }
 
     void create_child(primitives::quadrant_t);
 
@@ -41,7 +45,7 @@ private:
     primitives::depth_t m_depth{0}; // root = 0.
     primitives::quadrant_t m_quadrant{4}; // The Morton order of this node relative to siblings (0-3). For the root, this is 4.
     // Segment information.
-    std::unordered_set<Segment, Segment::Hash> m_segments; // segments under this node only (not children).
+    SegmentContainer m_segments; // segments under this node only (not children).
     size_t m_total_segment_count{0}; // total segments under this node and all child nodes.
 
     void modify_total_segment_count(int amount);

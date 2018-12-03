@@ -73,4 +73,10 @@ void QuadtreeNode::reset(primitives::quadrant_t quadrant)
     m_children[quadrant].reset();
 }
 
+/*
+void QuadtreeNode::populate_candidates(std::vector<primitives::point_id_t>& , std::vector<Segment>& candidates, int nodal_offset, int k)
+{
+}
+*/
+
 } // namespace quadtree

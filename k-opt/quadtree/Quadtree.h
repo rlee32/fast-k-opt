@@ -2,6 +2,7 @@
 
 // This handles the generation and sorting of Morton keys, and quadtree construction.
 
+#include "DepthMap.h"
 #include "QuadtreeNode.h"
 #include "Segment.h"
 #include "morton_keys.h"
@@ -22,9 +23,12 @@ public:
     void erase(Segment, const std::vector<primitives::morton_key_t>& keys);
     std::vector<Segment> suboptimal_segments();
 
+    void iterate();
+
 private:
-    QuadtreeNode m_root{nullptr, 4}; // parent, quadrant.
+    QuadtreeNode m_root;
     std::multiset<primitives::length_t> m_segment_lengths;
+    DepthMap m_depth_map;
 };
 
 } // namespace quadtree

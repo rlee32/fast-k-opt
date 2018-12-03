@@ -12,13 +12,12 @@
 namespace quadtree {
 namespace morton_keys {
 
-constexpr int MAX_LEVEL = 21; // maximum quadtree depth / level. Leave at least one bit for flags.
-constexpr primitives::morton_key_t MORTON_ONE = static_cast<primitives::morton_key_t>(1);
+constexpr int MaxTreeDepth = 21; // maximum quadtree depth / level. Leave at least one bit for flags.
 
 inline primitives::morton_key_t interleave_coordinates(double normalized_coordinate1, double normalized_coordinate2)
 {
     using IntegerCoordinate = uint32_t;
-    constexpr IntegerCoordinate IntegerCoordinateMax = static_cast<IntegerCoordinate>(1) << (MAX_LEVEL - 1); // to be multiplied by the normalized (0,1) coordinate.
+    constexpr IntegerCoordinate IntegerCoordinateMax = static_cast<IntegerCoordinate>(1) << (MaxTreeDepth - 1); // to be multiplied by the normalized (0,1) coordinate.
     IntegerCoordinate c1 = static_cast<IntegerCoordinate>(IntegerCoordinateMax * normalized_coordinate1);
     IntegerCoordinate c2 = static_cast<IntegerCoordinate>(IntegerCoordinateMax * normalized_coordinate2);
     primitives::morton_key_t morton_key = static_cast<primitives::morton_key_t>(0);
@@ -81,43 +80,15 @@ inline std::vector<primitives::morton_key_t> compute_point_morton_keys(const std
     return point_morton_keys;
 }
 
-inline std::vector<primitives::morton_key_t> ExtractLeadingQuadrants(primitives::morton_key_t node_morton_key, int tree_level)
-{
-    constexpr primitives::morton_key_t MORTON_ALL_ZEROS = static_cast<primitives::morton_key_t>(0);
-    constexpr primitives::morton_key_t MORTON_ALL_ONES = ~MORTON_ALL_ZEROS;
-    constexpr primitives::morton_key_t MORTON_TWO = static_cast<primitives::morton_key_t>(2);
-    constexpr primitives::morton_key_t MORTON_THREE = static_cast<primitives::morton_key_t>(3);
-    // Determine prefix mask.
-    int suffix_bits = 2 * (MAX_LEVEL - tree_level - 1); // we subtract one because
-    // the quadrants are one level down from the current tree_level_.
-    primitives::morton_key_t prefix_mask = MORTON_ALL_ONES << suffix_bits;
-
-    // Obviously, we assume keys have the same prefix for a given node.
-    primitives::morton_key_t prefix = node_morton_key & prefix_mask;
-
-    // now determine the quadrant morton number.
-    primitives::morton_key_t suffix01 = MORTON_ONE << (suffix_bits - 2);
-    primitives::morton_key_t suffix02 = MORTON_TWO << (suffix_bits - 2);
-    primitives::morton_key_t suffix03 = MORTON_THREE << (suffix_bits - 2);
-
-    std::vector<primitives::morton_key_t> quadrant_keys;
-    quadrant_keys.push_back(prefix);
-    quadrant_keys.push_back(prefix + suffix01);
-    quadrant_keys.push_back(prefix + suffix02);
-    quadrant_keys.push_back(prefix + suffix03);
-
-    return quadrant_keys;
-}
-
 inline std::vector<primitives::quadrant_t> segment_insertion_path(primitives::morton_key_t key1, primitives::morton_key_t key2)
 {
     constexpr primitives::morton_key_t MORTON_THREE = static_cast<primitives::morton_key_t>(3); // quadrant mask.
     std::vector<primitives::quadrant_t> path;
     // We skip i = 0 because that would simply lead to root comparison.
-    for(int i = 1; i < MAX_LEVEL; ++i)
+    for(int i = 1; i < MaxTreeDepth; ++i)
     {
-        primitives::morton_key_t level1 = key1 >> 2 * (MAX_LEVEL - i - 1);
-        primitives::morton_key_t level2 = key2 >> 2 * (MAX_LEVEL - i - 1);
+        primitives::morton_key_t level1 = key1 >> 2 * (MaxTreeDepth - i - 1);
+        primitives::morton_key_t level2 = key2 >> 2 * (MaxTreeDepth - i - 1);
         if (level1 == level2)
         {
             primitives::quadrant_t quadrant = static_cast<primitives::quadrant_t>(level1 & MORTON_THREE);
