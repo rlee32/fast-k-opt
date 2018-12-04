@@ -1,3 +1,4 @@
+#include "Optimizer.h"
 #include "PointSequence.h"
 #include "fileio/PointSet.h"
 #include "fileio/Tour.h"
@@ -16,7 +17,10 @@ int main(int argc, char** argv)
         return 0;
     }
     fileio::PointSet point_set(argv[1]);
-    quadtree::Quadtree quadtree;
+    quadtree::depth_map::DepthMap depth_map;
+    quadtree::Quadtree quadtree(depth_map);
+    depth_map.add_root(quadtree.root());
+    Optimizer optimizer(depth_map, point_set.x(), point_set.y());
     const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
     // Initialize tour.
     std::vector<primitives::point_id_t> tour;
@@ -47,12 +51,5 @@ int main(int argc, char** argv)
     {
     }
     quadtree.iterate();
-    for (int i{0}; i < 10; ++i)
-    {
-        std::cout << "tour[i], adjacency[i]: " << tour[i]
-            << ", " << point_sequence.adjacents()[i][0]
-            << ", " << point_sequence.adjacents()[i][1]
-            << std::endl;
-    }
     return 0;
 }

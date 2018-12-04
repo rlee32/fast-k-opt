@@ -5,7 +5,7 @@ CXX_FLAGS += -O2 -ffast-math # optimization.
 CXX_FLAGS += -g # debugging.
 CXX_FLAGS += -I./ # include paths.
 
-SRCS = k-opt.cpp PointSequence.cpp \
+SRCS = k-opt.cpp PointSequence.cpp Optimizer.cpp \
     fileio/PointSet.cpp fileio/Tour.cpp \
     quadtree/Quadtree.cpp quadtree/QuadtreeNode.cpp quadtree/morton_keys.cpp \
     quadtree/depth_map/DepthMap.cpp

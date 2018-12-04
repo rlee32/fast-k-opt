@@ -20,7 +20,8 @@ namespace quadtree {
 class Quadtree
 {
 public:
-    Quadtree() { m_depth_map.add_node(0, 0, 0, &m_root); }
+    Quadtree(depth_map::DepthMap& depth_map) : m_depth_map(depth_map) {}
+
     QuadtreeNode& root() { return m_root; }
     void insert(Segment, const std::vector<primitives::morton_key_t>& keys);
     void erase(Segment, const std::vector<primitives::morton_key_t>& keys);
@@ -31,7 +32,7 @@ public:
 private:
     QuadtreeNode m_root;
     std::multiset<primitives::length_t> m_segment_lengths;
-    depth_map::DepthMap m_depth_map;
+    depth_map::DepthMap& m_depth_map;
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;

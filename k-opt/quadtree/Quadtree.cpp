@@ -180,8 +180,6 @@ void Quadtree::compare_best()
 {
     // TODO: implement checking all swaps available for m_k > 2.
     // currently only for m_k == 2.
-
-    // Need to enforce direction in Segment.
 }
 
 } // namespace quadtree
