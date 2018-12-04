@@ -19,6 +19,7 @@ namespace quadtree {
 
 class QuadtreeNode
 {
+    using ChildArray = std::array<std::unique_ptr<QuadtreeNode>, 4>;
 public:
     QuadtreeNode() = default;
     QuadtreeNode(QuadtreeNode* parent);
@@ -26,6 +27,7 @@ public:
     // Need fast insertion and removal.
     using SegmentContainer = std::unordered_set<Segment, Segment::Hash>;
 
+    const ChildArray& children() const { return m_children; }
     QuadtreeNode* child(primitives::quadrant_t q) { return m_children[q].get(); }
 
     size_t total_segment_count() { return m_total_segment_count; }
@@ -40,7 +42,7 @@ public:
 
 private:
     QuadtreeNode* m_parent{nullptr};
-    std::array<std::unique_ptr<QuadtreeNode>, 4> m_children; // index corresponds to Morton order quadrant.
+    ChildArray m_children; // index corresponds to Morton order quadrant.
     // Segment information.
     SegmentContainer m_segments; // segments under this node only (not children).
     size_t m_total_segment_count{0}; // total segments under this node and all child nodes.

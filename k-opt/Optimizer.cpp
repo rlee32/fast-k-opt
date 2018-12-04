@@ -58,6 +58,13 @@ void Optimizer::find_best(const quadtree::QuadtreeNode* node, quadtree::Quadtree
         }
         m_current.pop_back();
     }
+    for (const auto& unique_ptr : node->children())
+    {
+        if (unique_ptr)
+        {
+            find_best(unique_ptr.get());
+        }
+    }
 }
 
 std::vector<quadtree::QuadtreeNode*> Optimizer::gather_searchable_nodes(int depth, quadtree::depth_map::transform::hash_t center_node_hash) const
