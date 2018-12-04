@@ -3,6 +3,10 @@
 PointSequence::PointSequence(const std::vector<primitives::point_id_t>& sequence)
 {
     m_adjacents.resize(sequence.size());
+    for (auto& a : m_adjacents)
+    {
+        a = {m_invalid_point, m_invalid_point};
+    }
     auto prev = sequence.back();
     for (auto p : sequence)
     {

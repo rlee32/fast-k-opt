@@ -1,3 +1,4 @@
+#include "PointSequence.h"
 #include "fileio/PointSet.h"
 #include "fileio/Tour.h"
 #include "primitives.h"
@@ -34,16 +35,24 @@ int main(int argc, char** argv)
     const auto length = point_set.cycle_length(tour);
     std::cout << "Initial tour length: " << length << std::endl;
     // Initialize quadtree with segments.
-    auto prev = tour.back();
+    PointSequence point_sequence(tour);
+    const auto& next = point_sequence.next();
     for (auto id : tour)
     {
-        Segment s(prev, id, distance_functions::euc2d(point_set.x(), point_set.y(), prev, id));
+        auto length = distance_functions::euc2d(point_set.x(), point_set.y(), id, next[id]);
+        Segment s{id, next[id], length};
         quadtree.insert(s, keys);
-        prev = id;
     }
     while (not quadtree.optimal())
     {
     }
     quadtree.iterate();
+    for (int i{0}; i < 10; ++i)
+    {
+        std::cout << "tour[i], adjacency[i]: " << tour[i]
+            << ", " << point_sequence.adjacents()[i][0]
+            << ", " << point_sequence.adjacents()[i][1]
+            << std::endl;
+    }
     return 0;
 }

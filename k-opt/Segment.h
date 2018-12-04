@@ -15,6 +15,15 @@ struct Segment
     primitives::point_id_t b{0}; // second point in traversal.
     primitives::length_t length{0};
 
+    primitives::point_id_t min() const
+    {
+        return std::min(a, b);
+    }
+    primitives::point_id_t max() const
+    {
+        return std::max(a, b);
+    }
+
     // For use in unordered_set.
     struct Hash
     {
@@ -24,7 +33,7 @@ struct Segment
             static_assert(sizeof(hash_t) == sizeof(s.a) + sizeof(s.b));
             constexpr auto ShiftBits = 4 * sizeof(hash_t);
             static_assert(ShiftBits / 8 == sizeof(s.b));
-            return (static_cast<hash_t>(s.a) << ShiftBits) + static_cast<hash_t>(s.b);
+            return (static_cast<hash_t>(s.min()) << ShiftBits) + static_cast<hash_t>(s.max());
         }
     };
 };
@@ -32,6 +41,6 @@ struct Segment
 // For use in unordered_set.
 inline bool operator==(const Segment& lhs, const Segment& rhs)
 {
-    return lhs.a == rhs.a and lhs.b == rhs.b;
+    return lhs.min() == rhs.min() and lhs.max() == rhs.max();
 }
 
