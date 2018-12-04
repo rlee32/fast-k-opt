@@ -48,5 +48,7 @@ int main(int argc, char** argv)
         quadtree.insert(s, keys);
     }
     optimizer.iterate();
+    optimizer.find_best();
+    std::cout << optimizer << std::endl;
     return 0;
 }
