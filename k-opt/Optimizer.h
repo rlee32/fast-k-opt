@@ -3,11 +3,12 @@
 // k-opt can be parallelized if each thread instantiates an Optimizer.
 
 #include "SearchState.h"
+#include "distance_functions.h"
+#include "primitives.h"
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
 #include "quadtree/morton_keys.h"
-#include "primitives.h"
 
 #include <algorithm>
 #include <vector>

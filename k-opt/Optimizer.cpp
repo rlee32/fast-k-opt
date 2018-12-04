@@ -106,6 +106,22 @@ void Optimizer::compare_best()
 {
     // TODO: implement checking all swaps available for m_k > 2.
     // currently only for m_k == 2.
+    const auto& s = m_current.segments;
+    primitives::length_t new_length = distance_functions::euc2d(m_x, m_y, s[0].a, s[1].a);
+    if (new_length > m_current.length)
+    {
+        return;
+    }
+    new_length += distance_functions::euc2d(m_x, m_y, s[0].b, s[1].b);
+    if (new_length > m_current.length)
+    {
+        return;
+    }
+    m_current.improvement = m_current.length - new_length;
+    if (m_current.improvement > m_best.improvement)
+    {
+        m_best = m_current;
+    }
 }
 
 void Optimizer::iterate()
