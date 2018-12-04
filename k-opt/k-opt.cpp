@@ -5,6 +5,7 @@
 #include "primitives.h"
 #include "quadtree/Quadtree.h"
 #include "quadtree/morton_keys.h"
+#include "distance_functions.h"
 
 #include <iostream>
 #include <vector>
@@ -13,7 +14,7 @@ int main(int argc, char** argv)
 {
     if (argc < 2)
     {
-        std::cout << "Usage: point_set_file_path optional_tour_file_path" << std::endl;
+        std::cout << "Arguments: point_set_file_path optional_tour_file_path" << std::endl;
         return 0;
     }
     fileio::PointSet point_set(argv[1]);
