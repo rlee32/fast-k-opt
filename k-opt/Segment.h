@@ -10,10 +10,9 @@
 
 struct Segment
 {
-    Segment(primitives::point_id_t a, primitives::point_id_t b, primitives::length_t length)
-        : a(std::min(a, b)), b(std::max(a, b)), length(length) {}
-    primitives::point_id_t a{0}; // lower point id.
-    primitives::point_id_t b{0}; // higher point id.
+    // "First" and "second" point is assumed consistent among all segments.
+    primitives::point_id_t a{0}; // first point in traversal.
+    primitives::point_id_t b{0}; // second point in traversal.
     primitives::length_t length{0};
 
     // For use in unordered_set.
