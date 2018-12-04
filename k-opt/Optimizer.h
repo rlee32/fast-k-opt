@@ -21,6 +21,7 @@ public:
         : m_depth_map(depth_map), m_x(x), m_y(y) {}
 
     void find_best();
+    void iterate();
 
 private:
     const quadtree::depth_map::DepthMap& m_depth_map;

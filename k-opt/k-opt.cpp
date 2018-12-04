@@ -47,9 +47,6 @@ int main(int argc, char** argv)
         Segment s{id, next[id], length};
         quadtree.insert(s, keys);
     }
-    while (not quadtree.optimal())
-    {
-    }
-    quadtree.iterate();
+    optimizer.iterate();
     return 0;
 }
