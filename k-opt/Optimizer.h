@@ -3,21 +3,27 @@
 // Parallelization is easily achieved if each thread instantiates an Optimizer.
 
 #include "DistanceTable.h"
+#include "KContainer.h"
 #include "SearchState.h"
 #include "primitives.h"
+#include "quadtree/LengthTable.h"
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
 
+#include <array>
 #include <algorithm>
+#include <cmath>
 #include <ostream>
 #include <vector>
+#include <set>
 
 class Optimizer
 {
 public:
-    Optimizer(const quadtree::depth_map::DepthMap& depth_map, const DistanceTable& dt)
-        : m_depth_map(depth_map), m_dt(dt) {}
+    Optimizer(const quadtree::depth_map::DepthMap& depth_map, const DistanceTable& dt
+        , const LengthTable& lt, const Domain& domain)
+        : m_depth_map(depth_map), m_dt(dt), m_length_table(lt), m_domain(domain) {}
 
     void find_best();
     void iterate();
@@ -26,6 +32,10 @@ public:
 private:
     const quadtree::depth_map::DepthMap& m_depth_map;
     const DistanceTable& m_dt;
+    const LengthTable& m_length_table;
+    const Domain& m_domain;
+    std::array<primitives::depth_t, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
+    std::array<primitives::depth_t, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;
@@ -37,6 +47,9 @@ private:
 
     std::vector<quadtree::QuadtreeNode*> gather_searchable_nodes(int depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
     void check_best();
+
+    void update_grid_radii(const quadtree::LengthTable&, const Domain&);
+    void insert_max_lengths(KContainer&, const std::multiset<length_t>& lengths) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

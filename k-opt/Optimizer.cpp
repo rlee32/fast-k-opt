@@ -2,6 +2,8 @@
 
 void Optimizer::find_best()
 {
+    m_best = SearchState();
+    update_grid_radii();
     for (int depth{0}; depth < primitives::MaxTreeDepth; ++depth)
     {
         const auto& map = m_depth_map.get_nodes(depth);
@@ -121,6 +123,12 @@ void Optimizer::check_best()
         return;
     }
     m_current.improvement = m_current.length - new_length;
+    // Using >= or > below can make a difference in results!
+    // It is possible to get multiple swap configurations with the same improvement.
+    // All are qualitatively equivalent choices, but still can lead to divergence in later results.
+    // The configuration chosen depends on the search path.
+    // If >, the first configuration will be kept.
+    // If >=, the last configuration will be chosen.
     if (m_current.improvement > m_best.improvement)
     {
         m_best = m_current;
@@ -148,4 +156,37 @@ void Optimizer::iterate()
     std::cout << m_depth_map.get_nodes(0).begin()->second->total_segment_count() << std::endl;
     std::cout << segments << std::endl;
     std::cout << length << std::endl;
+}
+
+void Optimizer::update_grid_radii()
+{
+    std::fill(m_xradius.begin(), m_xradius.end(), 0);
+    std::fill(m_yradius.begin(), m_yradius.end(), 0);
+    KContainer kc(m_k);
+    for (primitives::depth_t depth{primitives::MaxTreeDepth - 1}; i >= 0; --i)
+    {
+        const auto& lengths = m_length_table.lengths(depth);
+        insert_max_lengths(kc, lengths);
+        const auto sum = kc.sum();
+        if (sum > 0)
+        {
+            m_xradius[depth] = std::ceil(sum / m_domain.xdim(depth));
+            m_yradius[depth] = std::ceil(sum / m_domain.ydim(depth));
+        }
+    }
+}
+
+void Optimizer::insert_max_lengths(KContainer& kc, const std::multiset<length_t>& lengths) const
+{
+    if (lengths.size() == 0)
+    {
+        return;
+    }
+    for (auto it = lengths.crbegin(); it < lengths.crend(); ++it)
+    {
+        if (not kc.insert(length))
+        {
+            return;
+        }
+    }
 }

@@ -30,7 +30,7 @@ public:
     const ChildArray& children() const { return m_children; }
     QuadtreeNode* child(primitives::quadrant_t q) { return m_children[q].get(); }
 
-    size_t total_segment_count() { return m_total_segment_count; }
+    size_t total_segment_count() const { return m_total_segment_count; }
     const SegmentContainer& segments() const { return m_segments; }
     SegmentContainer& segments() { return m_segments; }
 

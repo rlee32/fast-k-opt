@@ -2,6 +2,7 @@
 
 // Morton keys are interleaved coordinates, which are integer reprentations of x, y coordinates normalized to [0,1].
 
+#include "Domain.h"
 #include <primitives.h>
 
 #include <algorithm>
@@ -38,35 +39,15 @@ inline primitives::morton_key_t interleave_coordinates(double normalized_coordin
     return morton_key;
 }
 
-inline std::vector<primitives::morton_key_t> compute_point_morton_keys(const std::vector<double>& x, const std::vector<double>& y)
+inline std::vector<primitives::morton_key_t> compute_point_morton_keys(const std::vector<double>& x, const std::vector<double>& y,
+    const Domain& domain)
 {
-    // Get domain bounds
-    double x_min = *std::min_element(x.begin(), x.end());
-    double x_max = *std::max_element(x.begin(), x.end());
-    double y_min = *std::min_element(y.begin(), y.end());
-    double y_max = *std::max_element(y.begin(), y.end());
-
-    double x_range = x_max - x_min;
-    double y_range = y_max - y_min;
-
-    // In this tree construction code we assume the points at within each node
-    // have the same Morton Key prefix. So when a point is on the exact boundary,
-    // it gets put into the quadrant it would go in if it was a small increment
-    // larger (in either x or y). This is fine, EXCEPT at the root. There is no
-    // next quadrant. So, we have to apply fudge factor to ranges to completely
-    // capture boundary points within the root node.
-    constexpr double RootNodeMargin = 0.00001;
-    x_min -= RootNodeMargin * x_range;
-    y_min -= RootNodeMargin * y_range;
-    x_range *= 1 + 2 * RootNodeMargin;
-    y_range *= 1 + 2 * RootNodeMargin;
-
     const size_t point_count = x.size();
     std::vector<primitives::morton_key_t> point_morton_keys;
     for (size_t i{0}; i < point_count; ++i)
     {
-        double x_normalized = (x[i] - x_min) / x_range;
-        double y_normalized = (y[i] - y_min) / y_range;
+        double x_normalized = (x[i] - domain.xmin()) / domain.xdim(0);
+        double y_normalized = (y[i] - domain.ymin()) / domain.ydim(0);
         if (x_normalized < 0.0 or x_normalized > 1.0)
         {
             std::cout << "ERROR: out-of-bounds normalized x coordinate: " << x_normalized << std::endl;

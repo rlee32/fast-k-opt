@@ -7,8 +7,9 @@ CXX_FLAGS += -I./ # include paths.
 
 SRCS = k-opt.cpp PointSequence.cpp Optimizer.cpp \
     fileio/PointSet.cpp fileio/Tour.cpp \
-    quadtree/Quadtree.cpp quadtree/QuadtreeNode.cpp quadtree/morton_keys.cpp \
-    quadtree/depth_map/DepthMap.cpp
+    quadtree/Quadtree.cpp quadtree/QuadtreeNode.cpp \
+    quadtree/depth_map/DepthMap.cpp \
+	quadtree/LengthTable.cpp
 
 %.o: %.cpp; $(CXX) $(CXX_FLAGS) -o $@ -c $<
 

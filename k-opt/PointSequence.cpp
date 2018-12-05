@@ -40,7 +40,10 @@ void PointSequence::align(quadtree::QuadtreeNode* node) const
     align(node->segments());
     for (auto& unique_ptr : node->children())
     {
-        align(unique_ptr.get());
+        if (unique_ptr)
+        {
+            align(unique_ptr.get());
+        }
     }
 }
 

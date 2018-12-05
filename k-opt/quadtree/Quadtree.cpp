@@ -24,7 +24,7 @@ void Quadtree::insert(Segment s)
         segment_destination = child;
     }
     segment_destination->insert(s);
-    m_segment_lengths.insert(s.length);
+    m_length_table.insert(depth, s.length);
 }
 void Quadtree::erase(Segment s)
 {
@@ -43,6 +43,11 @@ void Quadtree::erase(Segment s)
         segment_destination = segment_destination->child(quadrant);
     }
     auto remaining = segment_destination->erase(s);
+    if (not m_length_table.erase_one(depth, s.length))
+    {
+        std::cout << __func__ << ": ERROR: could not find length in length table!\n"
+            << "\tdepth, length: " << depth << ", " << s.length << "\n";
+    }
     while (parent and remaining == 0)
     {
         auto quadrant = insertion_path.back();
@@ -57,7 +62,6 @@ void Quadtree::erase(Segment s)
         y >>= 1;
         --depth;
     }
-    m_segment_lengths.erase(s.length);
 }
 
 } // namespace quadtree
