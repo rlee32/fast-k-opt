@@ -36,8 +36,8 @@ private:
     const DistanceTable& m_dt;
     const quadtree::LengthTable& m_length_table;
     const quadtree::Domain& m_domain;
-    std::array<primitives::depth_t, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
-    std::array<primitives::depth_t, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
+    std::array<int, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
+    std::array<int, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;
@@ -51,7 +51,7 @@ private:
     void check_best();
 
     void update_grid_radii();
-    void insert_max_lengths(KContainer&, const std::multiset<primitives::length_t>& lengths) const;
+    void insert_max_lengths(KContainer&, primitives::depth_t depth) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

@@ -79,11 +79,10 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::gather_searchable_nodes(int dept
     std::vector<quadtree::QuadtreeNode*> searchable_nodes;
     int cx = quadtree::depth_map::transform::x(center_node_hash);
     int cy = quadtree::depth_map::transform::y(center_node_hash);
+    int y_min = std::max(0, cy - m_yradius[depth] - 1);
     int grid_dim = 1 << depth;
-    int max_d = grid_dim; // TODO: calculate for maximum admissible new edge length.
-    int y_min = std::max(0, cy - max_d);
-    int x_end = std::min(grid_dim, cx + max_d);
-    int y_end = std::min(grid_dim, cy + max_d);
+    int x_end = std::min(grid_dim, cx + m_xradius[depth] + 1);
+    int y_end = std::min(grid_dim, cy + m_yradius[depth] + 1);
     for (int x{cx}; x < x_end; ++x)
     {
         for (int y{y_min}; y < y_end; ++y)
@@ -166,8 +165,7 @@ void Optimizer::update_grid_radii()
     for (primitives::depth_t i{0}; i < primitives::DepthEnd; ++i)
     {
         auto depth = primitives::DepthEnd - 1 - i;
-        const auto& lengths = m_length_table.lengths(depth);
-        insert_max_lengths(kc, lengths);
+        insert_max_lengths(kc, depth);
         const auto sum = kc.sum();
         if (sum > 0)
         {
@@ -177,13 +175,13 @@ void Optimizer::update_grid_radii()
     }
 }
 
-void Optimizer::insert_max_lengths(KContainer& kc, const std::multiset<primitives::length_t>& lengths) const
+void Optimizer::insert_max_lengths(KContainer& kc, primitives::depth_t depth) const
 {
-    if (lengths.size() == 0)
+    if (m_length_table.lengths(depth).size() == 0)
     {
         return;
     }
-    for (auto it = lengths.crbegin(); it != lengths.crend(); ++it)
+    for (auto it = m_length_table.lengths(depth).crbegin(); it != m_length_table.lengths(depth).crend(); ++it)
     {
         if (not kc.insert(*it))
         {

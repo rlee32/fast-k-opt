@@ -58,7 +58,7 @@ int main(int argc, char** argv)
     std::cout << "Initial tour length: " << prev_length << std::endl;
     int iteration{1};
     primitives::length_t improvement{1};
-    constexpr bool debug_mode{true};
+    constexpr bool debug_mode{false};
     constexpr int print_period{1};
     while (improvement > 0)
     {

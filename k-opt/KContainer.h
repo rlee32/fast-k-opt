@@ -31,7 +31,7 @@ public:
         {
             return false;
         }
-        // evict smallest, then insert new value.
+        // evict smallest (and only one element), then insert new value.
         m_values.erase(b);
         m_values.insert(v);
         return true;
