@@ -49,7 +49,7 @@ void Optimizer::find_best(const quadtree::QuadtreeNode* node, quadtree::Quadtree
         m_current.push_back(*it);
         if (m_current.size() == m_k)
         {
-            compare_best();
+            check_best();
             ++it;
         }
         else
@@ -102,7 +102,7 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::gather_searchable_nodes(int dept
     return searchable_nodes;
 }
 
-void Optimizer::compare_best()
+void Optimizer::check_best()
 {
     // TODO: implement checking all swaps available for m_k > 2.
     // currently only for m_k == 2.

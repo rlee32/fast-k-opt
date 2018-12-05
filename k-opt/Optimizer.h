@@ -1,6 +1,6 @@
 #pragma once
 
-// k-opt can be parallelized if each thread instantiates an Optimizer.
+// Parallelization is easily achieved if each thread instantiates an Optimizer.
 
 #include "SearchState.h"
 #include "distance_functions.h"
@@ -40,7 +40,7 @@ private:
     void find_best(const quadtree::QuadtreeNode* node, quadtree::QuadtreeNode::SegmentContainer::const_iterator it);
 
     std::vector<quadtree::QuadtreeNode*> gather_searchable_nodes(int depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
-    void compare_best();
+    void check_best();
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
@@ -52,7 +52,7 @@ inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
         out << "\t" << s.a << "\t" << s.b << "\n";
     }
     out << "\tOld length: " << optimizer.best().length << "\n";
-    out << "\tImprovment: " << optimizer.best().improvement << "\n";
+    out << "\tImprovement: " << optimizer.best().improvement << "\n";
     return out;
 }
 
