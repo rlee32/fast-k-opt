@@ -2,7 +2,7 @@
 
 void Optimizer::find_best()
 {
-    for (int depth{0}; depth < quadtree::morton_keys::MaxTreeDepth; ++depth)
+    for (int depth{0}; depth < primitives::MaxTreeDepth; ++depth)
     {
         const auto& map = m_depth_map.get_nodes(depth);
         if (map.size() == 0)
@@ -104,16 +104,19 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::gather_searchable_nodes(int dept
 
 void Optimizer::check_best()
 {
-    // TODO: implement checking all swaps available for m_k > 2.
-    // currently only for m_k == 2.
+    // TODO: implement for m_k > 2.
+    // TODO: logarithmic distance table.
     const auto& s = m_current.segments;
-    primitives::length_t new_length = distance_functions::euc2d(m_x, m_y, s[0].a, s[1].a);
-    if (new_length > m_current.length)
+    auto& ns = m_current.new_segments;
+    ns.clear();
+    ns.push_back({s[0].a, s[1].a, m_dt.compute_length(s[0].a, s[1].a)});
+    if (ns[0].length >= m_current.length)
     {
         return;
     }
-    new_length += distance_functions::euc2d(m_x, m_y, s[0].b, s[1].b);
-    if (new_length > m_current.length)
+    ns.push_back({s[0].b, s[1].b, m_dt.compute_length(s[0].b, s[1].b)});
+    auto new_length = ns[0].length + ns[1].length;
+    if (new_length >= m_current.length)
     {
         return;
     }
@@ -128,7 +131,7 @@ void Optimizer::iterate()
 {
     int segments{0};
     uint64_t length{0};
-    for (int i{0}; i < quadtree::morton_keys::MaxTreeDepth; ++i)
+    for (int i{0}; i < primitives::MaxTreeDepth; ++i)
     {
         const auto& map = m_depth_map.get_nodes(i);
         std::cout << "depth " << i << " nodes: " << map.size() << std::endl;

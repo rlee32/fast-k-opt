@@ -2,11 +2,14 @@
 
 #include "primitives.h"
 #include "Segment.h"
+#include "quadtree/Quadtree.h"
+#include "quadtree/QuadtreeNode.h"
 
 #include <algorithm>
 #include <array>
 #include <iostream>
 #include <limits>
+#include <utility> // std::swap
 #include <vector>
 
 class PointSequence
@@ -15,18 +18,22 @@ class PointSequence
 public:
     PointSequence(const std::vector<primitives::point_id_t>& sequence);
 
-    const std::vector<primitives::point_id_t>& next() { return m_next; }
+    void new_tour(quadtree::Quadtree& qt
+        , const std::vector<Segment>& old_segments
+        , const std::vector<Segment>& new_segments);
 
-    void reorder(const std::vector<Segment>& old_segments, const std::vector<Segment>& new_segments);
-    void update_next();
-    const std::vector<Adjacents>& adjacents() { return m_adjacents; }
+    // Mainly for debugging.
+    const std::vector<primitives::point_id_t>& next() const { return m_next; }
+    const std::vector<Adjacents>& adjacents() const { return m_adjacents; }
 
 private:
-    static constexpr auto m_invalid_point = std::numeric_limits<primitives::point_id_t>::max();
-
     std::vector<Adjacents> m_adjacents;
     std::vector<primitives::point_id_t> m_next;
 
+    void update_next();
+    void reorder(const std::vector<Segment>& old_segments, const std::vector<Segment>& new_segments);
+    void align(quadtree::QuadtreeNode*) const;
+    void align(Segment::Container&) const;
     primitives::point_id_t get_other(primitives::point_id_t point, primitives::point_id_t adjacent) const;
     void create_adjacency(primitives::point_id_t point1, primitives::point_id_t point2);
     void fill_adjacent(primitives::point_id_t point, primitives::point_id_t new_adjacent);

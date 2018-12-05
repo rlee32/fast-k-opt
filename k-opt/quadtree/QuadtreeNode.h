@@ -32,6 +32,7 @@ public:
 
     size_t total_segment_count() { return m_total_segment_count; }
     const SegmentContainer& segments() const { return m_segments; }
+    SegmentContainer& segments() { return m_segments; }
 
     void insert(Segment);
     size_t erase(Segment);

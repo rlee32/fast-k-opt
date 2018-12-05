@@ -2,13 +2,12 @@
 
 // Parallelization is easily achieved if each thread instantiates an Optimizer.
 
+#include "DistanceTable.h"
 #include "SearchState.h"
-#include "distance_functions.h"
 #include "primitives.h"
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
-#include "quadtree/morton_keys.h"
 
 #include <algorithm>
 #include <ostream>
@@ -17,10 +16,8 @@
 class Optimizer
 {
 public:
-    Optimizer(const quadtree::depth_map::DepthMap& depth_map
-        , const std::vector<primitives::space_t>& x
-        , const std::vector<primitives::space_t>& y)
-        : m_depth_map(depth_map), m_x(x), m_y(y) {}
+    Optimizer(const quadtree::depth_map::DepthMap& depth_map, const DistanceTable& dt)
+        : m_depth_map(depth_map), m_dt(dt) {}
 
     void find_best();
     void iterate();
@@ -28,8 +25,7 @@ public:
 
 private:
     const quadtree::depth_map::DepthMap& m_depth_map;
-    const std::vector<primitives::space_t>& m_x;
-    const std::vector<primitives::space_t>& m_y;
+    const DistanceTable& m_dt;
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;
@@ -45,6 +41,10 @@ private:
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
 {
+    if (optimizer.best().empty())
+    {
+        return out << "No improving swap found.";
+    }
     out << "Best swap found:\n";
     out << "\tPoint ID of each segment:\n";
     for (const auto& s : optimizer.best().segments)
@@ -52,7 +52,6 @@ inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
         out << "\t" << s.a << "\t" << s.b << "\n";
     }
     out << "\tOld length: " << optimizer.best().length << "\n";
-    out << "\tImprovement: " << optimizer.best().improvement << "\n";
-    return out;
+    return out << "\tImprovement: " << optimizer.best().improvement;
 }
 

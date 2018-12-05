@@ -5,7 +5,6 @@
 #include "primitives.h"
 #include "quadtree/Quadtree.h"
 #include "quadtree/morton_keys.h"
-#include "distance_functions.h"
 
 #include <iostream>
 #include <vector>
@@ -19,10 +18,11 @@ int main(int argc, char** argv)
     }
     fileio::PointSet point_set(argv[1]);
     quadtree::depth_map::DepthMap depth_map;
-    quadtree::Quadtree quadtree(depth_map);
-    depth_map.add_root(quadtree.root());
-    Optimizer optimizer(depth_map, point_set.x(), point_set.y());
     const auto keys = quadtree::morton_keys::compute_point_morton_keys(point_set.x(), point_set.y());
+    quadtree::Quadtree quadtree(depth_map, keys);
+    depth_map.add_root(quadtree.root());
+    DistanceTable dt(point_set.x(), point_set.y());
+    Optimizer optimizer(depth_map, dt);
     // Initialize tour.
     std::vector<primitives::point_id_t> tour;
     if (argc > 2)
@@ -37,16 +37,14 @@ int main(int argc, char** argv)
             tour.push_back(i);
         }
     }
-    const auto length = point_set.cycle_length(tour);
-    std::cout << "Initial tour length: " << length << std::endl;
     // Initialize quadtree with segments.
     PointSequence point_sequence(tour);
     const auto& next = point_sequence.next();
     for (auto id : tour)
     {
-        auto length = distance_functions::euc2d(point_set.x(), point_set.y(), id, next[id]);
+        auto length = dt.compute_length(id, next[id]);
         Segment s{id, next[id], length};
-        quadtree.insert(s, keys);
+        quadtree.insert(s);
     }
     optimizer.iterate();
     optimizer.find_best();

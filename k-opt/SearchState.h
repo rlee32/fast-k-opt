@@ -3,7 +3,7 @@
 #include "Segment.h"
 #include "primitives.h"
 
-#include <algorithm>
+#include <algorithm> // find
 #include <vector>
 
 struct SearchState
@@ -13,11 +13,12 @@ struct SearchState
     {
         push_back(segment);
     }
+
     std::vector<Segment> segments;
     std::vector<primitives::point_id_t> points;
     primitives::length_t length{0};
     primitives::length_t improvement{0};
-    // TODO: need some way to indicate the best configuration for k-opt > 2.
+    std::vector<Segment> new_segments;
 
     bool valid(const Segment& s) const
     {

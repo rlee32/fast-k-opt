@@ -2,9 +2,9 @@
 
 namespace quadtree {
 
-void Quadtree::insert(Segment s, const std::vector<primitives::morton_key_t>& keys)
+void Quadtree::insert(Segment s)
 {
-    const auto insertion_path = morton_keys::segment_insertion_path(keys[s.min()], keys[s.max()]);
+    const auto insertion_path = morton_keys::segment_insertion_path(m_morton_keys[s.min()], m_morton_keys[s.max()]);
     QuadtreeNode* segment_destination{&m_root};
     uint32_t depth{0}, x{0}, y{0};
     for (auto quadrant : insertion_path)
@@ -26,9 +26,9 @@ void Quadtree::insert(Segment s, const std::vector<primitives::morton_key_t>& ke
     segment_destination->insert(s);
     m_segment_lengths.insert(s.length);
 }
-void Quadtree::erase(Segment s, const std::vector<primitives::morton_key_t>& keys)
+void Quadtree::erase(Segment s)
 {
-    auto insertion_path = morton_keys::segment_insertion_path(keys[s.min()], keys[s.max()]);
+    auto insertion_path = morton_keys::segment_insertion_path(m_morton_keys[s.min()], m_morton_keys[s.max()]);
     QuadtreeNode* segment_destination{&m_root};
     QuadtreeNode* parent{nullptr};
     uint32_t depth{0}, x{0}, y{0};

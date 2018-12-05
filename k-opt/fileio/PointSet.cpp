@@ -64,17 +64,5 @@ PointSet::PointSet(const char* file_path)
     std::cout << "Finished reading point set file.\n" << std::endl;
 }
 
-primitives::length_t PointSet::cycle_length(const std::vector<primitives::point_id_t>& path) const
-{
-    primitives::length_t length{0};
-    primitives::point_id_t previous_id = path.back();
-    for (auto id : path)
-    {
-        length += distance_functions::euc2d(m_x, m_y, previous_id, id);
-        previous_id = id;
-    }
-    return length;
-}
-
 } // namespace fileio
 

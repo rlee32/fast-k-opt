@@ -5,8 +5,10 @@
 
 #include "primitives.h"
 
-#include <algorithm>
+#include <algorithm> // min, max
 #include <cstdint>
+#include <ostream>
+#include <unordered_set>
 
 struct Segment
 {
@@ -36,6 +38,7 @@ struct Segment
             return (static_cast<hash_t>(s.min()) << ShiftBits) + static_cast<hash_t>(s.max());
         }
     };
+    using Container = std::unordered_set<Segment, Hash>;
 };
 
 // For use in unordered_set.
@@ -44,3 +47,7 @@ inline bool operator==(const Segment& lhs, const Segment& rhs)
     return lhs.min() == rhs.min() and lhs.max() == rhs.max();
 }
 
+inline std::ostream& operator<<(std::ostream& out, const Segment& s)
+{
+    return out << "Point " << s.a << " to point " << s.b << " with length " << s.length;
+}

@@ -2,13 +2,13 @@
 
 // This handles the generation and sorting of Morton keys, and quadtree construction.
 
-#include "depth_map/transform.h"
-#include "depth_map/DepthMap.h"
 #include "QuadtreeNode.h"
-#include "Segment.h"
+#include "depth_map/DepthMap.h"
+#include "depth_map/transform.h"
 #include "morton_keys.h"
-#include <primitives.h>
 #include <SearchState.h>
+#include <Segment.h>
+#include <primitives.h>
 
 #include <algorithm>
 #include <cstdint>
@@ -20,14 +20,16 @@ namespace quadtree {
 class Quadtree
 {
 public:
-    Quadtree(depth_map::DepthMap& depth_map) : m_depth_map(depth_map) {}
+    Quadtree(depth_map::DepthMap& depth_map, const std::vector<primitives::morton_key_t>& morton_keys)
+        : m_depth_map(depth_map), m_morton_keys(morton_keys) {}
 
     QuadtreeNode& root() { return m_root; }
-    void insert(Segment, const std::vector<primitives::morton_key_t>& keys);
-    void erase(Segment, const std::vector<primitives::morton_key_t>& keys);
+    void insert(Segment);
+    void erase(Segment);
 
 private:
     depth_map::DepthMap& m_depth_map;
+    const std::vector<primitives::morton_key_t>& m_morton_keys;
 
     QuadtreeNode m_root;
     std::multiset<primitives::length_t> m_segment_lengths;
