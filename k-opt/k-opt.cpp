@@ -54,7 +54,7 @@ int main(int argc, char** argv)
     }
     // Hill-climbing loop.
     Optimizer optimizer(depth_map, dt, quadtree.length_table(), domain);
-    auto prev_length = verify::tour_length(&quadtree.root());
+    auto prev_length = verify::tour_length(quadtree.root());
     std::cout << "Initial tour length: " << prev_length << std::endl;
     int iteration{1};
     primitives::length_t improvement{1};
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
         if (debug_mode)
         {
             std::cout << optimizer << std::endl;
-            if (verify::valid_cycle(&quadtree.root()))
+            if (verify::valid_cycle(quadtree.root()))
             {
                 std::cout << "Tour is still a valid cycle." << std::endl;
             }
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
         }
         if (iteration % print_period == 0)
         {
-            auto current_length = verify::tour_length(&quadtree.root());
+            auto current_length = verify::tour_length(quadtree.root());
             improvement = prev_length - current_length;
             std::cout << "Iteration " << iteration
                 << " final tour length: " << current_length

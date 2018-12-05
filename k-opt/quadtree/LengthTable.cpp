@@ -1,5 +1,7 @@
 #include "LengthTable.h"
 
+namespace quadtree {
+
 void LengthTable::insert(depth_t depth, length_t length)
 {
     m_lengths[depth].insert(length);
@@ -20,3 +22,5 @@ const LengthTable::LengthContainer& LengthTable::lengths(depth_t depth) const
 {
     return m_lengths[depth];
 }
+
+} // namespace quadtree

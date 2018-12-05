@@ -32,7 +32,7 @@ void PointSequence::new_tour(quadtree::Quadtree& qt
     }
     reorder(old_segments, new_segments);
     update_next();
-    align(&qt.root());
+    align(qt.root());
 }
 
 void PointSequence::align(quadtree::QuadtreeNode* node) const

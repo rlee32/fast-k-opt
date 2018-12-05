@@ -10,6 +10,8 @@
 #include <array>
 #include <set>
 
+namespace quadtree {
+
 class LengthTable
 {
     using length_t = primitives::length_t;
@@ -30,3 +32,4 @@ private:
     Table<LengthContainer> m_lengths;
 };
 
+} // namespace quadtree

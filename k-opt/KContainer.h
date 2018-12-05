@@ -37,15 +37,6 @@ public:
         return true;
     }
     const ValueContainer& values() const { return m_values; }
-    const Value& min() const
-    {
-        if (m_values.empty())
-        {
-            return 0;
-        }
-        const auto& b = m_values.cbegin();
-        return *b;
-    }
     Value sum() const
     {
         if (m_values.size() < m_k)
@@ -56,6 +47,6 @@ public:
     }
 
 private:
-    const int m_k{0}; // maximum values to hold.
+    const size_t m_k{0}; // maximum values to hold.
     ValueContainer m_values;
 };

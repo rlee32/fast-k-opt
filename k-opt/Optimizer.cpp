@@ -163,8 +163,9 @@ void Optimizer::update_grid_radii()
     std::fill(m_xradius.begin(), m_xradius.end(), 0);
     std::fill(m_yradius.begin(), m_yradius.end(), 0);
     KContainer kc(m_k);
-    for (primitives::depth_t depth{primitives::MaxTreeDepth - 1}; i >= 0; --i)
+    for (primitives::depth_t i{0}; i < primitives::DepthEnd; ++i)
     {
+        auto depth = primitives::DepthEnd - 1 - i;
         const auto& lengths = m_length_table.lengths(depth);
         insert_max_lengths(kc, lengths);
         const auto sum = kc.sum();
@@ -176,15 +177,15 @@ void Optimizer::update_grid_radii()
     }
 }
 
-void Optimizer::insert_max_lengths(KContainer& kc, const std::multiset<length_t>& lengths) const
+void Optimizer::insert_max_lengths(KContainer& kc, const std::multiset<primitives::length_t>& lengths) const
 {
     if (lengths.size() == 0)
     {
         return;
     }
-    for (auto it = lengths.crbegin(); it < lengths.crend(); ++it)
+    for (auto it = lengths.crbegin(); it != lengths.crend(); ++it)
     {
-        if (not kc.insert(length))
+        if (not kc.insert(*it))
         {
             return;
         }
