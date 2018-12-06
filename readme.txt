@@ -1,10 +1,6 @@
-In progress; transferring code from 2opt repo.
+This quadtree-based k-opt algorithm runs in O(n * log(n) ^ (k - 1)), instead of O(n ^ k) (the state of the art for best-improvement).
 
-The goal is to implement a k-opt algorithm that runs in O(n * log(n) ^ (k - 1)), instead of O(n ^ k).
-
-To reduce the complexity of the c++ implementation, I offload as much as possible to python scripts.
-The c++ implementation is meant to read and output point sets and tours.
-The python verification_scripts are meant to post-process the c++ output.
+The python scripts verify TSPLIB-formatted files and provide visualizations for k-opt edge exchanges.
 
 Compilation:
 1. Make sure "CXX" in "k-opt/makefile" is set to the desired compiler.
@@ -19,9 +15,9 @@ Style notes:
 
 Potential design changes:
 1. Moving Quadtree insertion and erasure implementation to QuadtreeNodes, and DepthMap as a static member of QuadtreeNode.
+4. Placing all segments in an unordered set, and holding indexes to these segments in QuadtreeNodes (instead of the segments themselves).
 
 TODO:
 1. Write tour to file.
 2. For the first edge in a candidate set, use the minimum distance to the edge of the bounding box to reduce search radius.
 3. Utilize candidate set bounding box to abort distance computations.
-4. Placing all segments in an unordered set, and holding indexes to these segments in QuadtreeNodes (instead of the segments themselves).
