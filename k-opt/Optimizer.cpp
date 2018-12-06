@@ -158,6 +158,9 @@ void Optimizer::find_and_add_node(primitives::depth_t depth
 
 void Optimizer::check_best()
 {
+    std::sort(std::begin(m_current.segments)
+        , std::end(m_current.segments)
+        , [&m_sequence_ids = m_sequence_ids](const Segment& a, const Segment& b) { return m_sequence_ids[a.a] < m_sequence_ids[b.a]; });
     switch (m_k)
     {
         case 2:

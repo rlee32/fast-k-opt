@@ -24,8 +24,9 @@ class Optimizer
 {
 public:
     Optimizer(const quadtree::depth_map::DepthMap& depth_map, const DistanceTable& dt
-        , const quadtree::LengthTable& lt, const quadtree::Domain& domain)
-        : m_depth_map(depth_map), m_dt(dt), m_length_table(lt), m_domain(domain) {}
+        , const quadtree::LengthTable& lt, const quadtree::Domain& domain
+        , const std::vector<primitives::point_id_t>& sequence_ids)
+        : m_depth_map(depth_map), m_dt(dt), m_length_table(lt), m_domain(domain), m_sequence_ids(sequence_ids) {}
 
     void find_best();
     void traverse_tree();
@@ -36,9 +37,10 @@ private:
     const DistanceTable& m_dt;
     const quadtree::LengthTable& m_length_table;
     const quadtree::Domain& m_domain;
+    const std::vector<primitives::point_id_t>& m_sequence_ids;
     std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
-    size_t m_k{2}; // as in k-opt.
+    size_t m_k{3}; // as in k-opt.
     SearchState m_best;
     SearchState m_current;
     size_t m_calls{0};

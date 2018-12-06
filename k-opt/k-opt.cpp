@@ -53,12 +53,12 @@ int main(int argc, char** argv)
         quadtree.insert(s);
     }
     // Hill-climbing loop.
-    Optimizer optimizer(depth_map, dt, quadtree.length_table(), domain);
+    Optimizer optimizer(depth_map, dt, quadtree.length_table(), domain, point_sequence.sequence_ids());
     auto prev_length = verify::tour_length(quadtree.root());
     std::cout << "Initial tour length: " << prev_length << std::endl;
     int iteration{1};
     primitives::length_t improvement{1};
-    constexpr bool debug_mode{false};
+    constexpr bool debug_mode{true};
     constexpr int print_period{1};
     while (improvement > 0)
     {
