@@ -22,15 +22,21 @@ void Optimizer::find_best()
 
 void Optimizer::find_best(int depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
-    const auto searchable_nodes = gather_searchable_nodes(depth, node_hash);
+    const auto sr = compute_search_range(depth, node_hash);
+    const auto full_nodes = full_search_nodes(sr);
+    const auto partial_nodes = partial_search_nodes(sr);
     auto it = node->segments().cbegin();
     while (it != node->segments().cend())
     {
         m_current = SearchState(*it);
         find_best(node, ++it);
-        for (const auto searchable_node : searchable_nodes)
+        for (const auto partial_node : partial_nodes)
         {
-            find_best(searchable_node);
+            find_best_children(partial_node);
+        }
+        for (const auto full_node : full_nodes)
+        {
+            find_best(full_node);
         }
     }
 }
@@ -60,6 +66,10 @@ void Optimizer::find_best(const quadtree::QuadtreeNode* node, quadtree::Quadtree
         }
         m_current.pop_back();
     }
+    find_best_children(node);
+}
+void Optimizer::find_best_children(const quadtree::QuadtreeNode* node)
+{
     for (const auto& unique_ptr : node->children())
     {
         if (unique_ptr)
@@ -69,38 +79,80 @@ void Optimizer::find_best(const quadtree::QuadtreeNode* node, quadtree::Quadtree
     }
 }
 
-std::vector<quadtree::QuadtreeNode*> Optimizer::gather_searchable_nodes(int depth, quadtree::depth_map::transform::hash_t center_node_hash) const
+Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t depth, quadtree::depth_map::transform::hash_t center_node_hash) const
 {
     // Searchable nodes meet the following criteria:
     //  1. Same depth.
-    //  2. Higher node hash value.
-    //  3. Within a certain distance.
+    //  2. For fully searched nodes, higher node hash value.
+    //  3. For partially searched nodes (only children), lower node hash values.
+    //  4. Within a certain distance.
     // Assumes higher x-coordinate always gives higher node hash.
-    std::vector<quadtree::QuadtreeNode*> searchable_nodes;
-    int cx = quadtree::depth_map::transform::x(center_node_hash);
-    int cy = quadtree::depth_map::transform::y(center_node_hash);
-    int y_min = std::max(0, cy - m_yradius[depth] - 1);
+    SearchRange sr;
+    sr.cx = quadtree::depth_map::transform::x(center_node_hash);
+    sr.cy = quadtree::depth_map::transform::y(center_node_hash);
+    sr.xmin = std::max(0, sr.cx - m_xradius[depth] - 1);
+    sr.ymin = std::max(0, sr.cy - m_yradius[depth] - 1);
     int grid_dim = 1 << depth;
-    int x_end = std::min(grid_dim, cx + m_xradius[depth] + 1);
-    int y_end = std::min(grid_dim, cy + m_yradius[depth] + 1);
-    for (int x{cx}; x < x_end; ++x)
+    sr.xend = std::min(grid_dim, sr.cx + m_xradius[depth] + 1);
+    sr.yend = std::min(grid_dim, sr.cy + m_yradius[depth] + 1);
+    return sr;
+}
+
+std::vector<quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const SearchRange& sr) const
+{
+    std::vector<quadtree::QuadtreeNode*> nodes;
+    for (int x{sr.xmin}; x < sr.cx; ++x)
     {
-        for (int y{y_min}; y < y_end; ++y)
+        for (int y{sr.ymin}; y < sr.yend; ++y)
         {
             auto hash = quadtree::depth_map::transform::hash_grid_coord(x, y);
-            if (hash <= center_node_hash)
+            const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
+            if (it == m_depth_map.get_nodes(sr.depth).end())
             {
                 continue;
             }
-            const auto it = m_depth_map.get_nodes(depth).find(hash);
-            if (it == m_depth_map.get_nodes(depth).end())
-            {
-                continue;
-            }
-            searchable_nodes.push_back(it->second);
+            nodes.push_back(it->second);
         }
     }
-    return searchable_nodes;
+    for (int y{sr.ymin}; y < sr.cy; ++y)
+    {
+        auto hash = quadtree::depth_map::transform::hash_grid_coord(sr.cx, y);
+        const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
+        if (it == m_depth_map.get_nodes(sr.depth).end())
+        {
+            continue;
+        }
+        nodes.push_back(it->second);
+    }
+    return nodes;
+}
+std::vector<quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
+{
+    std::vector<quadtree::QuadtreeNode*> nodes;
+    for (int y{sr.cy + 1}; y < sr.yend; ++y)
+    {
+        auto hash = quadtree::depth_map::transform::hash_grid_coord(sr.cx, y);
+        const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
+        if (it == m_depth_map.get_nodes(sr.depth).end())
+        {
+            continue;
+        }
+        nodes.push_back(it->second);
+    }
+    for (int x{sr.cx + 1}; x < sr.xend; ++x)
+    {
+        for (int y{sr.ymin}; y < sr.yend; ++y)
+        {
+            auto hash = quadtree::depth_map::transform::hash_grid_coord(x, y);
+            const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
+            if (it == m_depth_map.get_nodes(sr.depth).end())
+            {
+                continue;
+            }
+            nodes.push_back(it->second);
+        }
+    }
+    return nodes;
 }
 
 void Optimizer::check_best()

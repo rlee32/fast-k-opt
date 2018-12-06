@@ -45,13 +45,28 @@ private:
 
     void find_best(int depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
     void find_best(const quadtree::QuadtreeNode* node);
+    void find_best_children(const quadtree::QuadtreeNode* node);
     void find_best(const quadtree::QuadtreeNode* node, quadtree::QuadtreeNode::SegmentContainer::const_iterator it);
 
-    std::vector<quadtree::QuadtreeNode*> gather_searchable_nodes(int depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
     void check_best();
 
     void update_grid_radii();
     void insert_max_lengths(KContainer&, primitives::depth_t depth) const;
+
+    struct SearchRange
+    {
+        primitives::depth_t depth{0};
+        quadtree::depth_map::transform::hash_t center_node_hash{0};
+        int cx{0};
+        int cy{0};
+        int xmin{0};
+        int xend{0};
+        int ymin{0};
+        int yend{0};
+    };
+    SearchRange compute_search_range(primitives::depth_t depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
+    std::vector<quadtree::QuadtreeNode*> full_search_nodes(const SearchRange& sr) const;
+    std::vector<quadtree::QuadtreeNode*> partial_search_nodes(const SearchRange& sr) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
