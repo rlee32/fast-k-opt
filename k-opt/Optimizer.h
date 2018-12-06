@@ -74,8 +74,8 @@ private:
         , primitives::grid_t grid_x, primitives::grid_t grid_y
         , std::vector<quadtree::QuadtreeNode*>& nodes) const;
 
-    void check_best_2opt();
-    void check_best_3opt();
+    void check_best_2opt(const std::vector<Segment>& ordered_segments);
+    void check_best_3opt(const std::vector<Segment>& ordered_segments);
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

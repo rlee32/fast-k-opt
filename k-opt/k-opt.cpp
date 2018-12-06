@@ -57,10 +57,9 @@ int main(int argc, char** argv)
     auto prev_length = verify::tour_length(quadtree.root());
     std::cout << "Initial tour length: " << prev_length << std::endl;
     int iteration{1};
+    constexpr bool debug_mode{false};
     primitives::length_t improvement{1};
-    constexpr bool debug_mode{true};
-    constexpr int print_period{1};
-    while (improvement > 0)
+    do
     {
         optimizer.find_best();
         point_sequence.new_tour(quadtree, optimizer.best().segments, optimizer.best().new_segments);
@@ -77,6 +76,7 @@ int main(int argc, char** argv)
                 break;
             }
         }
+        constexpr int print_period{1};
         if (iteration % print_period == 0)
         {
             auto current_length = verify::tour_length(quadtree.root());
@@ -87,7 +87,7 @@ int main(int argc, char** argv)
             prev_length = current_length;
         }
         ++iteration;
-    }
+    } while (improvement > 0);
     if (improvement == 0)
     {
         std::cout << "Local optimum reached." << std::endl;

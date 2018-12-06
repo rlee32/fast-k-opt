@@ -24,3 +24,4 @@ TODO:
 1. Write tour to file.
 2. For the first edge in a candidate set, use the minimum distance to the edge of the bounding box to reduce search radius.
 3. Utilize candidate set bounding box to abort distance computations.
+4. Placing all segments in an unordered set, and holding indexes to these segments in QuadtreeNodes (instead of the segments themselves).

@@ -158,18 +158,20 @@ void Optimizer::find_and_add_node(primitives::depth_t depth
 
 void Optimizer::check_best()
 {
-    std::sort(std::begin(m_current.segments)
-        , std::end(m_current.segments)
+    ++m_calls;
+    std::vector<Segment> ordered_segments = m_current.segments;
+    std::sort(std::begin(ordered_segments)
+        , std::end(ordered_segments)
         , [&m_sequence_ids = m_sequence_ids](const Segment& a, const Segment& b) { return m_sequence_ids[a.a] < m_sequence_ids[b.a]; });
     switch (m_k)
     {
         case 2:
         {
-            check_best_2opt();
+            check_best_2opt(ordered_segments);
         } break;
         case 3:
         {
-            check_best_3opt();
+            check_best_3opt(ordered_segments);
         } break;
         default:
         {
@@ -177,18 +179,16 @@ void Optimizer::check_best()
     }
 }
 
-void Optimizer::check_best_3opt()
+void Optimizer::check_best_3opt(const std::vector<Segment>& ordered_segments)
 {
-    // TODO
-    ++m_calls;
     auto& new_segments = m_current.new_segments;
     if (new_segments.size() != 3)
     {
         new_segments.resize(3);
     }
-    const auto& s1 = m_current.segments[0];
-    const auto& s2 = m_current.segments[1];
-    const auto& s3 = m_current.segments[2];
+    const auto& s1 = ordered_segments[0];
+    const auto& s2 = ordered_segments[1];
+    const auto& s3 = ordered_segments[2];
 	auto edge_1a2a = m_dt.compute_length(s1.a, s2.a);
 	auto edge_1b3a = m_dt.compute_length(s1.b, s3.a);
 	auto edge_2b3b = m_dt.compute_length(s2.b, s3.b);
@@ -242,16 +242,10 @@ void Optimizer::check_best_3opt()
     }
 }
 
-void Optimizer::check_best_2opt()
+void Optimizer::check_best_2opt(const std::vector<Segment>& ordered_segments)
 {
-    ++m_calls;
     // TODO: logarithmic distance table.
-    const auto& s = m_current.segments;
-    /*
-    std::cout << "2-opt check:\n";
-    std::cout << s[0] << std::endl;
-    std::cout << s[1] << std::endl;
-    */
+    const auto& s = ordered_segments;
     auto& ns = m_current.new_segments;
     ns.clear();
     ns.push_back({s[0].a, s[1].a, m_dt.compute_length(s[0].a, s[1].a)});
