@@ -5,6 +5,7 @@
 #include <array>
 #include <algorithm> // min_element, max_element
 #include <vector>
+#include <ostream>
 
 namespace quadtree {
 

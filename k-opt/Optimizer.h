@@ -28,7 +28,7 @@ public:
         : m_depth_map(depth_map), m_dt(dt), m_length_table(lt), m_domain(domain) {}
 
     void find_best();
-    void iterate();
+    void traverse_tree();
     const SearchState& best() const { return m_best; }
 
 private:
@@ -36,8 +36,7 @@ private:
     const DistanceTable& m_dt;
     const quadtree::LengthTable& m_length_table;
     const quadtree::Domain& m_domain;
-    std::array<primitives::grid_t, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
-    std::array<primitives::grid_t, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
+    std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;

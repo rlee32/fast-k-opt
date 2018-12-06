@@ -22,10 +22,11 @@ inline grid_coord_t unhash_x(hash_t hash)
 }
 inline grid_coord_t unhash_y(hash_t hash)
 {
-    return hash & std::numeric_limits<grid_coord_t>::max();
+    return hash & ((static_cast<hash_t>(1) << 32) - 1);
+    //return hash & std::numeric_limits<grid_coord_t>::max();
 }
 
-inline grid_coord_t x(primitives::quadrant_t q)
+inline grid_coord_t quadrant_x(primitives::quadrant_t q)
 {
     // assuming "N" curve; see morton_keys::interleave_coordinates for an explanation.
     switch(q)
@@ -43,7 +44,7 @@ inline grid_coord_t x(primitives::quadrant_t q)
         default: return 0;
     }
 }
-inline grid_coord_t y(primitives::quadrant_t q)
+inline grid_coord_t quadrant_y(primitives::quadrant_t q)
 {
     // assuming "N" curve; see morton_keys::interleave_coordinates for an explanation.
     switch(q)

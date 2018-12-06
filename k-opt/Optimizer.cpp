@@ -7,15 +7,19 @@ void Optimizer::find_best()
     update_grid_radii();
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
+        //std::cout << "depth: " << depth << std::endl;
         const auto& map = m_depth_map.get_nodes(depth);
         if (map.size() == 0)
         {
             break;
         }
+        //std::cout << "map size: " << map.size() << std::endl;
         for (const auto& hash_node_pair : map)
         {
             const auto hash = hash_node_pair.first;
             const auto node = hash_node_pair.second;
+            //std::cout << "hash: " << hash << std::endl;
+            //std::cout << "grid x, y: " << quadtree::depth_map::transform::x(hash) << ", " << quadtree::depth_map::transform::y(hash) << std::endl;
             find_best(depth, hash, node);
         }
     }
@@ -90,13 +94,21 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t depth
     //  4. Within a certain distance.
     // Assumes higher x-coordinate always gives higher node hash.
     SearchRange sr;
-    sr.cx = quadtree::depth_map::transform::x(center_node_hash);
-    sr.cy = quadtree::depth_map::transform::y(center_node_hash);
-    sr.xmin = std::max(0, sr.cx - m_xradius[depth] - 1);
-    sr.ymin = std::max(0, sr.cy - m_yradius[depth] - 1);
+    sr.depth = depth;
+    sr.center_node_hash = center_node_hash;
+    sr.cx = quadtree::depth_map::transform::unhash_x(center_node_hash);
+    sr.cy = quadtree::depth_map::transform::unhash_y(center_node_hash);
+    primitives::grid_t dx = std::ceil(m_radius[depth] / m_domain.xdim(depth));
+    primitives::grid_t dy = std::ceil(m_radius[depth] / m_domain.ydim(depth));
+    sr.xmin = std::max(0, sr.cx - dx - 1);
+    sr.ymin = std::max(0, sr.cy - dy - 1);
+    //sr.xmin = 0;
+    //sr.ymin = 0;
     primitives::grid_t grid_dim = 1 << depth;
-    sr.xend = std::min(grid_dim, sr.cx + m_xradius[depth] + 1);
-    sr.yend = std::min(grid_dim, sr.cy + m_yradius[depth] + 1);
+    sr.xend = std::min(grid_dim, sr.cx + dx + 1);
+    sr.yend = std::min(grid_dim, sr.cy + dy + 1);
+    //sr.xend = grid_dim;
+    //sr.yend = grid_dim;
     return sr;
 }
 
@@ -232,6 +244,11 @@ void Optimizer::check_best_2opt()
     ++m_calls;
     // TODO: logarithmic distance table.
     const auto& s = m_current.segments;
+    /*
+    std::cout << "2-opt check:\n";
+    std::cout << s[0] << std::endl;
+    std::cout << s[1] << std::endl;
+    */
     auto& ns = m_current.new_segments;
     ns.clear();
     ns.push_back({s[0].a, s[1].a, m_dt.compute_length(s[0].a, s[1].a)});
@@ -258,7 +275,7 @@ void Optimizer::check_best_2opt()
     }
 }
 
-void Optimizer::iterate()
+void Optimizer::traverse_tree()
 {
     int segments{0};
     uint64_t length{0};
@@ -276,26 +293,21 @@ void Optimizer::iterate()
             }
         }
     }
-    std::cout << m_depth_map.get_nodes(0).begin()->second->total_segment_count() << std::endl;
-    std::cout << segments << std::endl;
-    std::cout << length << std::endl;
+    std::cout << "Total segments tallied by root node: " << m_depth_map.get_nodes(0).begin()->second->total_segment_count() << std::endl;
+    std::cout << "Total segments recounted by traversing tree: " << segments << std::endl;
+    std::cout << "Total tour length recalculated by traversing tree: " << length << std::endl;
 }
 
 void Optimizer::update_grid_radii()
 {
-    std::fill(m_xradius.begin(), m_xradius.end(), 0);
-    std::fill(m_yradius.begin(), m_yradius.end(), 0);
+    std::fill(m_radius.begin(), m_radius.end(), 0);
     KContainer kc(m_k);
     for (primitives::depth_t i{0}; i < primitives::DepthEnd; ++i)
     {
         auto depth = primitives::DepthEnd - 1 - i;
         insert_max_lengths(kc, depth);
         const auto sum = kc.sum();
-        if (sum > 0)
-        {
-            m_xradius[depth] = std::ceil(sum / m_domain.xdim(depth));
-            m_yradius[depth] = std::ceil(sum / m_domain.ydim(depth));
-        }
+        m_radius[depth] = sum;
     }
 }
 

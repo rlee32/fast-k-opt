@@ -98,7 +98,7 @@ int main(int argc, char** argv)
     }
     if (debug_mode)
     {
-        optimizer.iterate();
+        optimizer.traverse_tree();
     }
     return 0;
 }
