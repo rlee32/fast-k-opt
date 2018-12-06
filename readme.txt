@@ -17,5 +17,8 @@ Style notes:
 1. Namespaces follow directory structure. If an entire namespace is in a single header file, the header file name will be the namespace name.
 2. Headers are grouped from most to least specific to this repo (e.g. repo header files will come before standard library headers).
 
-Design propositions:
+Potential design changes:
 1. Moving Quadtree insertion and erasure implementation to QuadtreeNodes, and DepthMap as a static member of QuadtreeNode.
+
+TODO:
+1. Write tour to file.

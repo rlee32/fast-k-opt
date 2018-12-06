@@ -2,6 +2,7 @@
 
 void Optimizer::find_best()
 {
+    m_calls = 0;
     m_best = SearchState();
     update_grid_radii();
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
@@ -18,6 +19,7 @@ void Optimizer::find_best()
             find_best(depth, hash, node);
         }
     }
+    std::cout << m_k << "-opt checks: " << m_calls << std::endl;
 }
 
 void Optimizer::find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
@@ -144,7 +146,90 @@ void Optimizer::find_and_add_node(primitives::depth_t depth
 
 void Optimizer::check_best()
 {
-    // TODO: implement for m_k > 2.
+    switch (m_k)
+    {
+        case 2:
+        {
+            check_best_2opt();
+        } break;
+        case 3:
+        {
+            check_best_3opt();
+        } break;
+        default:
+        {
+        } break;
+    }
+}
+
+void Optimizer::check_best_3opt()
+{
+    // TODO
+    ++m_calls;
+    auto& new_segments = m_current.new_segments;
+    if (new_segments.size() != 3)
+    {
+        new_segments.resize(3);
+    }
+    const auto& s1 = m_current.segments[0];
+    const auto& s2 = m_current.segments[1];
+    const auto& s3 = m_current.segments[2];
+	auto edge_1a2a = m_dt.compute_length(s1.a, s2.a);
+	auto edge_1b3a = m_dt.compute_length(s1.b, s3.a);
+	auto edge_2b3b = m_dt.compute_length(s2.b, s3.b);
+	auto new_length = edge_1a2a + edge_1b3a + edge_2b3b;
+    auto minimum_length = m_current.length;
+    if (new_length < m_current.length)
+    {
+        minimum_length = new_length;
+        new_segments[0] = {s1.a, s2.a, edge_1a2a};
+        new_segments[1] = {s1.b, s3.a, edge_1b3a};
+        new_segments[2] = {s2.b, s3.b, edge_2b3b};
+    }
+	auto edge_1a2b = m_dt.compute_length(s1.a, s2.b);
+	auto edge_2a3b = m_dt.compute_length(s2.a, s3.b);
+	new_length = edge_1a2b + edge_1b3a + edge_2a3b;
+    if (new_length < minimum_length)
+    {
+        minimum_length = new_length;
+        new_segments[0] = {s1.a, s2.b, edge_1a2b};
+        new_segments[1] = {s1.b, s3.a, edge_1b3a};
+        new_segments[2] = {s2.a, s3.b, edge_2a3b};
+    }
+	auto edge_1b3b = m_dt.compute_length(s1.b, s3.b);
+	auto edge_2a3a = m_dt.compute_length(s2.a, s3.a);
+	new_length = edge_1a2b + edge_1b3b + edge_2a3a;
+    if (new_length < minimum_length)
+    {
+        minimum_length = new_length;
+        new_segments[0] = {s1.a, s2.b, edge_1a2b};
+        new_segments[1] = {s1.b, s3.b, edge_1b3b};
+        new_segments[2] = {s2.a, s3.a, edge_2a3a};
+    }
+	auto edge_1a3a = m_dt.compute_length(s1.a, s3.a);
+	auto edge_1b2b = m_dt.compute_length(s1.b, s2.b);
+	new_length = edge_1a3a + edge_1b2b + edge_2a3b;
+    if (new_length < minimum_length)
+    {
+        minimum_length = new_length;
+        new_segments[0] = {s1.a, s3.a, edge_1a3a};
+        new_segments[1] = {s1.b, s2.b, edge_1b2b};
+        new_segments[2] = {s2.a, s3.b, edge_2a3b};
+    }
+    if (minimum_length >= m_current.length)
+    {
+        return;
+    }
+    m_current.improvement = m_current.length - minimum_length;
+    if (m_current.improvement >= m_best.improvement)
+    {
+        m_best = m_current;
+    }
+}
+
+void Optimizer::check_best_2opt()
+{
+    ++m_calls;
     // TODO: logarithmic distance table.
     const auto& s = m_current.segments;
     auto& ns = m_current.new_segments;

@@ -42,6 +42,7 @@ private:
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;
     SearchState m_current;
+    size_t m_calls{0};
 
     void find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
     void find_best(const quadtree::QuadtreeNode* node);
@@ -71,6 +72,9 @@ private:
     inline void find_and_add_node(primitives::depth_t depth
         , primitives::grid_t grid_x, primitives::grid_t grid_y
         , std::vector<quadtree::QuadtreeNode*>& nodes) const;
+
+    void check_best_2opt();
+    void check_best_3opt();
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

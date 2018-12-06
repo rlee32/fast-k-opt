@@ -3,6 +3,8 @@
 # Each point is represented by a 2-tuple: (edge_id, head)
 # Cycle traversal goes from tail to head.
 # So if head = True, it is the 2nd point to traverse in the edge.
+# Alternative naming: a == (head == False), b == (head == True)
+#  e.g., a to b, tail to head.
 
 # Each edge is represented by a 4-tuple: (edge_id1, head1, edge_id2, head2)
 # edge_id1 is less than edge_id2. If the same, then head1 is False.
@@ -123,8 +125,22 @@ make_edge_combinations(points, [])
 
 print("Valid edge configurations: " + str(len(edge_combinations)))
 
+edge_set = set()
 for c in edge_combinations:
-    print(c)
+    formatted = []
+    for e in c:
+        p1 = "b" if e[1] else "a"
+        p2 = "b" if e[3] else "a"
+        edge = str(e[0]) + p1 + str(e[2]) + p2
+        edge_set.add(edge)
+        formatted.append(edge)
+    formatted = ["edge_" + x for x in formatted]
+    formatted = " + ".join(formatted)
+    print("auto new_length = " + formatted + ";")
+
+print("edge set (" + str(len(edge_set)) + "):")
+for e in edge_set:
+    print("auto edge_" + e + " = m_dt.compute_length(s" + e[0] + "." + e[1] + ", s" + e[2] + "." + e[3] + ");")
 
 print("Max possible edge configurations: " + str(max_combos))
 print("Valid edge configurations: " + str(len(edge_combinations)))
