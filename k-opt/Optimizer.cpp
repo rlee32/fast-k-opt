@@ -4,7 +4,7 @@ void Optimizer::find_best()
 {
     m_best = SearchState();
     update_grid_radii();
-    for (int depth{0}; depth < primitives::MaxTreeDepth; ++depth)
+    for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
         const auto& map = m_depth_map.get_nodes(depth);
         if (map.size() == 0)
@@ -20,7 +20,7 @@ void Optimizer::find_best()
     }
 }
 
-void Optimizer::find_best(int depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
+void Optimizer::find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
     const auto sr = compute_search_range(depth, node_hash);
     const auto full_nodes = full_search_nodes(sr);
@@ -92,7 +92,7 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t depth
     sr.cy = quadtree::depth_map::transform::y(center_node_hash);
     sr.xmin = std::max(0, sr.cx - m_xradius[depth] - 1);
     sr.ymin = std::max(0, sr.cy - m_yradius[depth] - 1);
-    int grid_dim = 1 << depth;
+    primitives::grid_t grid_dim = 1 << depth;
     sr.xend = std::min(grid_dim, sr.cx + m_xradius[depth] + 1);
     sr.yend = std::min(grid_dim, sr.cy + m_yradius[depth] + 1);
     return sr;
@@ -105,24 +105,12 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const Searc
     {
         for (int y{sr.ymin}; y < sr.yend; ++y)
         {
-            auto hash = quadtree::depth_map::transform::hash_grid_coord(x, y);
-            const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
-            if (it == m_depth_map.get_nodes(sr.depth).end())
-            {
-                continue;
-            }
-            nodes.push_back(it->second);
+            find_and_add_node(sr.depth, x, y, nodes);
         }
     }
     for (int y{sr.ymin}; y < sr.cy; ++y)
     {
-        auto hash = quadtree::depth_map::transform::hash_grid_coord(sr.cx, y);
-        const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
-        if (it == m_depth_map.get_nodes(sr.depth).end())
-        {
-            continue;
-        }
-        nodes.push_back(it->second);
+        find_and_add_node(sr.depth, sr.cx, y, nodes);
     }
     return nodes;
 }
@@ -131,28 +119,27 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRa
     std::vector<quadtree::QuadtreeNode*> nodes;
     for (int y{sr.cy + 1}; y < sr.yend; ++y)
     {
-        auto hash = quadtree::depth_map::transform::hash_grid_coord(sr.cx, y);
-        const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
-        if (it == m_depth_map.get_nodes(sr.depth).end())
-        {
-            continue;
-        }
-        nodes.push_back(it->second);
+        find_and_add_node(sr.depth, sr.cx, y, nodes);
     }
     for (int x{sr.cx + 1}; x < sr.xend; ++x)
     {
         for (int y{sr.ymin}; y < sr.yend; ++y)
         {
-            auto hash = quadtree::depth_map::transform::hash_grid_coord(x, y);
-            const auto it = m_depth_map.get_nodes(sr.depth).find(hash);
-            if (it == m_depth_map.get_nodes(sr.depth).end())
-            {
-                continue;
-            }
-            nodes.push_back(it->second);
+            find_and_add_node(sr.depth, x, y, nodes);
         }
     }
     return nodes;
+}
+void Optimizer::find_and_add_node(primitives::depth_t depth
+    , primitives::grid_t grid_x, primitives::grid_t grid_y
+    , std::vector<quadtree::QuadtreeNode*>& nodes) const
+{
+    auto hash = quadtree::depth_map::transform::hash_grid_coord(grid_x, grid_y);
+    const auto it = m_depth_map.get_nodes(depth).find(hash);
+    if (it != m_depth_map.get_nodes(depth).end())
+    {
+        nodes.push_back(it->second);
+    }
 }
 
 void Optimizer::check_best()
@@ -180,7 +167,7 @@ void Optimizer::check_best()
     // The configuration chosen depends on the search path.
     // If >, the first configuration will be kept.
     // If >=, the last configuration will be chosen.
-    if (m_current.improvement > m_best.improvement)
+    if (m_current.improvement >= m_best.improvement)
     {
         m_best = m_current;
     }

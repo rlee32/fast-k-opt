@@ -13,6 +13,7 @@ using space_t = double; // as in x, y coordinates.
 using depth_t = uint8_t; // as in maximum quadtree depth.
 using quadrant_t = uint8_t; // as in quadtree quadrant index.
 using morton_key_t = uint64_t;
+using grid_t = int; // for indexing a grid produced by a quadtree at a certain depth.
 
 constexpr auto InvalidPoint = std::numeric_limits<point_id_t>::max();
 constexpr depth_t MaxTreeDepth = 21; // maximum quadtree depth / level.

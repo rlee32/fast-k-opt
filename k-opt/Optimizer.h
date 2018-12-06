@@ -36,14 +36,14 @@ private:
     const DistanceTable& m_dt;
     const quadtree::LengthTable& m_length_table;
     const quadtree::Domain& m_domain;
-    std::array<int, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
-    std::array<int, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
+    std::array<primitives::grid_t, primitives::MaxTreeDepth> m_xradius; // max grid boxes to search in the x-direction.
+    std::array<primitives::grid_t, primitives::MaxTreeDepth> m_yradius; // max grid boxes to search in the y-direction.
 
     size_t m_k{2}; // as in k-opt.
     SearchState m_best;
     SearchState m_current;
 
-    void find_best(int depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
+    void find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
     void find_best(const quadtree::QuadtreeNode* node);
     void find_best_children(const quadtree::QuadtreeNode* node);
     void find_best(const quadtree::QuadtreeNode* node, quadtree::QuadtreeNode::SegmentContainer::const_iterator it);
@@ -57,16 +57,20 @@ private:
     {
         primitives::depth_t depth{0};
         quadtree::depth_map::transform::hash_t center_node_hash{0};
-        int cx{0};
-        int cy{0};
-        int xmin{0};
-        int xend{0};
-        int ymin{0};
-        int yend{0};
+        primitives::grid_t cx{0};
+        primitives::grid_t cy{0};
+        primitives::grid_t xmin{0};
+        primitives::grid_t xend{0};
+        primitives::grid_t ymin{0};
+        primitives::grid_t yend{0};
     };
     SearchRange compute_search_range(primitives::depth_t depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
     std::vector<quadtree::QuadtreeNode*> full_search_nodes(const SearchRange& sr) const;
     std::vector<quadtree::QuadtreeNode*> partial_search_nodes(const SearchRange& sr) const;
+
+    inline void find_and_add_node(primitives::depth_t depth
+        , primitives::grid_t grid_x, primitives::grid_t grid_y
+        , std::vector<quadtree::QuadtreeNode*>& nodes) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
