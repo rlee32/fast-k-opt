@@ -120,13 +120,21 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
     sr.center_node_hash = center_node_hash;
     sr.cx = quadtree::depth_map::transform::unhash_x(center_node_hash);
     sr.cy = quadtree::depth_map::transform::unhash_y(center_node_hash);
-    sr.xmin = std::max(0, sr.cx - 1 - static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.xleft) / m_domain.xdim(d))));
-    sr.ymin = std::max(0, sr.cy - 1 - static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.ybottom) / m_domain.ydim(d))));
+    primitives::grid_t r = std::ceil((m_radius[d] - sm.xleft) / m_domain.xdim(d));
+    r = std::max(0, r);
+    sr.xmin = std::max(0, sr.cx - r);
+    r = std::ceil((m_radius[d] - sm.ybottom) / m_domain.ydim(d));
+    r = std::max(0, r);
+    sr.ymin = std::max(0, sr.cy - r);
     //sr.xmin = 0;
     //sr.ymin = 0;
     primitives::grid_t grid_dim = 1 << d;
-    sr.xend = std::min(grid_dim, sr.cx + 1 + static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.xright) / m_domain.xdim(d))));
-    sr.yend = std::min(grid_dim, sr.cy + 1 + static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.ytop) / m_domain.ydim(d))));
+    r = std::ceil((m_radius[d] - sm.xright) / m_domain.xdim(d));
+    r = std::max(0, r);
+    sr.xend = std::min(grid_dim, sr.cx + r + 1);
+    r = std::ceil((m_radius[d] - sm.ytop) / m_domain.ydim(d));
+    r = std::max(0, r);
+    sr.yend = std::min(grid_dim, sr.cy + r + 1);
     //sr.xend = grid_dim;
     //sr.yend = grid_dim;
     return sr;
@@ -323,8 +331,7 @@ void Optimizer::update_grid_radii()
     {
         auto depth = primitives::DepthEnd - 1 - i;
         insert_max_lengths(kc, depth);
-        const auto sum = kc.sum();
-        m_radius[depth] = sum;
+        m_radius[depth] = kc.kopt_sum();
     }
 }
 

@@ -5,6 +5,7 @@
 
 #include "primitives.h"
 
+#include <iterator> // next
 #include <set>
 #include <numeric> // accumulate
 
@@ -37,13 +38,16 @@ public:
         return true;
     }
     const ValueContainer& values() const { return m_values; }
-    Value sum() const
+    Value kopt_sum() const
     {
         if (m_values.size() < m_k)
         {
-            return 0; // this means not enough segments to make a comparison anyway.
+            return 0; // this means not enough segments to make a comparison.
         }
-        return std::accumulate(m_values.cbegin(), m_values.cend(), 0);
+        auto it = m_values.cbegin();
+        auto sum = *it;
+        sum += *(++it);
+        return (sum + 2 * std::accumulate(++it, m_values.cend(), 0) + 1) / 2;
     }
 
 private:
