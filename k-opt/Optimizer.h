@@ -66,7 +66,6 @@ private:
         primitives::grid_t ymin{0};
         primitives::grid_t yend{0};
     };
-    SearchRange compute_search_range(primitives::depth_t depth, quadtree::depth_map::transform::hash_t center_node_hash) const;
     std::vector<quadtree::QuadtreeNode*> full_search_nodes(const SearchRange& sr) const;
     std::vector<quadtree::QuadtreeNode*> partial_search_nodes(const SearchRange& sr) const;
 
@@ -76,6 +75,17 @@ private:
 
     void check_best_2opt(const std::vector<Segment>& ordered_segments);
     void check_best_3opt(const std::vector<Segment>& ordered_segments);
+
+    struct SegmentMargin // margin between segment bounding-box and grid node boundary.
+    {
+        primitives::length_t xleft{0};
+        primitives::length_t xright{0};
+        primitives::length_t ytop{0};
+        primitives::length_t ybottom{0};
+    };
+
+    SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
+    SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

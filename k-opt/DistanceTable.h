@@ -22,6 +22,9 @@ public:
         return compute_euc2d(a, b);
     }
 
+    const primitives::space_t& x(primitives::point_id_t i) const { return m_x[i]; }
+    const primitives::space_t& y(primitives::point_id_t i) const { return m_y[i]; }
+
 private:
     const std::vector<primitives::space_t>& m_x;
     const std::vector<primitives::space_t>& m_y;

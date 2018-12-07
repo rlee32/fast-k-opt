@@ -19,7 +19,7 @@ Potential design changes:
 
 TODO:
 1. Write tour to file.
-2. For the first edge in a candidate set, use the minimum distance to the edge of the bounding box to reduce search radius.
-3. Utilize candidate set bounding box to abort distance computations.
-4. Rename DepthMap to DepthTable.
-5. Compare distances on the first two points in a candidate set to elminate further candidate checking.
+2. Utilize candidate set bounding box to abort distance computations.
+3. Rename DepthMap to DepthTable.
+4. Compare distances on the first two points in a candidate set to elminate further candidate checking.
+5. Store segment margins, instead of recomputing every iteration.

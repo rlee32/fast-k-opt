@@ -26,25 +26,45 @@ void Optimizer::find_best()
     std::cout << m_k << "-opt checks: " << m_calls << std::endl;
 }
 
-void Optimizer::find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
+void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
-    const auto sr = compute_search_range(depth, node_hash);
-    const auto full_nodes = full_search_nodes(sr);
-    const auto partial_nodes = partial_search_nodes(sr);
     auto it = node->segments().cbegin();
     while (it != node->segments().cend())
     {
-        m_current = SearchState(*it);
+        const auto& current_segment = *it;
+        m_current = SearchState(current_segment);
         find_best(node, ++it);
-        for (const auto partial_node : partial_nodes)
+        const auto segment_margin = compute_segment_margin(d, current_segment);
+        const auto sr = compute_search_range(d, node_hash, segment_margin);
+        for (const auto& partial_node : partial_search_nodes(sr))
         {
             find_best_children(partial_node);
         }
-        for (const auto full_node : full_nodes)
+        for (const auto& full_node : full_search_nodes(sr))
         {
             find_best(full_node);
         }
     }
+}
+
+Optimizer::SegmentMargin Optimizer::compute_segment_margin(primitives::depth_t d, const Segment& s) const
+{
+    SegmentMargin segment_margin;
+    auto ax = m_dt.x(s.a);
+    auto bx = m_dt.x(s.b);
+    auto xmin = std::min(ax, bx);
+    auto node_xdim = m_domain.xdim(d);
+    segment_margin.xleft = std::fmod(xmin, node_xdim);
+    auto xmax = std::max(ax, bx);
+    segment_margin.xright = node_xdim - std::fmod(xmax, node_xdim);
+    auto ay = m_dt.y(s.a);
+    auto by = m_dt.y(s.b);
+    auto ymin = std::min(ay, by);
+    auto node_ydim = m_domain.ydim(d);
+    segment_margin.ybottom = std::fmod(ymin, node_ydim);
+    auto ymax = std::max(ay, by);
+    segment_margin.ytop = node_ydim - std::fmod(ymax, node_ydim);
+    return segment_margin;
 }
 
 void Optimizer::find_best(const quadtree::QuadtreeNode* node)
@@ -85,7 +105,9 @@ void Optimizer::find_best_children(const quadtree::QuadtreeNode* node)
     }
 }
 
-Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t depth, quadtree::depth_map::transform::hash_t center_node_hash) const
+Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
+    , quadtree::depth_map::transform::hash_t center_node_hash
+    , const SegmentMargin& sm) const
 {
     // Searchable nodes meet the following criteria:
     //  1. Same depth.
@@ -94,19 +116,17 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t depth
     //  4. Within a certain distance.
     // Assumes higher x-coordinate always gives higher node hash.
     SearchRange sr;
-    sr.depth = depth;
+    sr.depth = d;
     sr.center_node_hash = center_node_hash;
     sr.cx = quadtree::depth_map::transform::unhash_x(center_node_hash);
     sr.cy = quadtree::depth_map::transform::unhash_y(center_node_hash);
-    primitives::grid_t dx = std::ceil(m_radius[depth] / m_domain.xdim(depth));
-    primitives::grid_t dy = std::ceil(m_radius[depth] / m_domain.ydim(depth));
-    sr.xmin = std::max(0, sr.cx - dx - 1);
-    sr.ymin = std::max(0, sr.cy - dy - 1);
+    sr.xmin = std::max(0, sr.cx - 1 - static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.xleft) / m_domain.xdim(d))));
+    sr.ymin = std::max(0, sr.cy - 1 - static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.ybottom) / m_domain.ydim(d))));
     //sr.xmin = 0;
     //sr.ymin = 0;
-    primitives::grid_t grid_dim = 1 << depth;
-    sr.xend = std::min(grid_dim, sr.cx + dx + 1);
-    sr.yend = std::min(grid_dim, sr.cy + dy + 1);
+    primitives::grid_t grid_dim = 1 << d;
+    sr.xend = std::min(grid_dim, sr.cx + 1 + static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.xright) / m_domain.xdim(d))));
+    sr.yend = std::min(grid_dim, sr.cy + 1 + static_cast<primitives::grid_t>(std::ceil((m_radius[d] - sm.ytop) / m_domain.ydim(d))));
     //sr.xend = grid_dim;
     //sr.yend = grid_dim;
     return sr;
