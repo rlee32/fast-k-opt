@@ -1,4 +1,5 @@
 This quadtree-based k-opt algorithm runs in O(n * log(n) ^ (k - 1)), instead of O(n ^ k) (the state of the art for best-improvement).
+This is not an approximation algorithm! This algorithm achieves local optimality, providing the same solution quality as O(n^k) algorithms, just a lot more efficiently!
 
 The python scripts verify TSPLIB-formatted files and provide visualizations for k-opt edge exchanges.
 
@@ -23,3 +24,6 @@ TODO:
 3. Rename DepthMap to DepthTable.
 4. Compare distances on the first two points in a candidate set to elminate further candidate checking.
 5. Store segment margins, instead of recomputing every iteration.
+6. Search radius relaxation parameter, and first-improvement (vs. best-improvement) search.
+    Would allow for faster arrival to "good" grids, on which the unrelaxed algorithm can run.
+    This would be especially useful because search radius is proportional to maximum segment lengths at each depth.
