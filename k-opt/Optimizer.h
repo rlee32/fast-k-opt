@@ -40,7 +40,7 @@ private:
     const std::vector<primitives::point_id_t>& m_sequence_ids;
     std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
-    size_t m_k{3}; // as in k-opt.
+    size_t m_k{4}; // as in k-opt.
     SearchState m_best;
     SearchState m_current;
     size_t m_calls{0};
@@ -75,6 +75,7 @@ private:
 
     void check_best_2opt(const std::vector<Segment>& ordered_segments);
     void check_best_3opt(const std::vector<Segment>& ordered_segments);
+    void check_best_4opt(const std::vector<Segment>& ordered_segments);
 
     struct SegmentMargin // margin between segment bounding-box and grid node boundary.
     {

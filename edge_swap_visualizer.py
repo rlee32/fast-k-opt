@@ -126,21 +126,39 @@ make_edge_combinations(points, [])
 print("Valid edge configurations: " + str(len(edge_combinations)))
 
 edge_set = set()
+combination_strings = []
 for c in edge_combinations:
     formatted = []
+    i = 0
+    new_segment_strings = []
     for e in c:
         p1 = "b" if e[1] else "a"
         p2 = "b" if e[3] else "a"
         edge = str(e[0]) + p1 + str(e[2]) + p2
         edge_set.add(edge)
         formatted.append(edge)
+        new_segment_strings.append("        new_segments[" + str(i) + "] = {s" + edge[0] + "." + edge[1] + ", s" + edge[2] + "." + edge[3] + ", edge_" + edge + "};")
+        i += 1
     formatted = ["edge_" + x for x in formatted]
     formatted = " + ".join(formatted)
-    print("auto new_length = " + formatted + ";")
+    combination_strings.append("    new_length = " + formatted + ";")
+    combination_strings.append("    if (new_length < m_current.length)")
+    combination_strings.append("    {")
+    combination_strings.append("        minimum_length = new_length;")
+    combination_strings += new_segment_strings
+    combination_strings.append("    }")
 
-print("edge set (" + str(len(edge_set)) + "):")
+print("c++ code (" + str(len(edge_set)) + " edge lengths to compute):")
+
+print("    auto& new_segments = m_current.new_segments;")
+print("    auto minimum_length = m_current.length;")
+for i in range(k):
+    print("    const auto& s" + str(i + 1) + " = ordered_segments[" + str(i) + "];")
 for e in edge_set:
-    print("auto edge_" + e + " = m_dt.compute_length(s" + e[0] + "." + e[1] + ", s" + e[2] + "." + e[3] + ");")
+    print("    auto edge_" + e + " = m_dt.compute_length(s" + e[0] + "." + e[1] + ", s" + e[2] + "." + e[3] + ");")
+
+for s in combination_strings:
+    print(s)
 
 print("Max possible edge configurations: " + str(max_combos))
 print("Valid edge configurations: " + str(len(edge_combinations)))

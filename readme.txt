@@ -1,5 +1,5 @@
 This quadtree-based k-opt algorithm runs in O(n * log(n) ^ (k - 1)), instead of O(n ^ k) (the state of the art for best-improvement).
-This is not an approximation algorithm! This algorithm achieves local optimality, providing the same solution quality as O(n^k) algorithms, just a lot more efficiently!
+This is NOT an approximation algorithm! This algorithm achieves local optimality, providing the same solution quality as O(n^k) algorithms, just a lot more efficiently!
 
 The python scripts verify TSPLIB-formatted files and provide visualizations for k-opt edge exchanges.
 
