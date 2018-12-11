@@ -5,6 +5,7 @@
 #include "DistanceTable.h"
 #include "KContainer.h"
 #include "SearchState.h"
+#include "five_opt.h"
 #include "primitives.h"
 #include "quadtree/Domain.h"
 #include "quadtree/LengthTable.h"
@@ -12,6 +13,7 @@
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
+#include "six_opt.h"
 
 #include <array>
 #include <algorithm>
@@ -31,6 +33,7 @@ public:
     void find_best();
     void traverse_tree();
     const SearchState& best() const { return m_best; }
+    void k(size_t k) { m_k = k; }
 
 private:
     const quadtree::depth_map::DepthMap& m_depth_map;

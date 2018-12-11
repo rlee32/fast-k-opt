@@ -210,6 +210,20 @@ void Optimizer::check_best()
         {
             check_best_4opt(ordered_segments);
         } break;
+        case 5:
+        {
+            five_opt(m_current
+                , m_best
+                , m_dt
+                , ordered_segments);
+        } break;
+        case 6:
+        {
+            six_opt(m_current
+                , m_best
+                , m_dt
+                , ordered_segments);
+        } break;
         default:
         {
         } break;
@@ -583,6 +597,12 @@ void Optimizer::update_grid_radii()
         auto depth = primitives::DepthEnd - 1 - i;
         insert_max_lengths(kc, depth);
         m_radius[depth] = kc.kopt_sum();
+        /*
+        std::cout << "Grid x, y search radius at depth " << depth << ": "
+            << m_radius[depth] / m_domain.xdim(depth)
+            << ", " << m_radius[depth] / m_domain.ydim(depth)
+            << std::endl;
+        */
     }
 }
 

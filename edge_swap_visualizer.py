@@ -23,7 +23,6 @@ if len(sys.argv) < 2:
 k = int(sys.argv[1])
 
 max_combos = math.factorial(k - 1) * 2 ** (k - 1)
-print("Max possible edge configurations: " + str(max_combos))
 
 points = []
 for i in range(1, k + 1):
@@ -123,8 +122,6 @@ def make_edge_combinations(points, current_combo):
             make_edge_combinations(remaining, new_combo)
 make_edge_combinations(points, [])
 
-print("Valid edge configurations: " + str(len(edge_combinations)))
-
 edge_set = set()
 combination_strings = []
 for c in edge_combinations:
@@ -142,26 +139,50 @@ for c in edge_combinations:
     formatted = ["edge_" + x for x in formatted]
     formatted = " + ".join(formatted)
     combination_strings.append("    new_length = " + formatted + ";")
-    combination_strings.append("    if (new_length < m_current.length)")
+    combination_strings.append("    if (new_length < current.length)")
     combination_strings.append("    {")
     combination_strings.append("        minimum_length = new_length;")
     combination_strings += new_segment_strings
     combination_strings.append("    }")
 
-print("c++ code (" + str(len(edge_set)) + " edge lengths to compute):")
 
-print("    auto& new_segments = m_current.new_segments;")
-print("    auto minimum_length = m_current.length;")
+print("#pragma once")
+print("")
+print("// Max possible edge configurations: " + str(max_combos))
+print("// Valid edge configurations: " + str(len(edge_combinations)))
+print("// " + str(len(edge_set)) + " edge lengths to compute.")
+print("")
+print("#include \"DistanceTable.h\"")
+print("#include \"SearchState.h\"")
+print("#include \"Segment.h\"")
+print("#include \"primitives.h\"")
+print("")
+print("#include <vector>")
+print("")
+print("inline void _opt(SearchState& current")
+print("    , SearchState& best")
+print("    , const DistanceTable& dt")
+print("    , const std::vector<Segment>& ordered_segments)")
+print("{")
+print("    auto& new_segments = current.new_segments;")
+print("    auto minimum_length = current.length;")
+print("    primitives::length_t new_length{0};")
 for i in range(k):
     print("    const auto& s" + str(i + 1) + " = ordered_segments[" + str(i) + "];")
 for e in edge_set:
-    print("    auto edge_" + e + " = m_dt.compute_length(s" + e[0] + "." + e[1] + ", s" + e[2] + "." + e[3] + ");")
-
+    print("    auto edge_" + e + " = dt.compute_length(s" + e[0] + "." + e[1] + ", s" + e[2] + "." + e[3] + ");")
 for s in combination_strings:
     print(s)
-
-print("Max possible edge configurations: " + str(max_combos))
-print("Valid edge configurations: " + str(len(edge_combinations)))
+print("    if (minimum_length >= current.length)")
+print("    {")
+print("        return;")
+print("    }")
+print("    current.improvement = current.length - minimum_length;")
+print("    if (current.improvement >= best.improvement)")
+print("    {")
+print("        best = current;")
+print("    }")
+print("}")
 
 def point_angles(k):
     sections = 2 * k
