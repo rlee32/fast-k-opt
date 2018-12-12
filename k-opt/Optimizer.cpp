@@ -29,6 +29,7 @@ void Optimizer::find_best()
 void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
     auto it = node->segments().cbegin();
+    // loop over each segment in this node to be the first in a candidate segment set.
     while (it != node->segments().cend())
     {
         const auto& current_segment = *it;
@@ -36,6 +37,7 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         find_best(node, ++it);
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
+        // const auto sb = SearchBox(sr.cx, sr.cy, );
         for (const auto& partial_node : partial_search_nodes(sr))
         {
             find_best_children(partial_node);

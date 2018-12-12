@@ -9,7 +9,7 @@
 #include "primitives.h"
 #include "quadtree/Domain.h"
 #include "quadtree/LengthTable.h"
-#include "quadtree/LengthTable.h"
+#include "quadtree/SearchBox.h"
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
