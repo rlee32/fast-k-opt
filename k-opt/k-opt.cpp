@@ -8,6 +8,7 @@
 #include "quadtree/morton_keys.h"
 #include "verify.h"
 
+#include <array>
 #include <iostream>
 #include <vector>
 
@@ -63,7 +64,8 @@ int main(int argc, char** argv)
     do
     {
         cycle_improvement = 0;
-        for (int k{2}; k < 7; ++k)
+        constexpr std::array<int, 5> k_set{{2, 3, 4, 5}};
+        for (auto k : k_set)
         {
             optimizer.k(k);
             primitives::length_t improvement{1};

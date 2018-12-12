@@ -13,7 +13,7 @@
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
-#include "six_opt.h"
+// #include "six_opt.h"
 
 #include <array>
 #include <algorithm>

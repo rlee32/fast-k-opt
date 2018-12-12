@@ -221,10 +221,12 @@ void Optimizer::check_best()
         } break;
         case 6:
         {
+            /*
             six_opt(m_current
                 , m_best
                 , m_dt
                 , ordered_segments);
+                */
         } break;
         default:
         {
