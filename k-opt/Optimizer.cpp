@@ -32,8 +32,10 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
     // loop over each segment in this node to be the first in a candidate segment set.
     while (it != node->segments().cend())
     {
+        // start candidate set with first segment.
         const auto& current_segment = *it;
         m_current = SearchState(current_segment);
+        // search within current node and all children.
         find_best(node, ++it);
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
@@ -48,27 +50,6 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         }
     }
 }
-
-Optimizer::SegmentMargin Optimizer::compute_segment_margin(primitives::depth_t d, const Segment& s) const
-{
-    SegmentMargin segment_margin;
-    auto ax = m_dt.x(s.a);
-    auto bx = m_dt.x(s.b);
-    auto xmin = std::min(ax, bx);
-    auto node_xdim = m_domain.xdim(d);
-    segment_margin.xleft = std::fmod(xmin, node_xdim);
-    auto xmax = std::max(ax, bx);
-    segment_margin.xright = node_xdim - std::fmod(xmax, node_xdim);
-    auto ay = m_dt.y(s.a);
-    auto by = m_dt.y(s.b);
-    auto ymin = std::min(ay, by);
-    auto node_ydim = m_domain.ydim(d);
-    segment_margin.ybottom = std::fmod(ymin, node_ydim);
-    auto ymax = std::max(ay, by);
-    segment_margin.ytop = node_ydim - std::fmod(ymax, node_ydim);
-    return segment_margin;
-}
-
 void Optimizer::find_best(const quadtree::QuadtreeNode* node)
 {
     find_best(node, node->segments().cbegin());
@@ -105,6 +86,26 @@ void Optimizer::find_best_children(const quadtree::QuadtreeNode* node)
             find_best(unique_ptr.get());
         }
     }
+}
+
+Optimizer::SegmentMargin Optimizer::compute_segment_margin(primitives::depth_t d, const Segment& s) const
+{
+    SegmentMargin segment_margin;
+    auto ax = m_dt.x(s.a);
+    auto bx = m_dt.x(s.b);
+    auto xmin = std::min(ax, bx);
+    auto node_xdim = m_domain.xdim(d);
+    segment_margin.xleft = std::fmod(xmin, node_xdim);
+    auto xmax = std::max(ax, bx);
+    segment_margin.xright = node_xdim - std::fmod(xmax, node_xdim);
+    auto ay = m_dt.y(s.a);
+    auto by = m_dt.y(s.b);
+    auto ymin = std::min(ay, by);
+    auto node_ydim = m_domain.ydim(d);
+    segment_margin.ybottom = std::fmod(ymin, node_ydim);
+    auto ymax = std::max(ay, by);
+    segment_margin.ytop = node_ydim - std::fmod(ymax, node_ydim);
+    return segment_margin;
 }
 
 Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
