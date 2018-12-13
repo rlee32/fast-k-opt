@@ -41,6 +41,9 @@ public:
 
     void create_child(primitives::quadrant_t);
 
+    // preorder traversal.
+    const QuadtreeNode* next(const QuadtreeNode* end) const;
+
 private:
     QuadtreeNode* m_parent{nullptr};
     ChildArray m_children; // index corresponds to Morton order quadrant.
@@ -49,6 +52,9 @@ private:
     size_t m_total_segment_count{0}; // total segments under this node and all child nodes.
 
     void modify_total_segment_count(int amount);
+
+    // preorder traversal.
+    const QuadtreeNode* next(const QuadtreeNode* child, const QuadtreeNode* end) const;
 };
 
 } // namespace quadtree

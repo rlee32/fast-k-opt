@@ -41,10 +41,52 @@ void QuadtreeNode::reset(primitives::quadrant_t quadrant)
     m_children[quadrant].reset();
 }
 
-/*
-void QuadtreeNode::populate_candidates(std::vector<primitives::point_id_t>& , std::vector<Segment>& candidates, int nodal_offset, int k)
+const QuadtreeNode* QuadtreeNode::next(const QuadtreeNode* end) const
 {
+    for (const auto& unique_ptr : m_children)
+    {
+        if (unique_ptr)
+        {
+            return unique_ptr.get();
+        }
+    }
+    if (m_parent)
+    {
+        return m_parent->next(this, end);
+    }
+    return nullptr;
 }
-*/
+
+const QuadtreeNode* QuadtreeNode::next(const QuadtreeNode* child, const QuadtreeNode* end) const
+{
+    bool assign_next{false};
+    const QuadtreeNode* next_child{nullptr};
+    for (const auto& unique_ptr : m_children)
+    {
+        if (not unique_ptr)
+        {
+            continue;
+        }
+        if (child == unique_ptr.get())
+        {
+            assign_next = true;
+            continue;
+        }
+        if (assign_next)
+        {
+            next_child = unique_ptr.get();
+            break;
+        }
+    }
+    if (next_child)
+    {
+        return next_child;
+    }
+    if (this == end)
+    {
+        return end;
+    }
+    return m_parent->next(this, end);
+}
 
 } // namespace quadtree
