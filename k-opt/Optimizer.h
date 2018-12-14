@@ -25,6 +25,9 @@
 
 class Optimizer
 {
+    using NodeContainer = std::vector<const quadtree::QuadtreeNode*>;
+    using node_iterator = NodeContainer::const_iterator;
+    using segment_iterator = quadtree::QuadtreeNode::SegmentContainer::const_iterator;
 public:
     Optimizer(const quadtree::depth_map::DepthMap& depth_map, const DistanceTable& dt
         , const quadtree::LengthTable& lt, const quadtree::Domain& domain
@@ -91,6 +94,9 @@ private:
 
     SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
     SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
+
+    void find_best(const node_iterator nit, const node_iterator& end, bool skip_root);
+    void find_best(node_iterator nit, optimizer::SegmentIterator sit, const node_iterator& end);
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

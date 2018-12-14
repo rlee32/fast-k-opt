@@ -50,6 +50,11 @@ const QuadtreeNode* QuadtreeNode::next(const QuadtreeNode* end) const
             return unique_ptr.get();
         }
     }
+    // Leaf node.
+    if (this == end)
+    {
+        return nullptr;
+    }
     if (m_parent)
     {
         return m_parent->next(this, end);
@@ -63,28 +68,27 @@ const QuadtreeNode* QuadtreeNode::next(const QuadtreeNode* child, const Quadtree
     const QuadtreeNode* next_child{nullptr};
     for (const auto& unique_ptr : m_children)
     {
-        if (not unique_ptr)
-        {
-            continue;
-        }
-        if (child == unique_ptr.get())
-        {
-            assign_next = true;
-            continue;
-        }
         if (assign_next)
         {
-            next_child = unique_ptr.get();
-            break;
+            if (unique_ptr)
+            {
+                next_child = unique_ptr.get();
+                break;
+            }
+        }
+        else
+        {
+            assign_next = child == unique_ptr.get();
         }
     }
     if (next_child)
     {
         return next_child;
     }
+    // Traversed all children.
     if (this == end)
     {
-        return end;
+        return nullptr;
     }
     return m_parent->next(this, end);
 }

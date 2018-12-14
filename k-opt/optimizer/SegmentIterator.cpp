@@ -10,12 +10,19 @@ SegmentIterator::SegmentIterator(const quadtree::QuadtreeNode* root, bool skip_r
         next_node();
     }
     skip_empty_nodes();
-    m_segment = std::cbegin(m_current->segments());
+    if (not done())
+    {
+        m_segment = std::cbegin(m_current->segments());
+    }
 }
 
 void SegmentIterator::skip_empty_nodes()
 {
-    while (m_current->segments().empty() and m_current != m_end)
+    if (done())
+    {
+        return;
+    }
+    while (not done() and m_current->segments().empty())
     {
         next_node();
     }
@@ -23,11 +30,19 @@ void SegmentIterator::skip_empty_nodes()
 
 void SegmentIterator::next_node()
 {
+    if (done())
+    {
+        return;
+    }
     m_current = m_current->next(m_end);
 }
 
 SegmentIterator& SegmentIterator::operator++()
 {
+    if (done())
+    {
+        return *this;
+    }
     ++m_segment;
     if (m_segment == std::cend(m_current->segments()))
     {

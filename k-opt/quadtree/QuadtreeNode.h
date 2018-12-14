@@ -42,6 +42,7 @@ public:
     void create_child(primitives::quadrant_t);
 
     // preorder traversal.
+    // returns nullptr if end is reached.
     const QuadtreeNode* next(const QuadtreeNode* end) const;
 
 private:
@@ -54,6 +55,7 @@ private:
     void modify_total_segment_count(int amount);
 
     // preorder traversal.
+    // returns nullptr if end is reached.
     const QuadtreeNode* next(const QuadtreeNode* child, const QuadtreeNode* end) const;
 };
 

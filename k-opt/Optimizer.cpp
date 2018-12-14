@@ -40,9 +40,9 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         const auto sr = compute_search_range(d, node_hash, segment_margin);
         m_current = SearchState(current_segment);
         // const auto sb = SearchBox(sr.cx, sr.cy, );
-
         const auto fsn = full_search_nodes(sr);
         const auto psn = partial_search_nodes(sr);
+
         find_best(node, ++it);
         for (const auto& partial_node : partial_search_nodes(sr))
         {
@@ -54,6 +54,40 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         }
     }
 }
+
+void Optimizer::find_best(const node_iterator nit, const node_iterator& end, bool skip_root)
+{
+    auto sit = optimizer::SegmentIterator(*nit, skip_root);
+    find_best(nit, sit, end);
+}
+
+void Optimizer::find_best(node_iterator nit, optimizer::SegmentIterator sit, const node_iterator& end)
+{
+    while (nit != end)
+    {
+        while (not sit.done())
+        {
+            if (not m_current.valid(*sit))
+            {
+                ++sit;
+                continue;
+            }
+            m_current.push_back(*sit);
+            if (m_current.size() == m_k)
+            {
+                check_best();
+                m_current.pop_back();
+                ++sit;
+            }
+            else
+            {
+                find_best(nit, ++sit, end);
+            }
+        }
+        ++nit;
+    }
+}
+
 void Optimizer::find_best(const quadtree::QuadtreeNode* node)
 {
     find_best(node, node->segments().cbegin());
