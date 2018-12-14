@@ -1,6 +1,9 @@
 #pragma once
 
+// Provides segments from preorder traversal of quadtree, starting from and ending at the provided root node.
+
 #include "quadtree/QuadtreeNode.h"
+#include "NodeIterator.h"
 
 #include <iterator>
 #include <vector>
@@ -12,7 +15,7 @@ class SegmentIterator
     using SegmentContainer = quadtree::QuadtreeNode::SegmentContainer;
     using segment_iterator = SegmentContainer::const_iterator;
 public:
-    SegmentIterator(const quadtree::QuadtreeNode* root, bool skip_root = false);
+    SegmentIterator(const NodeIterator& nit);
 
     const Segment& operator*() const { return *m_segment; }
     SegmentIterator& operator++();
@@ -22,7 +25,7 @@ public:
 
 private:
     const quadtree::QuadtreeNode* m_end{nullptr};
-    const quadtree::QuadtreeNode* m_current{nullptr}; // becomes nullptr at end of search.
+    const quadtree::QuadtreeNode* m_current{nullptr}; // becomes nullptr at end of search (root revisited).
     segment_iterator m_segment;
 
     void skip_empty_nodes();

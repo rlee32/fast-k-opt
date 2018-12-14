@@ -2,10 +2,14 @@
 
 namespace optimizer {
 
-SegmentIterator::SegmentIterator(const quadtree::QuadtreeNode* root, bool skip_root)
-    : m_end(root), m_current(root)
+SegmentIterator::SegmentIterator(const NodeIterator& nit)
+    : m_end(*nit), m_current(*nit)
 {
-    if (skip_root or m_current->segments().empty())
+    if (not *nit)
+    {
+        return;
+    }
+    if (nit.skip_root() or m_current->segments().empty())
     {
         next_node();
     }

@@ -6,6 +6,7 @@
 #include "KContainer.h"
 #include "SearchState.h"
 #include "five_opt.h"
+#include "optimizer/NodeIterator.h"
 #include "optimizer/SegmentIterator.h"
 #include "primitives.h"
 #include "quadtree/Domain.h"
@@ -73,12 +74,12 @@ private:
         primitives::grid_t ymin{0};
         primitives::grid_t yend{0};
     };
-    std::vector<quadtree::QuadtreeNode*> full_search_nodes(const SearchRange& sr) const;
-    std::vector<quadtree::QuadtreeNode*> partial_search_nodes(const SearchRange& sr) const;
+    std::vector<const quadtree::QuadtreeNode*> full_search_nodes(const SearchRange& sr) const;
+    std::vector<const quadtree::QuadtreeNode*> partial_search_nodes(const SearchRange& sr) const;
 
     inline void find_and_add_node(primitives::depth_t depth
         , primitives::grid_t grid_x, primitives::grid_t grid_y
-        , std::vector<quadtree::QuadtreeNode*>& nodes) const;
+        , std::vector<const quadtree::QuadtreeNode*>& nodes) const;
 
     void check_best_2opt(const std::vector<Segment>& ordered_segments);
     void check_best_3opt(const std::vector<Segment>& ordered_segments);
@@ -95,8 +96,7 @@ private:
     SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
     SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
 
-    void find_best(const node_iterator nit, const node_iterator& end, bool skip_root);
-    void find_best(node_iterator nit, optimizer::SegmentIterator sit, const node_iterator& end);
+    void find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit);
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

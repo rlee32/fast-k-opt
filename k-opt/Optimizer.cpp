@@ -40,30 +40,17 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         const auto sr = compute_search_range(d, node_hash, segment_margin);
         m_current = SearchState(current_segment);
         // const auto sb = SearchBox(sr.cx, sr.cy, );
-        const auto fsn = full_search_nodes(sr);
         const auto psn = partial_search_nodes(sr);
-
-        find_best(node, ++it);
-        for (const auto& partial_node : partial_search_nodes(sr))
-        {
-            find_best_children(partial_node);
-        }
-        for (const auto& full_node : full_search_nodes(sr))
-        {
-            find_best(full_node);
-        }
+        const auto fsn = full_search_nodes(sr);
+        const auto nit = optimizer::NodeIterator(psn, fsn);
+        const auto sit = optimizer::SegmentIterator(nit);
+        find_best(nit, sit);
     }
 }
 
-void Optimizer::find_best(const node_iterator nit, const node_iterator& end, bool skip_root)
+void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit)
 {
-    auto sit = optimizer::SegmentIterator(*nit, skip_root);
-    find_best(nit, sit, end);
-}
-
-void Optimizer::find_best(node_iterator nit, optimizer::SegmentIterator sit, const node_iterator& end)
-{
-    while (nit != end)
+    while (not nit.done())
     {
         while (not sit.done())
         {
@@ -81,10 +68,14 @@ void Optimizer::find_best(node_iterator nit, optimizer::SegmentIterator sit, con
             }
             else
             {
-                find_best(nit, ++sit, end);
+                find_best(nit, ++sit);
             }
         }
         ++nit;
+        if (not nit.done())
+        {
+            sit = optimizer::SegmentIterator(nit);
+        }
     }
 }
 
@@ -188,9 +179,9 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
     return sr;
 }
 
-std::vector<quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const SearchRange& sr) const
+std::vector<const quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const SearchRange& sr) const
 {
-    std::vector<quadtree::QuadtreeNode*> nodes;
+    std::vector<const quadtree::QuadtreeNode*> nodes;
     for (int x{sr.xmin}; x < sr.cx; ++x)
     {
         for (int y{sr.ymin}; y < sr.yend; ++y)
@@ -204,9 +195,9 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const Searc
     }
     return nodes;
 }
-std::vector<quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
+std::vector<const quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
 {
-    std::vector<quadtree::QuadtreeNode*> nodes;
+    std::vector<const quadtree::QuadtreeNode*> nodes;
     for (int y{sr.cy + 1}; y < sr.yend; ++y)
     {
         find_and_add_node(sr.depth, sr.cx, y, nodes);
@@ -222,7 +213,7 @@ std::vector<quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRa
 }
 void Optimizer::find_and_add_node(primitives::depth_t depth
     , primitives::grid_t grid_x, primitives::grid_t grid_y
-    , std::vector<quadtree::QuadtreeNode*>& nodes) const
+    , std::vector<const quadtree::QuadtreeNode*>& nodes) const
 {
     auto hash = quadtree::depth_map::transform::hash_grid_coord(grid_x, grid_y);
     const auto it = m_depth_map.get_nodes(depth).find(hash);
