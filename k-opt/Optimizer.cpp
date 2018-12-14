@@ -34,12 +34,16 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
     {
         // start candidate set with first segment.
         const auto& current_segment = *it;
-        m_current = SearchState(current_segment);
-        // search within current node and all children.
-        find_best(node, ++it);
+        // space between the current / first segment and the bounding box in which it resides.
+        // slightly reduces the search radius.
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
+        m_current = SearchState(current_segment);
         // const auto sb = SearchBox(sr.cx, sr.cy, );
+
+        const auto fsn = full_search_nodes(sr);
+        const auto psn = partial_search_nodes(sr);
+        find_best(node, ++it);
         for (const auto& partial_node : partial_search_nodes(sr))
         {
             find_best_children(partial_node);

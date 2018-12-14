@@ -9,7 +9,8 @@ SRCS = k-opt.cpp PointSequence.cpp Optimizer.cpp \
     fileio/PointSet.cpp fileio/Tour.cpp \
     quadtree/Quadtree.cpp quadtree/QuadtreeNode.cpp \
     quadtree/depth_map/DepthMap.cpp \
-	quadtree/LengthTable.cpp
+	quadtree/LengthTable.cpp \
+	optimizer/SegmentIterator.cpp
 
 %.o: %.cpp; $(CXX) $(CXX_FLAGS) -o $@ -c $<
 
