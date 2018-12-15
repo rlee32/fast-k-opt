@@ -11,29 +11,10 @@ NodeIterator::NodeIterator(const NodeContainer& partial, const NodeContainer& fu
     {
         move_to_full_nodes();
     }
-    skip();
-}
-
-void NodeIterator::skip()
-{
-    while (skippable())
-    {
-        operator++();
-    }
-}
-
-bool NodeIterator::skippable() const
-{
-    if (done())
-    {
-        return false;
-    }
-    return (**m_current).segments().empty();
 }
 
 const quadtree::QuadtreeNode*  NodeIterator::operator*() const
 {
-    // TODO: somehow causing infinite loop.
     if (done())
     {
         return nullptr;
@@ -50,7 +31,6 @@ NodeIterator& NodeIterator::operator++()
         {
             move_to_full_nodes();
         }
-        skip();
     }
     return *this;
 }
@@ -73,4 +53,3 @@ void NodeIterator::move_to_full_nodes()
 }
 
 } // namespace optimizer
-

@@ -27,6 +27,8 @@ private:
     const quadtree::QuadtreeNode* m_end{nullptr};
     const quadtree::QuadtreeNode* m_current{nullptr}; // becomes nullptr at end of search (root revisited).
     segment_iterator m_segment;
+    segment_iterator m_extra;
+    segment_iterator m_extra_end;
 
     void skip_empty_nodes();
     void next_node();

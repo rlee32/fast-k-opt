@@ -18,12 +18,13 @@
 #include "quadtree/depth_map/transform.h"
 // #include "six_opt.h"
 
-#include <array>
 #include <algorithm>
+#include <array>
+#include <cassert>
 #include <cmath>
 #include <ostream>
-#include <vector>
 #include <set>
+#include <vector>
 
 class Optimizer
 {
@@ -49,7 +50,7 @@ private:
     const std::vector<primitives::point_id_t>& m_sequence_ids;
     std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
-    size_t m_k{4}; // as in k-opt.
+    size_t m_k{0}; // as in k-opt.
     SearchState m_best;
     SearchState m_current;
     size_t m_calls{0};
@@ -98,6 +99,7 @@ private:
     SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
 
     void find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit);
+
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

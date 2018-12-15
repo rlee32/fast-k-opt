@@ -5,6 +5,16 @@ void Optimizer::find_best()
     m_calls = 0;
     m_best = SearchState();
     update_grid_radii();
+    const quadtree::QuadtreeNode* root = m_depth_map.get_nodes(0).begin()->second;
+    auto test = root;
+    auto count1 = test->total_segment_count();
+    auto count2{count1 * 0};
+    while (test)
+    {
+        count2 += test->segments().size();
+        test = test->next(const_cast<const quadtree::QuadtreeNode*>(root));
+    }
+    assert(count1 == count2);
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
         //std::cout << "depth: " << depth << std::endl;
@@ -47,7 +57,6 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         const auto nit = optimizer::NodeIterator(psn, fsn);
         const auto sit = optimizer::SegmentIterator(nit);
         find_best(nit, sit);
-
         ++it;
     }
 }
@@ -67,13 +76,13 @@ void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterato
             if (m_current.size() == m_k)
             {
                 check_best();
-                m_current.pop_back();
                 ++sit;
             }
             else
             {
                 find_best(nit, ++sit);
             }
+            m_current.pop_back();
         }
         ++nit;
         if (not nit.done())
