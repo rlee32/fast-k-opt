@@ -34,17 +34,21 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
     {
         // start candidate set with first segment.
         const auto& current_segment = *it;
+        m_current = SearchState(current_segment);
+
         // space between the current / first segment and the bounding box in which it resides.
         // slightly reduces the search radius.
+        // const auto sb = SearchBox(sr.cx, sr.cy, );
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
-        m_current = SearchState(current_segment);
-        // const auto sb = SearchBox(sr.cx, sr.cy, );
         const auto psn = partial_search_nodes(sr);
+        // TODO: exclude double comparison of previous segments in current node.
         const auto fsn = full_search_nodes(sr);
         const auto nit = optimizer::NodeIterator(psn, fsn);
         const auto sit = optimizer::SegmentIterator(nit);
         find_best(nit, sit);
+
+        ++it;
     }
 }
 
@@ -152,9 +156,8 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
     sr.center_node_hash = center_node_hash;
     sr.cx = quadtree::depth_map::transform::unhash_x(center_node_hash);
     sr.cy = quadtree::depth_map::transform::unhash_y(center_node_hash);
-    constexpr bool naive_mode{true};
     primitives::grid_t grid_dim = 1 << d;
-    if (naive_mode)
+    if (constants::naive_mode)
     {
         sr.xmin = 0;
         sr.ymin = 0;
@@ -198,7 +201,7 @@ std::vector<const quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const
 std::vector<const quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
 {
     std::vector<const quadtree::QuadtreeNode*> nodes;
-    for (int y{sr.cy + 1}; y < sr.yend; ++y)
+    for (int y{sr.cy}; y < sr.yend; ++y)
     {
         find_and_add_node(sr.depth, sr.cx, y, nodes);
     }

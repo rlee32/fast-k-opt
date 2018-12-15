@@ -31,6 +31,15 @@ bool NodeIterator::skippable() const
     return (**m_current).segments().empty();
 }
 
+const quadtree::QuadtreeNode*  NodeIterator::operator*() const
+{
+    // TODO: somehow causing infinite loop.
+    if (done())
+    {
+        return nullptr;
+    }
+    return *m_current;
+}
 
 NodeIterator& NodeIterator::operator++()
 {

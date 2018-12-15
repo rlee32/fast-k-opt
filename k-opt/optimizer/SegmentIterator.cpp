@@ -26,9 +26,13 @@ void SegmentIterator::skip_empty_nodes()
     {
         return;
     }
-    while (not done() and m_current->segments().empty())
+    while (m_current->segments().empty())
     {
         next_node();
+        if (done())
+        {
+            break;
+        }
     }
 }
 
@@ -52,7 +56,10 @@ SegmentIterator& SegmentIterator::operator++()
     {
         next_node();
         skip_empty_nodes();
-        m_segment = std::cbegin(m_current->segments());
+        if (not done())
+        {
+            m_segment = std::cbegin(m_current->segments());
+        }
     }
     return *this;
 }

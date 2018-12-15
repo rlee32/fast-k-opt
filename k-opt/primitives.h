@@ -1,6 +1,6 @@
 #pragma once
 
-// Aliases and constants for primitive types.
+// Aliases for primitive types.
 
 #include <cstdint>
 #include <limits>

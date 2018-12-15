@@ -13,7 +13,7 @@ class NodeIterator
 public:
     NodeIterator(const NodeContainer& partial, const NodeContainer& full);
 
-    const quadtree::QuadtreeNode*  operator*() const { return *m_current; }
+    const quadtree::QuadtreeNode*  operator*() const;
     NodeIterator& operator++();
     NodeIterator operator++(int);
 

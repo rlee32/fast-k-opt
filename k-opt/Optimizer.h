@@ -5,6 +5,7 @@
 #include "DistanceTable.h"
 #include "KContainer.h"
 #include "SearchState.h"
+#include "constants.h"
 #include "five_opt.h"
 #include "optimizer/NodeIterator.h"
 #include "optimizer/SegmentIterator.h"
