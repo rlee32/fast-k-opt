@@ -7,7 +7,7 @@
 
 #include <algorithm>
 
-namespace quadtree {
+namespace optimizer {
 
 struct SearchBox
 {
@@ -36,4 +36,4 @@ struct SearchBox
     primitives::grid_t yradius{0};
 };
 
-} // namespace quadtree
+} // namespace optimizer

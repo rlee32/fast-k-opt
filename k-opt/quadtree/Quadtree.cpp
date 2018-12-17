@@ -7,10 +7,8 @@ void Quadtree::insert(Segment s)
     const auto insertion_path = morton_keys::segment_insertion_path(m_morton_keys[s.min()], m_morton_keys[s.max()]);
     QuadtreeNode* segment_destination{&m_root};
     uint32_t depth{0}, x{0}, y{0};
-    //std::cout << s << std::endl;
     for (const auto& quadrant : insertion_path)
     {
-        //std::cout << quadrant << std::endl;
         ++depth;
         x <<= 1;
         x += depth_map::transform::quadrant_x(quadrant);
@@ -21,8 +19,6 @@ void Quadtree::insert(Segment s)
         {
             segment_destination->create_child(quadrant);
             child = segment_destination->child(quadrant);
-            //std::cout << "grid insertion: " << x << ", " << y << std::endl;
-            //std::cout << "unhashed"
             m_depth_map.add_node(depth, x, y, child);
         }
         segment_destination = child;

@@ -22,6 +22,8 @@ const DepthMap::NodeContainer& DepthMap::get_nodes(int depth) const
 void DepthMap::add_node(int depth, transform::grid_coord_t x, transform::grid_coord_t y, QuadtreeNode* node)
 {
     auto hash = transform::hash_grid_coord(x, y);
+    node->x(x);
+    node->y(y);
     m_nodes[depth][hash] = node;
 }
 void DepthMap::remove_node(int depth, transform::grid_coord_t x, transform::grid_coord_t y)

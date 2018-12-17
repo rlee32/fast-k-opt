@@ -27,19 +27,21 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
 {
     auto sit = optimizer::SegmentIterator(node);
     // loop over each segment in this node to be the first in a candidate segment set.
+    auto xradius = std::ceil(m_radius[d] / m_domain.xdim(d));
+    auto yradius = std::ceil(m_radius[d] / m_domain.ydim(d));
     for (const auto& current_segment : node->segments())
     {
         // start candidate set with first segment.
         m_current = SearchState(current_segment);
         // space between the current / first segment and the bounding box in which it resides.
         // slightly reduces the search radius.
-        // const auto sb = SearchBox(sr.cx, sr.cy, );
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
+        const auto sb = optimizer::SearchBox(sr.cx, sr.cy, xradius, yradius);
         const auto psn = partial_search_nodes(sr);
         const auto fsn = full_search_nodes(sr);
         //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
-        const auto nit = optimizer::NodeIterator(psn, fsn);
+        const auto nit = optimizer::NodeIterator(psn, fsn, sb);
         find_best(nit, sit, false);
         ++sit;
     }
@@ -645,12 +647,6 @@ void Optimizer::update_grid_radii()
         auto depth = primitives::DepthEnd - 1 - i;
         insert_max_lengths(kc, depth);
         m_radius[depth] = kc.kopt_sum();
-        /*
-        std::cout << "Grid x, y search radius at depth " << depth << ": "
-            << m_radius[depth] / m_domain.xdim(depth)
-            << ", " << m_radius[depth] / m_domain.ydim(depth)
-            << std::endl;
-        */
     }
 }
 

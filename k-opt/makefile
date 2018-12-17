@@ -1,8 +1,8 @@
 CXX = g++-8
 CXX_FLAGS = -std=c++17 -fopenmp # important flags.
 CXX_FLAGS += -Wall -Wextra -Werror -pedantic -Wfatal-errors # source code quality.
-CXX_FLAGS += -O0 -ffast-math # optimization.
-CXX_FLAGS += -g # debugging.
+CXX_FLAGS += -O3 -ffast-math # optimization.
+#CXX_FLAGS += -g # debugging.
 CXX_FLAGS += -I./ # include paths.
 
 SRCS = k-opt.cpp PointSequence.cpp Optimizer.cpp \

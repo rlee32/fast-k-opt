@@ -46,12 +46,19 @@ public:
     // returns nullptr if end is reached.
     const QuadtreeNode* next(const QuadtreeNode* end) const;
 
+    primitives::grid_t x() const { return m_x; }
+    primitives::grid_t y() const { return m_y; }
+    void x(primitives::grid_t x) { m_x = x; }
+    void y(primitives::grid_t y) { m_y = y; }
+
 private:
     QuadtreeNode* m_parent{nullptr};
     ChildArray m_children; // index corresponds to Morton order quadrant.
     // Segment information.
     SegmentContainer m_segments; // segments under this node only (not children).
     size_t m_total_segment_count{0}; // total segments under this node and all child nodes.
+    primitives::grid_t m_x{0};
+    primitives::grid_t m_y{0};
 
     void modify_total_segment_count(int amount);
 

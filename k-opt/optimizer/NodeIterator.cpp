@@ -2,9 +2,10 @@
 
 namespace optimizer {
 
-NodeIterator::NodeIterator(const NodeContainer& partial, const NodeContainer& full)
+NodeIterator::NodeIterator(const NodeContainer& partial, const NodeContainer& full, SearchBox sb)
     : m_partial_nodes(partial)
     , m_full_nodes(full)
+    , m_sb(sb)
     , m_current(std::cbegin(partial))
     , m_remaining(m_partial_nodes.size() + m_full_nodes.size())
 {
@@ -25,13 +26,17 @@ const quadtree::QuadtreeNode* NodeIterator::operator*() const
 
 NodeIterator& NodeIterator::operator++()
 {
-    if (not done())
+    while (not done())
     {
         ++m_current;
         --m_remaining;
         if (m_current == std::cend(m_partial_nodes))
         {
             move_to_full_nodes();
+        }
+        if (not done() and m_sb.contains((**m_current).x(), (**m_current).y()))
+        {
+            break;
         }
     }
     return *this;
