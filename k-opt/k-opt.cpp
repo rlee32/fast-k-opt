@@ -64,8 +64,8 @@ int main(int argc, char** argv)
     do
     {
         cycle_improvement = 0;
-        // constexpr std::array<int, 5> k_set{{2, 3, 4, 5}};
-        constexpr std::array<int, 1> k_set{{2}};
+        constexpr std::array<int, 5> k_set{{2, 3, 4, 5}};
+        // constexpr std::array<int, 1> k_set{{3}};
         for (auto k : k_set)
         {
             optimizer.k(k);
@@ -103,9 +103,6 @@ int main(int argc, char** argv)
             std::cout << "Local " << k << "-optimum reached." << std::endl;
         }
     } while (cycle_improvement > 0);
-
-
-
     if (cycle_improvement == 0)
     {
         std::cout << "Local optimum reached." << std::endl;

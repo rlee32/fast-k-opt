@@ -38,6 +38,7 @@ public:
     size_t erase(Segment);
     void reset(primitives::quadrant_t);
     QuadtreeNode* parent() { return m_parent; }
+    const QuadtreeNode* parent() const { return m_parent; }
 
     void create_child(primitives::quadrant_t);
 

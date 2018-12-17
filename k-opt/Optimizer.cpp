@@ -5,31 +5,18 @@ void Optimizer::find_best()
     m_calls = 0;
     m_best = SearchState();
     update_grid_radii();
-    const quadtree::QuadtreeNode* root = m_depth_map.get_nodes(0).begin()->second;
-    auto test = root;
-    auto count1 = test->total_segment_count();
-    auto count2{count1 * 0};
-    while (test)
-    {
-        count2 += test->segments().size();
-        test = test->next(const_cast<const quadtree::QuadtreeNode*>(root));
-    }
-    assert(count1 == count2);
+
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
-        //std::cout << "depth: " << depth << std::endl;
         const auto& map = m_depth_map.get_nodes(depth);
         if (map.size() == 0)
         {
             break;
         }
-        //std::cout << "map size: " << map.size() << std::endl;
         for (const auto& hash_node_pair : map)
         {
             const auto hash = hash_node_pair.first;
             const auto node = hash_node_pair.second;
-            //std::cout << "hash: " << hash << std::endl;
-            //std::cout << "grid x, y: " << quadtree::depth_map::transform::x(hash) << ", " << quadtree::depth_map::transform::y(hash) << std::endl;
             find_best(depth, hash, node);
         }
     }
@@ -38,57 +25,61 @@ void Optimizer::find_best()
 
 void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
-    auto it = node->segments().cbegin();
+    auto sit = optimizer::SegmentIterator(node);
     // loop over each segment in this node to be the first in a candidate segment set.
-    while (it != node->segments().cend())
+    for (const auto& current_segment : node->segments())
     {
         // start candidate set with first segment.
-        const auto& current_segment = *it;
         m_current = SearchState(current_segment);
-
         // space between the current / first segment and the bounding box in which it resides.
         // slightly reduces the search radius.
         // const auto sb = SearchBox(sr.cx, sr.cy, );
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
         const auto psn = partial_search_nodes(sr);
-        // TODO: exclude double comparison of previous segments in current node.
         const auto fsn = full_search_nodes(sr);
+        //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
         const auto nit = optimizer::NodeIterator(psn, fsn);
-        const auto sit = optimizer::SegmentIterator(nit);
-        find_best(nit, sit);
-        ++it;
+        find_best(nit, sit, false);
+        ++sit;
     }
 }
 
-void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit)
+void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first)
 {
+    check_segments(nit, sit, increment_first);
+    if (increment_first)
+    {
+        ++nit;
+    }
     while (not nit.done())
     {
-        while (not sit.done())
-        {
-            if (not m_current.valid(*sit))
-            {
-                ++sit;
-                continue;
-            }
-            m_current.push_back(*sit);
-            if (m_current.size() == m_k)
-            {
-                check_best();
-                ++sit;
-            }
-            else
-            {
-                find_best(nit, ++sit);
-            }
-            m_current.pop_back();
-        }
+        sit = optimizer::SegmentIterator(nit);
+        check_segments(nit, sit);
         ++nit;
-        if (not nit.done())
+    }
+}
+
+void Optimizer::check_segments(const optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first)
+{
+    while (not sit.done())
+    {
+        if (not m_current.valid(*sit))
         {
-            sit = optimizer::SegmentIterator(nit);
+            ++sit;
+            continue;
         }
+        m_current.push_back(*sit);
+        if (m_current.size() == m_k)
+        {
+            check_best();
+            ++sit;
+        }
+        else
+        {
+            find_best(nit, ++sit, increment_first);
+        }
+        m_current.pop_back();
     }
 }
 
@@ -210,7 +201,7 @@ std::vector<const quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const
 std::vector<const quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
 {
     std::vector<const quadtree::QuadtreeNode*> nodes;
-    for (int y{sr.cy}; y < sr.yend; ++y)
+    for (int y{sr.cy + 1}; y < sr.yend; ++y)
     {
         find_and_add_node(sr.depth, sr.cx, y, nodes);
     }
@@ -630,9 +621,13 @@ void Optimizer::traverse_tree()
         {
             const auto node = pair.second;
             segments += node->segments().size();
+            // TODO: remove
+            int counter{0};
             for (const auto& s : node->segments())
             {
+                //if (s.a == 60 and s.b == 59) { std::cout << "segment of interest is segment " << counter << " of " << node->segments().size() << " at depth " << i << "\n"; }
                 length += s.length;
+                ++counter;
             }
         }
     }

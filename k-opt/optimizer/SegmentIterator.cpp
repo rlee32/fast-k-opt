@@ -20,6 +20,24 @@ SegmentIterator::SegmentIterator(const NodeIterator& nit)
     }
 }
 
+SegmentIterator::SegmentIterator(const quadtree::QuadtreeNode* root)
+    : m_end(root), m_current(root)
+{
+    if (not root)
+    {
+        return;
+    }
+    if (m_current->segments().empty())
+    {
+        next_node();
+    }
+    skip_empty_nodes();
+    if (not done())
+    {
+        m_segment = std::cbegin(m_current->segments());
+    }
+}
+
 void SegmentIterator::skip_empty_nodes()
 {
     if (done())

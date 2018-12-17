@@ -98,8 +98,8 @@ private:
     SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
     SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
 
-    void find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit);
-
+    void find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first = true);
+    void check_segments(const optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first = true);
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

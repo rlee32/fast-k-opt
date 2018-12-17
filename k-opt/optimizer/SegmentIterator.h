@@ -16,6 +16,8 @@ class SegmentIterator
     using segment_iterator = SegmentContainer::const_iterator;
 public:
     SegmentIterator(const NodeIterator& nit);
+    // Assumes full node.
+    SegmentIterator(const quadtree::QuadtreeNode* root);
 
     const Segment& operator*() const { return *m_segment; }
     SegmentIterator& operator++();
