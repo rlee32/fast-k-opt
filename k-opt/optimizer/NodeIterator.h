@@ -20,7 +20,9 @@ public:
 
     bool done() const;
     bool skip_root() const { return m_skip_root; }
-    SearchBox& sb() { return m_sb; }
+    SearchBox sb() const { return m_sb; }
+    void sb(SearchBox sb) { m_sb = sb; }
+    void restrict_search();
 
 private:
     const NodeContainer& m_partial_nodes;

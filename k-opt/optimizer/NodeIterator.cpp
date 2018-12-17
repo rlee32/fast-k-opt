@@ -59,4 +59,12 @@ void NodeIterator::move_to_full_nodes()
     m_skip_root = false;
 }
 
+void NodeIterator::restrict_search()
+{
+    if (not done())
+    {
+        m_sb.overlay((**m_current).x(), (**m_current).y());
+    }
+}
+
 } // namespace optimizer

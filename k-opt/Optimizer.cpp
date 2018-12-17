@@ -62,7 +62,7 @@ void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterato
     }
 }
 
-void Optimizer::check_segments(const optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first)
+void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first)
 {
     while (not sit.done())
     {
@@ -79,7 +79,10 @@ void Optimizer::check_segments(const optimizer::NodeIterator& nit, optimizer::Se
         }
         else
         {
+            const auto old_sb = nit.sb();
+            nit.restrict_search();
             find_best(nit, ++sit, increment_first);
+            nit.sb(old_sb);
         }
         m_current.pop_back();
     }
@@ -623,13 +626,9 @@ void Optimizer::traverse_tree()
         {
             const auto node = pair.second;
             segments += node->segments().size();
-            // TODO: remove
-            int counter{0};
             for (const auto& s : node->segments())
             {
-                //if (s.a == 60 and s.b == 59) { std::cout << "segment of interest is segment " << counter << " of " << node->segments().size() << " at depth " << i << "\n"; }
                 length += s.length;
-                ++counter;
             }
         }
     }
