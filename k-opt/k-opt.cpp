@@ -64,9 +64,10 @@ int main(int argc, char** argv)
     do
     {
         cycle_improvement = 0;
-        constexpr std::array<int, 4> k_set{{2, 3, 4, 5}};
+        // constexpr std::array<int, 4> k_set{{2, 3, 4, 5}};
         // constexpr std::array<int, 3> k_set{{2, 3, 4}};
         // constexpr std::array<int, 1> k_set{{3}};
+        constexpr std::array<int, 3> k_set{{2, 3, 4}};
         for (auto k : k_set)
         {
             optimizer.k(k);

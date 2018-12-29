@@ -56,9 +56,6 @@ private:
     size_t m_calls{0};
 
     void find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
-    void find_best(const quadtree::QuadtreeNode* node);
-    void find_best_children(const quadtree::QuadtreeNode* node);
-    void find_best(const quadtree::QuadtreeNode* node, quadtree::QuadtreeNode::SegmentContainer::const_iterator it);
 
     void check_best();
 

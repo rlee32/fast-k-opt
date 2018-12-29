@@ -1,5 +1,7 @@
 #include "Optimizer.h"
 
+int searches{0}; // TODO: remove
+
 void Optimizer::find_best()
 {
     m_calls = 0;
@@ -42,7 +44,9 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         const auto fsn = full_search_nodes(sr);
         //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
         const auto nit = optimizer::NodeIterator(psn, fsn, sb);
+        searches = 0;
         find_best(nit, sit, false);
+        std::cout << "\t" << searches << std::endl;
         ++sit;
     }
 }
@@ -74,6 +78,7 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
         m_current.push_back(*sit);
         if (m_current.size() == m_k)
         {
+            ++searches; // TODO: remove
             check_best();
             ++sit;
         }
@@ -85,44 +90,6 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             nit.sb(old_sb);
         }
         m_current.pop_back();
-    }
-}
-
-void Optimizer::find_best(const quadtree::QuadtreeNode* node)
-{
-    find_best(node, node->segments().cbegin());
-}
-void Optimizer::find_best(const quadtree::QuadtreeNode* node, quadtree::QuadtreeNode::SegmentContainer::const_iterator it)
-{
-    while (it != node->segments().cend())
-    {
-        if (not m_current.valid(*it))
-        {
-            ++it;
-            continue;
-        }
-        m_current.push_back(*it);
-        if (m_current.size() == m_k)
-        {
-            check_best();
-            ++it;
-        }
-        else
-        {
-            find_best(node, ++it);
-        }
-        m_current.pop_back();
-    }
-    find_best_children(node);
-}
-void Optimizer::find_best_children(const quadtree::QuadtreeNode* node)
-{
-    for (const auto& unique_ptr : node->children())
-    {
-        if (unique_ptr)
-        {
-            find_best(unique_ptr.get());
-        }
     }
 }
 
