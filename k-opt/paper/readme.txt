@@ -20,6 +20,8 @@ Search radius
 
 Computing the search radius follows from comparing the minimum new length to the maximum old length.
 If the minimum new length is greater than the maximum old length, then no improvement is possible.
+Here, a bounding box (due to convenience with quadtrees) is used to represent the search area.
+Upon successive addition of segments, the bounding box gets smaller.
 
 Search radius: minimum new length
 
@@ -28,9 +30,11 @@ Therefore, the minimum distance between any 2 segments can be used to estimate t
 For a strict lower bound on new length, we can subtract maximum lengths of segments to be considered from
 the round-trip, straight-line path between the 2 farthest segments.
 This lower bound estimate will be less than or equal to the sum of all new segment lengths.
+An important note for segments that do not descend into the quadtree due to being on box boundaries:
+Another search bounding box (within the already-reduced search range) must be utilized
+so that these segments do not lead to excessive computations, especially at higher k.
 
 Search radius: maximum old length
 
 The maximum old length is simply the sum of the k-longest segments of the segments remaining to be considered.
-
 
