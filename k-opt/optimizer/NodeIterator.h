@@ -12,7 +12,7 @@ class NodeIterator
     using NodeContainer = std::vector<const quadtree::QuadtreeNode*>;
     using node_iterator = NodeContainer::const_iterator;
 public:
-    NodeIterator(const NodeContainer& partial, const NodeContainer& full, SearchBox sb);
+    NodeIterator(const NodeContainer& partial, const NodeContainer& full, SearchBox<> sb);
 
     const quadtree::QuadtreeNode*  operator*() const;
     NodeIterator& operator++();
@@ -20,14 +20,14 @@ public:
 
     bool done() const;
     bool skip_root() const { return m_skip_root; }
-    SearchBox sb() const { return m_sb; }
-    void sb(SearchBox sb) { m_sb = sb; }
+    SearchBox<> sb() const { return m_sb; }
+    void sb(SearchBox<> sb) { m_sb = sb; }
     void restrict_search();
 
 private:
     const NodeContainer& m_partial_nodes;
     const NodeContainer& m_full_nodes;
-    SearchBox m_sb;
+    SearchBox<> m_sb;
     node_iterator m_current;
     bool m_skip_root{true};
     // Note that partial and full node vectors can have coinciding begin() and end().

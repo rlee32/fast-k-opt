@@ -4,6 +4,7 @@
 // Therefore, xradius and yradius will be the same for all overlays.
 
 #include <primitives.h>
+#include <Segment.h>
 
 #include <algorithm>
 
@@ -19,6 +20,7 @@ struct SearchBox
         : xmin(xc - xradius), xmax(xc + xradius)
         , ymin(yc - yradius), ymax(yc + yradius)
         , xradius(xradius), yradius(yradius) {}
+
     void overlay(CoordinateType xc, CoordinateType yc)
     {
         xmin = std::max(xmin, xc - xradius);

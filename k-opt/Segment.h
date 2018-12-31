@@ -51,3 +51,4 @@ inline std::ostream& operator<<(std::ostream& out, const Segment& s)
 {
     return out << "Point " << s.a << " to point " << s.b << " with length " << s.length;
 }
+

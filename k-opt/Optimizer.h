@@ -11,6 +11,7 @@
 #include "optimizer/SearchBox.h"
 #include "optimizer/SegmentIterator.h"
 #include "primitives.h"
+#include "segment.h"
 #include "quadtree/Domain.h"
 #include "quadtree/LengthTable.h"
 #include "quadtree/QuadtreeNode.h"
@@ -24,6 +25,7 @@
 #include <cmath>
 #include <ostream>
 #include <set>
+#include <stack>
 #include <vector>
 
 class Optimizer
@@ -51,11 +53,13 @@ private:
     std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
     size_t m_k{0}; // as in k-opt.
+    std::stack<optimizer::SearchBox<primitives::space_t>> m_search_box_stack;
+
     SearchState m_best;
     SearchState m_current;
     size_t m_calls{0};
 
-    void find_best(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
+    void replace_segments(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
 
     void check_best();
 
@@ -95,7 +99,7 @@ private:
     SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
     SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
 
-    void find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first = true);
+    void add_candidate_segment(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first = true);
     void check_segments(optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first = true);
 };
 

@@ -19,13 +19,13 @@ void Optimizer::find_best()
         {
             const auto hash = hash_node_pair.first;
             const auto node = hash_node_pair.second;
-            find_best(depth, hash, node);
+            replace_segments(depth, hash, node);
         }
     }
     std::cout << m_k << "-opt checks: " << m_calls << std::endl;
 }
 
-void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
+void Optimizer::replace_segments(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
 {
     auto sit = optimizer::SegmentIterator(node);
     // loop over each segment in this node to be the first in a candidate segment set.
@@ -39,19 +39,25 @@ void Optimizer::find_best(primitives::depth_t d, quadtree::depth_map::transform:
         // slightly reduces the search radius.
         const auto segment_margin = compute_segment_margin(d, current_segment);
         const auto sr = compute_search_range(d, node_hash, segment_margin);
-        const auto sb = optimizer::SearchBox(sr.cx, sr.cy, xradius, yradius);
+        const auto sb = optimizer::SearchBox<>(sr.cx, sr.cy, xradius, yradius);
         const auto psn = partial_search_nodes(sr);
         const auto fsn = full_search_nodes(sr);
         //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
         const auto nit = optimizer::NodeIterator(psn, fsn, sb);
         searches = 0;
-        find_best(nit, sit, false);
+        m_search_box_stack.emplace
+            (segment::x_center(current_segment, m_dt)
+            , segment::y_center(current_segment, m_dt)
+            , m_radius[d]
+            , m_radius[d]);
+        add_candidate_segment(nit, sit, false);
         std::cout << "\t" << searches << std::endl;
+        m_search_box_stack.pop();
         ++sit;
     }
 }
 
-void Optimizer::find_best(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first)
+void Optimizer::add_candidate_segment(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first)
 {
     check_segments(nit, sit, increment_first);
     if (increment_first)
@@ -75,6 +81,17 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             ++sit;
             continue;
         }
+        const auto x = segment::x_center(*sit, m_dt);
+        const auto y = segment::y_center(*sit, m_dt);
+        const auto& top = m_search_box_stack.top();
+        if (not top.contains(x, y))
+        {
+            ++sit;
+            continue;
+        }
+        m_search_box_stack.push(top);
+        auto& new_top = m_search_box_stack.top();
+        new_top.overlay(x, y);
         m_current.push_back(*sit);
         if (m_current.size() == m_k)
         {
@@ -86,10 +103,11 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
         {
             const auto old_sb = nit.sb();
             nit.restrict_search();
-            find_best(nit, ++sit, increment_first);
+            add_candidate_segment(nit, ++sit, increment_first);
             nit.sb(old_sb);
         }
         m_current.pop_back();
+        m_search_box_stack.pop();
     }
 }
 

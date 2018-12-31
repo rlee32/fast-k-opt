@@ -2,7 +2,7 @@
 
 namespace optimizer {
 
-NodeIterator::NodeIterator(const NodeContainer& partial, const NodeContainer& full, SearchBox sb)
+NodeIterator::NodeIterator(const NodeContainer& partial, const NodeContainer& full, SearchBox<> sb)
     : m_partial_nodes(partial)
     , m_full_nodes(full)
     , m_sb(sb)
