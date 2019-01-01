@@ -2,7 +2,7 @@
 
 int searches{0}; // TODO: remove
 
-void Optimizer::print_radii_comparison(aliases::RadiusMap& max_old_lengths) const // TODO: remove
+void Optimizer::print_radii_comparison(aliases::RadiusMap& lengths) const // TODO: remove
 {
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
@@ -17,7 +17,7 @@ void Optimizer::print_radii_comparison(aliases::RadiusMap& max_old_lengths) cons
             const auto node = hash_node_pair.second;
             for (const auto& current_segment : node->segments())
             {
-                std::cout << "\t" << max_old_lengths[current_segment] << "\n";
+                std::cout << "\t" << lengths[current_segment] << "\n";
             }
         }
     }
@@ -32,6 +32,8 @@ void Optimizer::find_best()
     const auto segments = segments_in_traversal_order();
     auto max_old_lengths = compute_max_old_lengths(segments);
     print_radii_comparison(max_old_lengths);
+    auto min_single_lengths = compute_min_single_lengths(segments);
+    print_radii_comparison(min_single_lengths);
 
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
@@ -368,6 +370,18 @@ aliases::RadiusMap Optimizer::compute_max_old_lengths(const std::vector<Segment>
         kc.insert(it->length);
     }
     return lengths;
+}
+
+aliases::RadiusMap Optimizer::compute_min_single_lengths(const std::vector<Segment>& segments) const
+{
+    aliases::RadiusMap min_lengths;
+    KContainer<> kc(m_k);
+    for (auto it = segments.rbegin(); it != segments.rend(); ++it)
+    {
+        min_lengths[*it] = kc.min();
+        kc.insert(it->length);
+    }
+    return min_lengths;
 }
 
 

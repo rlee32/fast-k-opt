@@ -54,6 +54,14 @@ public:
         sum += std::accumulate(++it, m_values.cend(), 0);
         return sum;
     }
+    Value min() const
+    {
+        if (m_values.empty())
+        {
+            return 0;
+        }
+        return *(std::cbegin(m_values));
+    }
 
 private:
     const size_t m_k{0}; // maximum values to hold.

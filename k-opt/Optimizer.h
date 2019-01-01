@@ -42,9 +42,12 @@ public:
         : m_depth_map(depth_map), m_dt(dt), m_length_table(lt), m_domain(domain), m_sequence_ids(sequence_ids) {}
 
     void find_best();
-    void traverse_tree();
     const SearchState& best() const { return m_best; }
     void k(size_t k) { m_k = k; }
+
+    // debug
+    void print_radii_comparison(aliases::RadiusMap& max_old_lengths) const; // TODO: remove
+    void traverse_tree();
 
 private:
     const quadtree::depth_map::DepthMap& m_depth_map;
@@ -102,7 +105,7 @@ private:
 
     std::vector<Segment> segments_in_traversal_order() const;
     aliases::RadiusMap compute_max_old_lengths(const std::vector<Segment>&) const;
-    void print_radii_comparison(aliases::RadiusMap& max_old_lengths) const; // TODO: remove
+    aliases::RadiusMap compute_min_single_lengths(const std::vector<Segment>&) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)
