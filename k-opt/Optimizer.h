@@ -104,7 +104,7 @@ private:
 
     std::vector<Segment> segments_in_traversal_order() const;
     aliases::RadiusMap compute_max_old_lengths(const std::vector<Segment>&) const;
-
+    void print_radii_comparison(aliases::RadiusMap& max_old_lengths) const; // TODO: remove
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

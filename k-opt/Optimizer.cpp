@@ -2,6 +2,27 @@
 
 int searches{0}; // TODO: remove
 
+void Optimizer::print_radii_comparison(aliases::RadiusMap& max_old_lengths) const // TODO: remove
+{
+    for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
+    {
+        std::cout << "default radius:\t" << m_radius[depth] << "\n";
+        const auto& map = m_depth_map.get_nodes(depth);
+        if (map.size() == 0)
+        {
+            break;
+        }
+        for (const auto& hash_node_pair : map)
+        {
+            const auto node = hash_node_pair.second;
+            for (const auto& current_segment : node->segments())
+            {
+                std::cout << "\t" << max_old_lengths[current_segment] << "\n";
+            }
+        }
+    }
+}
+
 void Optimizer::find_best()
 {
     m_calls = 0;
@@ -9,6 +30,8 @@ void Optimizer::find_best()
     update_grid_radii();
 
     const auto segments = segments_in_traversal_order();
+    auto max_old_lengths = compute_max_old_lengths(segments);
+    print_radii_comparison(max_old_lengths);
 
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
