@@ -11,10 +11,13 @@
 
 #include <vector>
 
-inline void five_opt(SearchState& current
+namespace opt {
+
+inline void five(
+    const std::vector<Segment>& ordered_segments
+    , SearchState& current
     , SearchState& best
-    , const DistanceTable& dt
-    , const std::vector<Segment>& ordered_segments)
+    , const DistanceTable& dt)
 {
     auto& new_segments = current.new_segments;
     auto minimum_length = current.length;
@@ -1949,3 +1952,5 @@ inline void five_opt(SearchState& current
         best = current;
     }
 }
+
+} // namespace opt

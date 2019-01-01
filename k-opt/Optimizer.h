@@ -6,18 +6,20 @@
 #include "KContainer.h"
 #include "SearchState.h"
 #include "constants.h"
-#include "five_opt.h"
+#include "opt/five.h"
+#include "opt/four.h"
+#include "opt/three.h"
+#include "opt/two.h"
 #include "optimizer/NodeIterator.h"
 #include "optimizer/SearchBox.h"
 #include "optimizer/SegmentIterator.h"
 #include "primitives.h"
-#include "segment.h"
 #include "quadtree/Domain.h"
 #include "quadtree/LengthTable.h"
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
-// #include "six_opt.h"
+#include "segment.h"
 
 #include <algorithm>
 #include <array>
@@ -83,10 +85,6 @@ private:
     inline void find_and_add_node(primitives::depth_t depth
         , primitives::grid_t grid_x, primitives::grid_t grid_y
         , std::vector<const quadtree::QuadtreeNode*>& nodes) const;
-
-    void check_best_2opt(const std::vector<Segment>& ordered_segments);
-    void check_best_3opt(const std::vector<Segment>& ordered_segments);
-    void check_best_4opt(const std::vector<Segment>& ordered_segments);
 
     struct SegmentMargin // margin between segment bounding-box and grid node boundary.
     {
