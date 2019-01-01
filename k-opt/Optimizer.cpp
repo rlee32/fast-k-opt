@@ -8,6 +8,8 @@ void Optimizer::find_best()
     m_best = SearchState();
     update_grid_radii();
 
+    const auto segments = segments_in_traversal_order();
+
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
         const auto& map = m_depth_map.get_nodes(depth);
@@ -625,7 +627,7 @@ void Optimizer::traverse_tree()
 void Optimizer::update_grid_radii()
 {
     std::fill(m_radius.begin(), m_radius.end(), 0);
-    KContainer kc(m_k);
+    KContainer<> kc(m_k);
     for (primitives::depth_t i{0}; i < primitives::DepthEnd; ++i)
     {
         auto depth = primitives::DepthEnd - 1 - i;
@@ -634,7 +636,7 @@ void Optimizer::update_grid_radii()
     }
 }
 
-void Optimizer::insert_max_lengths(KContainer& kc, primitives::depth_t depth) const
+void Optimizer::insert_max_lengths(KContainer<>& kc, primitives::depth_t depth) const
 {
     if (m_length_table.lengths(depth).size() == 0)
     {
@@ -648,3 +650,39 @@ void Optimizer::insert_max_lengths(KContainer& kc, primitives::depth_t depth) co
         }
     }
 }
+
+std::vector<Segment> Optimizer::segments_in_traversal_order() const
+{
+    std::vector<Segment> segments;
+    for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
+    {
+        const auto& nodes = m_depth_map.get_nodes(depth);
+        if (nodes.size() == 0)
+        {
+            break;
+        }
+        for (const auto& hash_node_pair : nodes)
+        {
+            const auto node = hash_node_pair.second;
+            for (const auto& s : node->segments())
+            {
+                segments.push_back(s);
+            }
+        }
+    }
+    return segments;
+}
+
+aliases::RadiusMap Optimizer::compute_max_old_lengths(const std::vector<Segment>& segments) const
+{
+    aliases::RadiusMap lengths;
+    KContainer<> kc(m_k);
+    for (auto it = segments.rbegin(); it != segments.rend(); ++it)
+    {
+        lengths[*it] = kc.kopt_sum();
+        kc.insert(it->length);
+    }
+    return lengths;
+}
+
+

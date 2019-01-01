@@ -64,7 +64,7 @@ private:
     void check_best();
 
     void update_grid_radii();
-    void insert_max_lengths(KContainer&, primitives::depth_t depth) const;
+    void insert_max_lengths(KContainer<>&, primitives::depth_t depth) const;
 
     struct SearchRange
     {
@@ -101,6 +101,10 @@ private:
 
     void add_candidate_segment(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first = true);
     void check_segments(optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first = true);
+
+    std::vector<Segment> segments_in_traversal_order() const;
+    aliases::RadiusMap compute_max_old_lengths(const std::vector<Segment>&) const;
+
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

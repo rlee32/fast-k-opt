@@ -9,10 +9,10 @@
 #include <set>
 #include <numeric> // accumulate
 
+template <typename Value = primitives::length_t>
 class KContainer
 {
     // These aliases can be template parameters if this class has more than one application.
-    using Value = primitives::length_t;
     using ValueContainer = std::multiset<Value>;
 public:
     KContainer(int k) : m_k(k) {}
@@ -45,9 +45,14 @@ public:
             return 0; // this means not enough segments to make a comparison.
         }
         auto it = m_values.cbegin();
+        // sum half of two smallest values.
         auto sum = *it;
         sum += *(++it);
-        return (sum + 2 * std::accumulate(++it, m_values.cend(), 0) + 1) / 2;
+        sum += 1; // account for truncation.
+        sum /= 2;
+        // sum the rest.
+        sum += std::accumulate(++it, m_values.cend(), 0);
+        return sum;
     }
 
 private:
