@@ -23,6 +23,56 @@ void Optimizer::print_radii_comparison(aliases::RadiusMap& lengths) const // TOD
     }
 }
 
+/*
+   OMP SAMPLE
+
+void TreeOpt::FindBestSwap()
+{
+  ResetSwapCandidate();
+  #ifdef _OPENMP
+    // Parallel version
+    int CHUNKS = 2*omp_get_num_procs();
+    // cout << "omp_get_num_procs: " << omp_get_num_procs() << endl;
+    // cout << "omp_get_max_threads: " << omp_get_max_threads() << endl;
+    int elements_per_chunk = ( tour_->cities() + CHUNKS - 1 ) / CHUNKS;
+    SwapCandidate* candidates = new SwapCandidate[CHUNKS]();
+    #pragma omp parallel for
+    for(int c = 0; c < CHUNKS; ++c)
+    {
+      int start = c*elements_per_chunk;
+      int end = (c+1)*elements_per_chunk;
+      end = (end < tour_->cities()) ? end : tour_->cities();
+      for(int i = start; i < end; ++i)
+      {
+        EvaluateNode(quadtree_->root(),*(tour_->segment(i)),
+          candidates[c]);
+      }
+    }
+    int best_index = 0;
+    cost_t best_cost = 0;
+    for(int c = 0; c < CHUNKS; ++c)
+    {
+      if(candidates[c].swap_cost < best_cost)
+      {
+        best_index = c;
+        best_cost = candidates[c].swap_cost;
+      }
+    }
+    swap_candidate_.swap_cost = candidates[best_index].swap_cost;
+    swap_candidate_.segment1 = candidates[best_index].segment1;
+    swap_candidate_.segment2 = candidates[best_index].segment2;
+    delete[] candidates;
+  #else
+    //Serial version
+    for(int i = 0; i < tour_->cities(); ++i)
+    {
+      EvaluateNode(quadtree_->root(),*(tour_->segment(i)), swap_candidate_);
+    }
+  #endif
+}
+
+*/
+
 void Optimizer::find_best()
 {
     m_calls = 0;
@@ -40,6 +90,7 @@ void Optimizer::find_best()
         {
             break;
         }
+        #pragma omp parallel for reduction(max: m_best.improvement)
         for (const auto& hash_node_pair : map)
         {
             const auto hash = hash_node_pair.first;
