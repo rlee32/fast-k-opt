@@ -66,1881 +66,1881 @@ inline void five(
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2a + edge_1b3a + edge_2b4b + edge_3b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.b, s4.b, edge_2b4b};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2a + edge_1b3a + edge_2b4b + edge_3b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.b, s4.b, edge_2b4b};
-        new_segments[3] = {s3.b, s5.b, edge_3b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[3] = Segment(s3.b, s5.b, edge_3b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2a + edge_1b3a + edge_2b5a + edge_3b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.b, s5.a, edge_2b5a};
-        new_segments[3] = {s3.b, s4.b, edge_3b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[3] = Segment(s3.b, s4.b, edge_3b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2a + edge_1b3b + edge_2b4a + edge_3a5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2a + edge_1b3b + edge_2b4b + edge_3a5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.b, s4.b, edge_2b4b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2a + edge_1b3b + edge_2b5a + edge_3a4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.b, s5.a, edge_2b5a};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2a + edge_1b3b + edge_2b5b + edge_3a4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.b, s5.b, edge_2b5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2a + edge_1b4a + edge_2b3b + edge_3a5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.b, s3.b, edge_2b3b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2a + edge_1b4a + edge_2b4b + edge_3a5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.b, s4.b, edge_2b4b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2a + edge_1b4a + edge_2b5a + edge_3a5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.b, s5.a, edge_2b5a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a2a + edge_1b4a + edge_2b5b + edge_3a4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.b, s5.b, edge_2b5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2a + edge_1b4a + edge_2b5b + edge_3a5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.b, s5.b, edge_2b5b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b3b + edge_3a5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s3.b, edge_2b3b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b3b + edge_3a5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s3.b, edge_2b3b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b4a + edge_3a5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b4a + edge_3a5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b5a + edge_3a4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s5.a, edge_2b5a};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2a + edge_1b4b + edge_2b5b + edge_3a4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.b, s5.b, edge_2b5b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2a + edge_1b5a + edge_2b3b + edge_3a4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.b, s3.b, edge_2b3b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2a + edge_1b5a + edge_2b4a + edge_3a4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2a + edge_1b5a + edge_2b4a + edge_3a5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.b, s4.a, edge_2b4a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a2a + edge_1b5a + edge_2b4b + edge_3a4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.b, s4.b, edge_2b4b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2b + edge_1b3a + edge_2a4a + edge_3b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2b + edge_1b3a + edge_2a4b + edge_3b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b3a + edge_2a4b + edge_3b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.b, s5.b, edge_3b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.b, s5.b, edge_3b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2b + edge_1b3a + edge_2a5a + edge_3b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.b, s4.b, edge_3b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.b, s4.b, edge_3b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b3b + edge_2a4b + edge_3a5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b3b + edge_2a5a + edge_3a4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2b + edge_1b3b + edge_2a5a + edge_3a4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b3b + edge_2a5b + edge_3a4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2b + edge_1b4a + edge_2a3a + edge_3b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2b + edge_1b4a + edge_2a4b + edge_3a5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2b + edge_1b4a + edge_2a5a + edge_3a4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2b + edge_1b4a + edge_2a5b + edge_3a4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2b + edge_1b4a + edge_2a5b + edge_3a5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a2b + edge_1b4b + edge_2a3a + edge_3b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b4b + edge_2a3a + edge_3b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s3.b, s5.b, edge_3b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s3.b, s5.b, edge_3b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2b + edge_1b4b + edge_2a3b + edge_3a5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b4b + edge_2a4a + edge_3a5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2b + edge_1b4b + edge_2a5b + edge_3a4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2b + edge_1b5a + edge_2a3a + edge_3b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s3.b, s4.b, edge_3b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s3.b, s4.b, edge_3b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b5a + edge_2a3b + edge_3a4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a2b + edge_1b5a + edge_2a3b + edge_3a4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a2b + edge_1b5a + edge_2a4a + edge_3a4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a2b + edge_1b5b + edge_2a3b + edge_3a4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a2b + edge_1b5b + edge_2a4a + edge_3a4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a2b + edge_1b5b + edge_2a4a + edge_3a5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a2b + edge_1b5b + edge_2a4b + edge_3a4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a3a + edge_1b2b + edge_2a4a + edge_3b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3a + edge_1b2b + edge_2a4b + edge_3b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.b, s5.a, edge_3b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.b, s5.a, edge_3b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b2b + edge_2a4b + edge_3b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.b, s5.b, edge_3b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.b, s5.b, edge_3b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3a + edge_1b2b + edge_2a5a + edge_3b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.b, s4.b, edge_3b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.b, s4.b, edge_3b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b3b + edge_2a4b + edge_2b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b3b + edge_2a5a + edge_2b4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3a + edge_1b3b + edge_2a5a + edge_2b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b3b + edge_2a5b + edge_2b4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3a + edge_1b4a + edge_2a4b + edge_2b5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a3a + edge_1b4a + edge_2a5a + edge_2b3b + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3a + edge_1b4a + edge_2a5a + edge_2b4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a3a + edge_1b4a + edge_2a5b + edge_2b4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a3a + edge_1b4a + edge_2a5b + edge_2b5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a3a + edge_1b4b + edge_2a3b + edge_2b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b4b + edge_2a4a + edge_2b5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a3a + edge_1b4b + edge_2a5b + edge_2b3b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3a + edge_1b4b + edge_2a5b + edge_2b4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a3a + edge_1b5a + edge_2a3b + edge_2b4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3a + edge_1b5a + edge_2a3b + edge_2b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a3a + edge_1b5a + edge_2a4a + edge_2b3b + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3a + edge_1b5a + edge_2a4a + edge_2b4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a3a + edge_1b5a + edge_2a5b + edge_2b4a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a3b + edge_2b4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a4a + edge_2b4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a4a + edge_2b5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a4b + edge_2b3b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a4b + edge_2b4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a3a + edge_1b5b + edge_2a5a + edge_2b4a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a3b + edge_1b2b + edge_2a4a + edge_3a5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b2b + edge_2a4b + edge_3a5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b2b + edge_2a5a + edge_3a4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b2b + edge_2a5b + edge_3a4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b3a + edge_2a4a + edge_2b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b3a + edge_2a4b + edge_2b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b3a + edge_2a5a + edge_2b4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b3a + edge_2a5b + edge_2b4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b4a + edge_2a3a + edge_2b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b4a + edge_2a4b + edge_2b5a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a3b + edge_1b4a + edge_2a4b + edge_2b5b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a3b + edge_1b4a + edge_2a5a + edge_2b4b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a3b + edge_1b4a + edge_2a5a + edge_2b5b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a3b + edge_1b4b + edge_2a3a + edge_2b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b4b + edge_2a4a + edge_2b5a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a3b + edge_1b4b + edge_2a4a + edge_2b5b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a3b + edge_1b4b + edge_2a5b + edge_2b4a + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a3b + edge_1b4b + edge_2a5b + edge_2b5a + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a3b + edge_1b5a + edge_2a3a + edge_2b4a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a3b + edge_1b5a + edge_2a4a + edge_2b4b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a3b + edge_1b5a + edge_2a4a + edge_2b5b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a3b + edge_1b5a + edge_2a5b + edge_2b4a + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a3b + edge_1b5a + edge_2a5b + edge_2b4b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a3b + edge_1b5b + edge_2a3a + edge_2b4b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a3b + edge_1b5b + edge_2a4b + edge_2b4a + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a3b + edge_1b5b + edge_2a4b + edge_2b5a + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a3b + edge_1b5b + edge_2a5a + edge_2b4a + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a3b + edge_1b5b + edge_2a5a + edge_2b4b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.b, edge_1a3b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s3.b, edge_1a3b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a4a + edge_1b2b + edge_2a3b + edge_3a5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a4a + edge_1b2b + edge_2a4b + edge_3a5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b2b + edge_2a5a + edge_3a5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b2b + edge_2a5b + edge_3a4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b2b + edge_2a5b + edge_3a5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a3b + edge_2b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a4b + edge_2b5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a5a + edge_2b3b + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a5a + edge_2b5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a5b + edge_2b4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b3a + edge_2a5b + edge_2b5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b3b + edge_2a3a + edge_2b5a + edge_4b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.b, s5.b, edge_4b5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.b, s5.b, edge_4b5b, dt);
     }
     new_length = edge_1a4a + edge_1b3b + edge_2a4b + edge_2b5a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4a + edge_1b3b + edge_2a4b + edge_2b5b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4a + edge_1b3b + edge_2a5a + edge_2b4b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4a + edge_1b3b + edge_2a5a + edge_2b5b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a4a + edge_1b4b + edge_2a3a + edge_2b5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b4b + edge_2a3b + edge_2b5a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4a + edge_1b4b + edge_2a3b + edge_2b5b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4a + edge_1b4b + edge_2a5b + edge_2b3b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4a + edge_1b5a + edge_2a3a + edge_2b5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b5a + edge_2a3b + edge_2b4b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4a + edge_1b5a + edge_2a3b + edge_2b5b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a4a + edge_1b5a + edge_2a5b + edge_2b3b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a4a + edge_1b5b + edge_2a3a + edge_2b4b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4a + edge_1b5b + edge_2a3a + edge_2b5a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a4a + edge_1b5b + edge_2a4b + edge_2b3b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4a + edge_1b5b + edge_2a5a + edge_2b3b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.a, edge_1a4a};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s4.a, edge_1a4a, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a3b + edge_3a5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a3b + edge_3a5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a4a + edge_3a5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.a, edge_3a5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.a, edge_3a5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a4a + edge_3a5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a5a + edge_3a4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b2b + edge_2a5b + edge_3a4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a3b + edge_2b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a3b + edge_2b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a4a + edge_2b5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a4a + edge_2b5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a5a + edge_2b3b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a5a + edge_2b4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a5b + edge_2b3b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a4b + edge_1b3a + edge_2a5b + edge_2b4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a3a + edge_2b5a + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a3a + edge_2b5b + edge_4a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s4.a, s5.a, edge_4a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s4.a, s5.a, edge_4a5a, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a5a + edge_2b4a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a5a + edge_2b5b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a5b + edge_2b4a + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4b + edge_1b3b + edge_2a5b + edge_2b5a + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a4b + edge_1b4a + edge_2a3a + edge_2b5a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b4a + edge_2a3a + edge_2b5b + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b4a + edge_2a5a + edge_2b3b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.a, edge_2a5a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.a, edge_2a5a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4b + edge_1b4a + edge_2a5b + edge_2b3b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4b + edge_1b5a + edge_2a3a + edge_2b4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a4b + edge_1b5a + edge_2a3b + edge_2b4a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4b + edge_1b5a + edge_2a3b + edge_2b5b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a4b + edge_1b5a + edge_2a4a + edge_2b3b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.a, edge_1b5a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.a, edge_1b5a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a4b + edge_1b5b + edge_2a3a + edge_2b4a + edge_3b5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.a, edge_3b5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.a, edge_3b5a, dt);
     }
     new_length = edge_1a4b + edge_1b5b + edge_2a3b + edge_2b4a + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a4b + edge_1b5b + edge_2a3b + edge_2b5a + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.a, edge_2b5a};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.a, edge_2b5a, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a4b + edge_1b5b + edge_2a4a + edge_2b3b + edge_3a5a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s4.b, edge_1a4b};
-        new_segments[1] = {s1.b, s5.b, edge_1b5b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.a, edge_3a5a};
+        new_segments[0] = Segment(s1.a, s4.b, edge_1a4b, dt);
+        new_segments[1] = Segment(s1.b, s5.b, edge_1b5b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.a, edge_3a5a, dt);
     }
     new_length = edge_1a5a + edge_1b2b + edge_2a3b + edge_3a4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a5a + edge_1b2b + edge_2a4a + edge_3a4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s4.b, edge_3a4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s4.b, edge_3a4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b2b + edge_2a4a + edge_3a5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s3.a, s5.b, edge_3a5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s3.a, s5.b, edge_3a5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a5a + edge_1b2b + edge_2a4b + edge_3a4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s3.a, s4.a, edge_3a4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s3.a, s4.a, edge_3a4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a3b + edge_2b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a4a + edge_2b4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a4a + edge_2b5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a4b + edge_2b3b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a4b + edge_2b4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b3a + edge_2a5b + edge_2b4a + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a5a + edge_1b3b + edge_2a3a + edge_2b4b + edge_4a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s4.a, s5.b, edge_4a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s4.a, s5.b, edge_4a5b, dt);
     }
     new_length = edge_1a5a + edge_1b3b + edge_2a4b + edge_2b4a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a5a + edge_1b3b + edge_2a4b + edge_2b5b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a5a + edge_1b3b + edge_2a5b + edge_2b4a + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a5a + edge_1b3b + edge_2a5b + edge_2b4b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a5a + edge_1b4a + edge_2a3a + edge_2b4b + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.b, edge_2b4b};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.b, edge_2b4b, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b4a + edge_2a3a + edge_2b5b + edge_3b4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.b, s4.b, edge_3b4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.b, s4.b, edge_3b4b, dt);
     }
     new_length = edge_1a5a + edge_1b4a + edge_2a4b + edge_2b3b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s4.b, edge_2a4b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s4.b, edge_2a4b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a5a + edge_1b4a + edge_2a5b + edge_2b3b + edge_3a4b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.a, edge_1b4a};
-        new_segments[2] = {s2.a, s5.b, edge_2a5b};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s4.b, edge_3a4b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.a, edge_1b4a, dt);
+        new_segments[2] = Segment(s2.a, s5.b, edge_2a5b, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s4.b, edge_3a4b, dt);
     }
     new_length = edge_1a5a + edge_1b4b + edge_2a3a + edge_2b4a + edge_3b5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.b, s5.b, edge_3b5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.b, s5.b, edge_3b5b, dt);
     }
     new_length = edge_1a5a + edge_1b4b + edge_2a3b + edge_2b4a + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s4.a, edge_2b4a};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s4.a, edge_2b4a, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     new_length = edge_1a5a + edge_1b4b + edge_2a3b + edge_2b5b + edge_3a4a;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
-        new_segments[3] = {s2.b, s5.b, edge_2b5b};
-        new_segments[4] = {s3.a, s4.a, edge_3a4a};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
+        new_segments[3] = Segment(s2.b, s5.b, edge_2b5b, dt);
+        new_segments[4] = Segment(s3.a, s4.a, edge_3a4a, dt);
     }
     new_length = edge_1a5a + edge_1b4b + edge_2a4a + edge_2b3b + edge_3a5b;
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s5.a, edge_1a5a};
-        new_segments[1] = {s1.b, s4.b, edge_1b4b};
-        new_segments[2] = {s2.a, s4.a, edge_2a4a};
-        new_segments[3] = {s2.b, s3.b, edge_2b3b};
-        new_segments[4] = {s3.a, s5.b, edge_3a5b};
+        new_segments[0] = Segment(s1.a, s5.a, edge_1a5a, dt);
+        new_segments[1] = Segment(s1.b, s4.b, edge_1b4b, dt);
+        new_segments[2] = Segment(s2.a, s4.a, edge_2a4a, dt);
+        new_segments[3] = Segment(s2.b, s3.b, edge_2b3b, dt);
+        new_segments[4] = Segment(s3.a, s5.b, edge_3a5b, dt);
     }
     if (minimum_length >= current.length)
     {

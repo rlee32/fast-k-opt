@@ -5,11 +5,13 @@
 #include "DistanceTable.h"
 #include "KContainer.h"
 #include "SearchState.h"
+#include "aliases.h"
 #include "constants.h"
 #include "opt/five.h"
 #include "opt/four.h"
 #include "opt/three.h"
 #include "opt/two.h"
+#include "optimizer/CliqueFilter.h"
 #include "optimizer/NodeIterator.h"
 #include "optimizer/SearchBox.h"
 #include "optimizer/SegmentIterator.h"
@@ -19,7 +21,6 @@
 #include "quadtree/QuadtreeNode.h"
 #include "quadtree/depth_map/DepthMap.h"
 #include "quadtree/depth_map/transform.h"
-#include "segment.h"
 
 #include <algorithm>
 #include <array>

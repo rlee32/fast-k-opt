@@ -64,9 +64,7 @@ void PointSequence::align(Segment::Container& segments) const
     }
     for (auto& s : reverse)
     {
-        //std::cout << "before realign: " << s << std::endl;
         std::swap(s.a, s.b);
-        //std::cout << "after: " << s << std::endl;
         segments.insert(s);
     }
 }

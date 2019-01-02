@@ -50,7 +50,7 @@ int main(int argc, char** argv)
     for (auto id : tour)
     {
         auto length = dt.compute_length(id, next[id]);
-        Segment s{id, next[id], length};
+        Segment s(id, next[id], length, dt);
         quadtree.insert(s);
     }
     // Hill-climbing loop.

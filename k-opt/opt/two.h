@@ -17,12 +17,12 @@ inline void two(const std::vector<Segment>& ordered_segments
     const auto& s = ordered_segments;
     auto& ns = current.new_segments;
     ns.clear();
-    ns.push_back({s[0].a, s[1].a, dt.compute_length(s[0].a, s[1].a)});
+    ns.emplace_back(s[0].a, s[1].a, dt);
     if (ns[0].length >= current.length)
     {
         return;
     }
-    ns.push_back({s[0].b, s[1].b, dt.compute_length(s[0].b, s[1].b)});
+    ns.emplace_back(s[0].b, s[1].b, dt);
     auto new_length = ns[0].length + ns[1].length;
     if (new_length >= current.length)
     {

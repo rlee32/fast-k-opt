@@ -20,6 +20,7 @@ public:
     SegmentIterator(const quadtree::QuadtreeNode* root);
 
     const Segment& operator*() const { return *m_segment; }
+    segment_iterator operator->() const { return m_segment; }
     SegmentIterator& operator++();
     SegmentIterator operator++(int);
 

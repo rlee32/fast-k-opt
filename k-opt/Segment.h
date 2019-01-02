@@ -3,6 +3,7 @@
 // This represents a straight line path between two adjacent cities.
 // A tour is made of a number of segments equal to the number of cities.
 
+#include "DistanceTable.h"
 #include "primitives.h"
 
 #include <algorithm> // min, max
@@ -12,10 +13,21 @@
 
 struct Segment
 {
+public:
+    Segment() = default;
+    Segment(primitives::point_id_t a, primitives::point_id_t b, primitives::length_t length, const DistanceTable& dt)
+        : a(a), b(b), length(length)
+        , xm(0.5 * (dt.x(a) + dt.x(b)))
+        , ym(0.5 * (dt.y(a) + dt.y(b))) {}
+    Segment(primitives::point_id_t a, primitives::point_id_t b, const DistanceTable& dt)
+        : Segment(a, b, dt.compute_length(a, b), dt) {}
+
     // "First" and "second" point is assumed consistent among all segments.
     primitives::point_id_t a{0}; // first point in traversal.
     primitives::point_id_t b{0}; // second point in traversal.
     primitives::length_t length{0};
+    primitives::space_t xm{0}; // x-coordinate of segment midpoint.
+    primitives::space_t ym{0}; // y-coordinate of segment midpoint.
 
     primitives::point_id_t min() const
     {

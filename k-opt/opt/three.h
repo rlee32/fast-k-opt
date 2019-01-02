@@ -25,9 +25,9 @@ inline void three(const std::vector<Segment>& ordered_segments
     if (new_length < current.length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.a, edge_1a2a};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.b, s3.b, edge_2b3b};
+        new_segments[0] = Segment(s1.a, s2.a, edge_1a2a, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.b, s3.b, edge_2b3b, dt);
     }
 	auto edge_1a2b = dt.compute_length(s1.a, s2.b);
 	auto edge_2a3b = dt.compute_length(s2.a, s3.b);
@@ -35,9 +35,9 @@ inline void three(const std::vector<Segment>& ordered_segments
     if (new_length < minimum_length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.a, edge_1b3a};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.a, edge_1b3a, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
     }
 	auto edge_1b3b = dt.compute_length(s1.b, s3.b);
 	auto edge_2a3a = dt.compute_length(s2.a, s3.a);
@@ -45,9 +45,9 @@ inline void three(const std::vector<Segment>& ordered_segments
     if (new_length < minimum_length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s2.b, edge_1a2b};
-        new_segments[1] = {s1.b, s3.b, edge_1b3b};
-        new_segments[2] = {s2.a, s3.a, edge_2a3a};
+        new_segments[0] = Segment(s1.a, s2.b, edge_1a2b, dt);
+        new_segments[1] = Segment(s1.b, s3.b, edge_1b3b, dt);
+        new_segments[2] = Segment(s2.a, s3.a, edge_2a3a, dt);
     }
 	auto edge_1a3a = dt.compute_length(s1.a, s3.a);
 	auto edge_1b2b = dt.compute_length(s1.b, s2.b);
@@ -55,9 +55,9 @@ inline void three(const std::vector<Segment>& ordered_segments
     if (new_length < minimum_length)
     {
         minimum_length = new_length;
-        new_segments[0] = {s1.a, s3.a, edge_1a3a};
-        new_segments[1] = {s1.b, s2.b, edge_1b2b};
-        new_segments[2] = {s2.a, s3.b, edge_2a3b};
+        new_segments[0] = Segment(s1.a, s3.a, edge_1a3a, dt);
+        new_segments[1] = Segment(s1.b, s2.b, edge_1b2b, dt);
+        new_segments[2] = Segment(s2.a, s3.b, edge_2a3b, dt);
     }
     if (minimum_length >= current.length)
     {

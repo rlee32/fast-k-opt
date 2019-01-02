@@ -73,8 +73,7 @@ void Optimizer::replace_segments(primitives::depth_t d, quadtree::depth_map::tra
         const auto nit = optimizer::NodeIterator(psn, fsn, sb);
         searches = 0;
         m_search_box_stack.emplace
-            (segment::x_center(current_segment, m_dt)
-            , segment::y_center(current_segment, m_dt)
+            (current_segment.xm, current_segment.ym
             , m_radius[d]
             , m_radius[d]);
         add_candidate_segment(nit, sit, false);
@@ -108,8 +107,8 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             ++sit;
             continue;
         }
-        const auto x = segment::x_center(*sit, m_dt);
-        const auto y = segment::y_center(*sit, m_dt);
+        const auto x = sit->xm;
+        const auto y = sit->ym;
         const auto& top = m_search_box_stack.top();
         if (not top.contains(x, y))
         {
@@ -215,6 +214,7 @@ std::vector<const quadtree::QuadtreeNode*> Optimizer::partial_search_nodes(const
     }
     return nodes;
 }
+
 std::vector<const quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const SearchRange& sr) const
 {
     std::vector<const quadtree::QuadtreeNode*> nodes;
@@ -231,6 +231,7 @@ std::vector<const quadtree::QuadtreeNode*> Optimizer::full_search_nodes(const Se
     }
     return nodes;
 }
+
 void Optimizer::find_and_add_node(primitives::depth_t depth
     , primitives::grid_t grid_x, primitives::grid_t grid_y
     , std::vector<const quadtree::QuadtreeNode*>& nodes) const
@@ -275,12 +276,7 @@ void Optimizer::check_best()
         } break;
         case 6:
         {
-            /*
-               opt::six(m_current
-                , m_best
-                , m_dt
-                , ordered_segments);
-                */
+            // opt::six(ordered_segments, m_current, m_best, m_dt);
         } break;
         default:
         {
