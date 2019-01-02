@@ -65,7 +65,11 @@ private:
     SearchState m_current;
     size_t m_calls{0};
 
-    void replace_segments(primitives::depth_t depth, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node);
+    void replace_segments(primitives::depth_t depth
+        , quadtree::depth_map::transform::hash_t node_hash
+        , const quadtree::QuadtreeNode* node
+        , const aliases::RadiusMap& max_old_lengths
+        , const aliases::LengthsMap& max_length_vectors);
 
     void check_best();
 
@@ -99,7 +103,10 @@ private:
     };
 
     SegmentMargin compute_segment_margin(primitives::depth_t depth, const Segment& s) const;
-    SearchRange compute_search_range(primitives::depth_t d, quadtree::depth_map::transform::hash_t center_node_hash, const SegmentMargin&) const;
+    SearchRange compute_search_range(primitives::depth_t d
+        , quadtree::depth_map::transform::hash_t center_node_hash
+        , const SegmentMargin&
+        , primitives::space_t max_radius) const;
 
     void add_candidate_segment(optimizer::NodeIterator nit, optimizer::SegmentIterator sit, bool increment_first = true);
     void check_segments(optimizer::NodeIterator& nit, optimizer::SegmentIterator& sit, bool increment_first = true);
@@ -107,6 +114,7 @@ private:
     std::vector<Segment> segments_in_traversal_order() const;
     aliases::RadiusMap compute_max_old_lengths(const std::vector<Segment>&) const;
     aliases::RadiusMap compute_min_single_lengths(const std::vector<Segment>&) const;
+    aliases::LengthsMap compute_max_length_vectors(const std::vector<Segment>&) const;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Optimizer& optimizer)

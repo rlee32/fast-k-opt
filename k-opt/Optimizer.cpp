@@ -31,9 +31,7 @@ void Optimizer::find_best()
 
     const auto segments = segments_in_traversal_order();
     auto max_old_lengths = compute_max_old_lengths(segments);
-    print_radii_comparison(max_old_lengths);
-    auto min_single_lengths = compute_min_single_lengths(segments);
-    print_radii_comparison(min_single_lengths);
+    auto max_length_vectors = compute_max_length_vectors(segments);
 
     for (primitives::depth_t depth{0}; depth < primitives::DepthEnd; ++depth)
     {
@@ -46,18 +44,20 @@ void Optimizer::find_best()
         {
             const auto hash = hash_node_pair.first;
             const auto node = hash_node_pair.second;
-            replace_segments(depth, hash, node);
+            replace_segments(depth, hash, node, max_old_lengths, max_length_vectors);
         }
     }
     std::cout << m_k << "-opt checks: " << m_calls << std::endl;
 }
 
-void Optimizer::replace_segments(primitives::depth_t d, quadtree::depth_map::transform::hash_t node_hash, const quadtree::QuadtreeNode* node)
+void Optimizer::replace_segments(primitives::depth_t d
+    , quadtree::depth_map::transform::hash_t node_hash
+    , const quadtree::QuadtreeNode* node
+    , const aliases::RadiusMap& max_old_lengths
+    , const aliases::LengthsMap& max_length_vectors)
 {
     auto sit = optimizer::SegmentIterator(node);
     // loop over each segment in this node to be the first in a candidate segment set.
-    auto xradius = std::ceil(m_radius[d] / m_domain.xdim(d));
-    auto yradius = std::ceil(m_radius[d] / m_domain.ydim(d));
     for (const auto& current_segment : node->segments())
     {
         // start candidate set with first segment.
@@ -65,16 +65,21 @@ void Optimizer::replace_segments(primitives::depth_t d, quadtree::depth_map::tra
         // space between the current / first segment and the bounding box in which it resides.
         // slightly reduces the search radius.
         const auto segment_margin = compute_segment_margin(d, current_segment);
-        const auto sr = compute_search_range(d, node_hash, segment_margin);
+        const auto max_radius = max_old_lengths.find(current_segment)->second;
+        const auto max_radius_fp = static_cast<primitives::space_t>(max_radius);
+        const auto sr = compute_search_range(d, node_hash, segment_margin, max_radius_fp);
+        auto xradius = std::ceil(max_radius_fp / m_domain.xdim(d));
+        auto yradius = std::ceil(max_radius_fp / m_domain.ydim(d));
         const auto sb = optimizer::SearchBox<>(sr.cx, sr.cy, xradius, yradius);
         const auto psn = partial_search_nodes(sr);
         const auto fsn = full_search_nodes(sr);
-        //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
         const auto nit = optimizer::NodeIterator(psn, fsn, sb);
         searches = 0;
-        m_filter_stack.emplace(current_segment, m_radius[d]);
+        m_filter_stack.emplace(current_segment
+            , max_radius_fp
+            , max_length_vectors.find(current_segment)->second);
         add_candidate_segment(nit, sit, false);
-        std::cout << "\t" << searches << std::endl;
+        // std::cout << "\t" << searches << std::endl;
         m_filter_stack.pop();
         ++sit;
     }
@@ -104,8 +109,7 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             ++sit;
             continue;
         }
-        const auto& top = m_filter_stack.top();
-        auto new_top = top;
+        auto new_top = m_filter_stack.top();
         if (not new_top.insert(*sit))
         {
             ++sit;
@@ -153,7 +157,8 @@ Optimizer::SegmentMargin Optimizer::compute_segment_margin(primitives::depth_t d
 
 Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
     , quadtree::depth_map::transform::hash_t center_node_hash
-    , const SegmentMargin& sm) const
+    , const SegmentMargin& sm
+    , primitives::space_t max_radius) const
 {
     // Searchable nodes meet the following criteria:
     //  1. Same depth.
@@ -176,16 +181,16 @@ Optimizer::SearchRange Optimizer::compute_search_range(primitives::depth_t d
     }
     else
     {
-        primitives::grid_t r = std::ceil((m_radius[d] - sm.xleft) / m_domain.xdim(d));
+        primitives::grid_t r = std::ceil((max_radius - sm.xleft) / m_domain.xdim(d));
         r = std::max(0, r);
         sr.xmin = std::max(0, sr.cx - r);
-        r = std::ceil((m_radius[d] - sm.ybottom) / m_domain.ydim(d));
+        r = std::ceil((max_radius - sm.ybottom) / m_domain.ydim(d));
         r = std::max(0, r);
         sr.ymin = std::max(0, sr.cy - r);
-        r = std::ceil((m_radius[d] - sm.xright) / m_domain.xdim(d));
+        r = std::ceil((max_radius - sm.xright) / m_domain.xdim(d));
         r = std::max(0, r);
         sr.xend = std::min(grid_dim, sr.cx + r + 1);
-        r = std::ceil((m_radius[d] - sm.ytop) / m_domain.ydim(d));
+        r = std::ceil((max_radius - sm.ytop) / m_domain.ydim(d));
         r = std::max(0, r);
         sr.yend = std::min(grid_dim, sr.cy + r + 1);
     }
@@ -356,7 +361,19 @@ aliases::RadiusMap Optimizer::compute_max_old_lengths(const std::vector<Segment>
     KContainer<> kc(m_k);
     for (auto it = segments.rbegin(); it != segments.rend(); ++it)
     {
-        lengths[*it] = kc.kopt_sum();
+        lengths[*it] = kc.sum();
+        kc.insert(it->length);
+    }
+    return lengths;
+}
+
+aliases::LengthsMap Optimizer::compute_max_length_vectors(const std::vector<Segment>& segments) const
+{
+    aliases::LengthsMap lengths;
+    KContainer<> kc(m_k);
+    for (auto it = segments.rbegin(); it != segments.rend(); ++it)
+    {
+        lengths[*it] = kc.vector();
         kc.insert(it->length);
     }
     return lengths;

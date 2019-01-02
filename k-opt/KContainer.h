@@ -8,6 +8,7 @@
 #include <iterator> // next
 #include <set>
 #include <numeric> // accumulate
+#include <vector>
 
 template <typename Value = primitives::length_t>
 class KContainer
@@ -37,7 +38,19 @@ public:
         m_values.insert(v);
         return true;
     }
+
     const ValueContainer& values() const { return m_values; }
+
+    std::vector<Value> vector() const
+    {
+        std::vector<Value> values;
+        for (const auto& v : m_values)
+        {
+            values.push_back(v);
+        }
+        return values;
+    }
+
     Value kopt_sum() const
     {
         if (m_values.size() < m_k)
@@ -54,13 +67,29 @@ public:
         sum += std::accumulate(++it, m_values.cend(), 0);
         return sum;
     }
+
+    Value sum() const
+    {
+        return std::accumulate(std::cbegin(m_values), std::cend(m_values), 0);
+    }
+
+    Value sum_top_two() const
+    {
+        if (m_values.size() < 2)
+        {
+            return 0;
+        }
+        auto it = std::prev(std::cend(m_values));
+        return *it + *std::prev(it);
+    }
+
     Value min() const
     {
         if (m_values.empty())
         {
             return 0;
         }
-        return *(std::cbegin(m_values));
+        return *std::cbegin(m_values);
     }
 
 private:

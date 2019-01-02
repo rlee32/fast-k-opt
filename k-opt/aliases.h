@@ -12,6 +12,7 @@ using PointContainer = std::vector<primitives::point_id_t>;
 using CoordContainer = std::vector<primitives::space_t>;
 
 using RadiusMap = std::unordered_map<Segment, primitives::length_t, Segment::Hash>;
+using LengthsMap = std::unordered_map<Segment, std::vector<primitives::length_t>, Segment::Hash>;
 
 } // namespace aliases
 
