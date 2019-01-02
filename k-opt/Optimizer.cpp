@@ -72,13 +72,10 @@ void Optimizer::replace_segments(primitives::depth_t d, quadtree::depth_map::tra
         //std::cout << "psn, fsn size: " << psn.size() << ", " << fsn.size() << std::endl;
         const auto nit = optimizer::NodeIterator(psn, fsn, sb);
         searches = 0;
-        m_search_box_stack.emplace
-            (current_segment.xm, current_segment.ym
-            , m_radius[d]
-            , m_radius[d]);
+        m_filter_stack.emplace(current_segment, m_radius[d]);
         add_candidate_segment(nit, sit, false);
         std::cout << "\t" << searches << std::endl;
-        m_search_box_stack.pop();
+        m_filter_stack.pop();
         ++sit;
     }
 }
@@ -107,17 +104,14 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             ++sit;
             continue;
         }
-        const auto x = sit->xm;
-        const auto y = sit->ym;
-        const auto& top = m_search_box_stack.top();
-        if (not top.contains(x, y))
+        const auto& top = m_filter_stack.top();
+        auto new_top = top;
+        if (not new_top.insert(*sit))
         {
             ++sit;
             continue;
         }
-        m_search_box_stack.push(top);
-        auto& new_top = m_search_box_stack.top();
-        new_top.overlay(x, y);
+        m_filter_stack.push(new_top);
         m_current.push_back(*sit);
         if (m_current.size() == m_k)
         {
@@ -133,7 +127,7 @@ void Optimizer::check_segments(optimizer::NodeIterator& nit, optimizer::SegmentI
             nit.sb(old_sb);
         }
         m_current.pop_back();
-        m_search_box_stack.pop();
+        m_filter_stack.pop();
     }
 }
 

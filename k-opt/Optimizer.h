@@ -59,7 +59,7 @@ private:
     std::array<primitives::space_t, primitives::DepthEnd> m_radius; // max grid boxes to search in any direction.
 
     size_t m_k{0}; // as in k-opt.
-    std::stack<optimizer::SearchBox<primitives::space_t>> m_search_box_stack;
+    std::stack<optimizer::CliqueFilter> m_filter_stack;
 
     SearchState m_best;
     SearchState m_current;
