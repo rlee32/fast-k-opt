@@ -134,7 +134,7 @@ for c in edge_combinations:
         edge = str(e[0]) + p1 + str(e[2]) + p2
         edge_set.add(edge)
         formatted.append(edge)
-        new_segment_strings.append("        new_segments[" + str(i) + "] = {s" + edge[0] + "." + edge[1] + ", s" + edge[2] + "." + edge[3] + ", edge_" + edge + "};")
+        new_segment_strings.append("        new_segments[" + str(i) + "] = Segment(s" + edge[0] + "." + edge[1] + ", s" + edge[2] + "." + edge[3] + ", edge_" + edge + ", dt);")
         i += 1
     formatted = ["edge_" + x for x in formatted]
     formatted = " + ".join(formatted)
