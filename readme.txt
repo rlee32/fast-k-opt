@@ -1,7 +1,7 @@
 This quadtree-based k-opt algorithm runs in O(n * log(n) ^ (k - 1)), instead of O(n ^ k) (the state of the art for best-improvement).
-This is NOT an approximation algorithm! This algorithm achieves local optimality, providing the same solution quality as O(n^k) algorithms, just a lot more efficiently!
+This is NOT an approximation algorithm! This algorithm achieves local optimality, providing the same solution quality as O(n^k) algorithms, just more efficiently!
 
-The python scripts verify TSPLIB-formatted files and provide visualizations for k-opt edge exchanges.
+The python scripts verify TSPLIB-formatted files and provide visualizations and code generation for k-opt edge exchanges.
 
 Compilation:
 1. Make sure "CXX" in "k-opt/makefile" is set to the desired compiler.
@@ -17,7 +17,7 @@ Style notes:
 
 Potential design changes:
 1. Moving Quadtree insertion and erasure implementation to QuadtreeNodes, and DepthMap as a static member of QuadtreeNode.
-4. Placing all segments in an unordered set, and holding indexes to these segments in QuadtreeNodes (instead of the segments themselves).
+2. Placing all segments in an unordered set, and holding indexes to these segments in QuadtreeNodes (instead of the segments themselves).
 
 TODO:
 1. Write tour to file.
