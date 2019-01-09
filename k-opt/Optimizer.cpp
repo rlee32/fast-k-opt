@@ -90,7 +90,7 @@ void Optimizer::find_best()
         {
             break;
         }
-        #pragma omp parallel for reduction(max: m_best.improvement)
+        // #pragma omp parallel for reduction(max: m_best.improvement)
         for (const auto& hash_node_pair : map)
         {
             const auto hash = hash_node_pair.first;
