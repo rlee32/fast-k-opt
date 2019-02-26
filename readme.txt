@@ -28,3 +28,4 @@ TODO:
 6. Search radius relaxation parameter, and first-improvement (vs. best-improvement) search.
     Would allow for faster arrival to "good" grids, on which the unrelaxed algorithm can run.
     This would be especially useful because search radius is proportional to maximum segment lengths at each depth.
+7. Rather than using CliqueFilter to filter segments individually, quadtree nodes should be filtered.
